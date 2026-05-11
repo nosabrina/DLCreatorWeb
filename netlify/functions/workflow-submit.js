@@ -1,0 +1,2 @@
+const {json,parseJson,requireFields,safeHandler,audit}=require('./_shared');
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);requireFields(body,['dlId','targetState']);audit(event,'WORKFLOW','workflow-submit-prepared',{dlId:body.dlId,targetState:body.targetState});return json(200,{enabled:false,workflowServerEnabled:false,accepted:false,offlineFallback:true,message:'Soumission workflow serveur préparée. Workflow local prioritaire.'},event);},['POST']);

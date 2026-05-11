@@ -1,0 +1,6 @@
+import { z } from 'zod';
+export function validateBody(schema){ return (req,_res,next)=>{ try{ req.body=schema.parse(req.body||{}); next(); } catch(err){ next(toValidationError(err)); } }; }
+export function validateQuery(schema){ return (req,_res,next)=>{ try{ req.query=schema.parse(req.query||{}); next(); } catch(err){ next(toValidationError(err)); } }; }
+export function validateParams(schema){ return (req,_res,next)=>{ try{ req.params=schema.parse(req.params||{}); next(); } catch(err){ next(toValidationError(err)); } }; }
+export function toValidationError(err){ if (err instanceof z.ZodError) { const e=new Error('Requête invalide: '+err.errors.map(i=>`${i.path.join('.')||'champ'} ${i.message}`).join('; ')); e.status=400; e.details=err.errors.map(i=>({path:i.path,message:i.message})); return e; } err.status=err.status||400; return err; }
+export const commonSchemas = { id:z.string().trim().min(6).max(120).regex(/^[A-Za-z0-9_-]+$/,'identifiant invalide'), email:z.string().trim().email().max(254), optionalText:z.string().trim().max(4000).optional().nullable(), nonEmptyComment:z.string().trim().min(1,'commentaire obligatoire').max(4000), role:z.enum(['admin','validator','responsible','creator','reader']), workflowStatus:z.enum(['draft','assigned','in_progress','submitted','rejected','validated_private','validated_library','archived']) };

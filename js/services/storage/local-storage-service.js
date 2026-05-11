@@ -1,0 +1,1 @@
+(function(window){'use strict';const root=window.DLCreatorCore=window.DLCreatorCore||{};root.localStorageService={get(key,fallback=null){try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}},set(key,value){localStorage.setItem(key,JSON.stringify(value));return true;},remove(key){localStorage.removeItem(key);}};})(window);

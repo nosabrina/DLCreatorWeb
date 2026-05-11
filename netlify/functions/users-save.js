@@ -1,0 +1,2 @@
+const {json,parseJson,requireFields,safeHandler,audit}=require('./_shared');
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);requireFields(body,['user']);audit(event,'AUDIT','users-save',{mock:true,email:body.user.email||''});return json(200,{saved:false,mock:true,user:body.user,message:'Sauvegarde utilisateur serveur préparée, écriture distante désactivée en v9.10.'},event);},['POST']);

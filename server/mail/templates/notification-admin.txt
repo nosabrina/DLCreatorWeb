@@ -1,0 +1,5 @@
+DL Creator Web — notification-admin
+
+Ce modèle transactionnel est préparé pour la v8.90.
+Variables attendues : nom, titreDL, referenceDL, lienAction, message.
+Aucun secret ni provider e-mail n'est stocké côté frontend.

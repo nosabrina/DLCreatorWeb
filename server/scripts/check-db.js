@@ -1,0 +1,10 @@
+import 'dotenv/config';
+import fs from 'node:fs';
+import { openSqliteDatabase } from '../src/db/sqlite-adapter.js';
+import { getDbPath } from '../src/utils/config.js';
+const dbPath=getDbPath(); if(!fs.existsSync(dbPath)) throw new Error(`Base SQLite introuvable: ${dbPath}`);
+const db=openSqliteDatabase(dbPath,{readonly:true}); const quick=db.pragma('quick_check',{simple:true});
+const users=db.prepare('SELECT COUNT(*) AS count FROM users').get().count;
+const dls=db.prepare('SELECT COUNT(*) AS count FROM dl_documents WHERE deleted_at IS NULL').get().count;
+const audits=db.prepare('SELECT COUNT(*) AS count FROM audit_log').get().count;
+db.close(); console.log(JSON.stringify({ok:quick==='ok',quickCheck:quick,users,activeDocuments:dls,auditEvents:audits,dbPath},null,2)); if(quick!=='ok') process.exit(2);

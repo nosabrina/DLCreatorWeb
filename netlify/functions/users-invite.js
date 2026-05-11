@@ -1,0 +1,3 @@
+const {json,parseJson,requireFields,safeHandler,audit}=require('./_shared');
+function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||''));}
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);requireFields(body,['email','role']);if(!isEmail(body.email))return json(400,{error:'Adresse e-mail invalide'},event);audit(event,'AUDIT','users-invite-prepared',{role:body.role,emailDomain:String(body.email).split('@')[1]||''});return json(200,{enabled:false,queued:false,emailPrepared:true,template:'invitation-utilisateur',message:'Invitation utilisateur préparée. Envoi serveur désactivé en v9.10.'},event);},['POST']);

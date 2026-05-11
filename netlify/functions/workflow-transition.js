@@ -1,0 +1,2 @@
+const {json,parseJson,requireFields,safeHandler,audit}=require('./_shared');
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);requireFields(body,['dlId','from','to']);audit(event,'AUDIT','workflow-transition',{dlId:body.dlId,from:body.from,to:body.to,mock:true});return json(200,{accepted:false,mock:true,message:'Transition serveur validable ultérieurement. Appliquer localement en v9.10.',transition:{dlId:body.dlId,from:body.from,to:body.to}},event);},['POST']);

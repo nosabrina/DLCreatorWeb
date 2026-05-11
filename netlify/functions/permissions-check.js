@@ -1,0 +1,2 @@
+const {json,parseJson,requireFields,safeHandler,audit}=require('./_shared');
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);requireFields(body,['permission']);audit(event,'SECURITY','permissions-check',{permission:body.permission,mock:true});return json(200,{allowed:false,mock:true,source:'client-local-rbac-v9.10',message:'Contrôle serveur préparé. Le RBAC local reste prioritaire offline-first.'},event);},['POST']);

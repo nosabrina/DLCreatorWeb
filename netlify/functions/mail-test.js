@@ -1,0 +1,2 @@
+const {json,parseJson,safeHandler,audit}=require('./_shared');
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);audit(event,'INFO','mail-test',{template:body.template||'diagnostic'});return json(202,{mailProvider:process.env.DL_CREATOR_MAIL_PROVIDER||process.env.MAIL_PROVIDER||'disabled',sent:false,templatesPrepared:['invitation-utilisateur','reset-password','validation-dl','publication-dl','correction-demandee','notification-admin'],message:'Architecture e-mail pilote prête, aucun envoi réel activé.'},event);},['POST']);

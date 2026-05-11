@@ -1,0 +1,5 @@
+import { z } from 'zod';
+import { logger } from '../services/logger.js';
+function normalizeError(err){ if(err instanceof z.ZodError){ const e=new Error('Requête invalide: '+err.errors.map(i=>`${i.path.join('.')||'champ'} ${i.message}`).join('; ')); e.status=400; e.details=err.errors.map(i=>({path:i.path,message:i.message})); return e; } return err; }
+export function notFound(req,res){ res.status(404).json({ error:'Route introuvable', requestId:req.requestId }); }
+export function errorHandler(err,req,res,_next){ const normalized=normalizeError(err); const status=Number(normalized.status||normalized.statusCode||500); const isProd=process.env.NODE_ENV==='production'; const payload={ error:status>=500?'Erreur serveur':normalized.message, requestId:req.requestId }; if(!isProd&&normalized.details) payload.details=normalized.details; if(!isProd&&status>=500) payload.stack=normalized.stack; logger[status>=500?'error':'warn']('HTTP request failed',{status,method:req.method,path:req.originalUrl,requestId:req.requestId,userId:req.user?.id||null,error:normalized}); res.status(status).json(payload); }

@@ -1,0 +1,36 @@
+{
+  "name": "dl-creator-web-server",
+  "version": "0.10.0-phase-10-pilote",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "NODE_ENV=production node src/server.js",
+    "seed:admin": "node src/scripts/seed-admin.js",
+    "reset:pilot-db": "node src/scripts/reset-pilot-db.js",
+    "backup": "node scripts/backup-db.js",
+    "restore": "node scripts/restore-db.js",
+    "check-db": "node scripts/check-db.js",
+    "smoke-test": "node scripts/smoke-test-api.js",
+    "import-dl-json": "node scripts/import-dl-json.js",
+    "create-user": "node scripts/create-user.js",
+    "backup-before-import": "node scripts/backup-before-import.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "^5.0.9",
+    "zod": "^3.24.1",
+    "nodemailer": "^8.0.7"
+  },
+  "engines": {
+    "node": ">=20 <23"
+  }
+}
