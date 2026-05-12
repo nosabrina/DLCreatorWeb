@@ -1,1 +1,0 @@
-(function(window){'use strict';const root=window.DLCreatorCore=window.DLCreatorCore||{};root.indexedDbService={prepared:true,enabled:!!window.indexedDB,version:'v9.00',note:'Fondation prête pour stockage médias/documents sans migration active.'};})(window);

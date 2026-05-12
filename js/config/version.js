@@ -4,12 +4,12 @@
   const runtime = window.DL_CREATOR_RUNTIME_CONFIG || {};
   const runtimeFlags = window.DL_CREATOR_FEATURE_FLAGS || {};
   const versionInfo = Object.freeze({
-    version: runtime.version || 'v9.10',
-    numericVersion: runtime.numericVersion || '9.10',
-    build: runtime.build || '2026.05.11-v9.10-github-security-hardening',
-    buildIncrement: runtime.buildIncrement || 110,
-    buildDate: runtime.buildDate || '2026-05-11',
-    buildDateUTC: new Date(runtime.buildDateUTC || '2026-05-11T20:10:00Z').toISOString(),
+    version: runtime.version || 'v9.12',
+    numericVersion: runtime.numericVersion || '9.12',
+    build: runtime.build || '2026.05.12-v9.12-library-import-safari-session-access-mail-filrouge-ui',
+    buildIncrement: runtime.buildIncrement || 112,
+    buildDate: runtime.buildDate || '2026-05-12',
+    buildDateUTC: new Date(runtime.buildDateUTC || '2026-05-12T07:30:00Z').toISOString(),
     environment: runtime.environment || 'local',
     supportedEnvironments: Object.freeze(['local','pilote','preview','production']),
     productionMode: runtime.productionMode || 'pilote',
@@ -117,7 +117,11 @@
       envArchitecturePreparedV910: !!runtimeFlags.envArchitecturePreparedV910,
       netlifyPreviewHardenedV910: !!runtimeFlags.netlifyPreviewHardenedV910,
       githubPrivateReadyV910: !!runtimeFlags.githubPrivateReadyV910,
-      configCentralizationV910: !!runtimeFlags.configCentralizationV910
+      configCentralizationV910: !!runtimeFlags.configCentralizationV910,
+      libraryJsonImportV912: true,
+      safariSessionResumeGuardV912: true,
+      accessEmailPreviewBoldTitlesV912: true,
+      filRougeUiAddSectionBottomV912: true
     })
   });
   root.versionInfo = versionInfo;

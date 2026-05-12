@@ -20,6 +20,10 @@
     envArchitecturePreparedV910: true,
     netlifyPreviewHardenedV910: true,
     githubPrivateReadyV910: true,
-    configCentralizationV910: true
+    configCentralizationV910: true,
+    libraryJsonImportV912: true,
+    safariSessionResumeGuardV912: true,
+    accessEmailPreviewBoldTitlesV912: true,
+    filRougeUiAddSectionBottomV912: true
   });
 })(window);

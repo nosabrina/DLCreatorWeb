@@ -4013,3 +4013,59 @@ textarea.invalid{
 .plan-table-multi th,.plan-table-multi td{padding:6px 5px!important;box-sizing:border-box;overflow-wrap:anywhere}
 .plan-table-multi td:last-child,.plan-table-multi th:last-child{width:52px!important;max-width:52px!important}
 .keyword-library #keywordSearchInput:focus{outline:2px solid rgba(184,20,29,.18);border-color:rgba(184,20,29,.55)}
+
+
+/* Correctif v9.12 — Bibliothèque DL, e-mail accès, Fil rouge */
+.library-import-toolbar{
+  justify-content:flex-start;
+  margin:0 0 12px 0;
+}
+.library-json-import-btn{
+  font-weight:750;
+}
+.filrouge-add-bottom{
+  margin-top:14px;
+  justify-content:flex-start;
+}
+.filrouge-add-section-btn{
+  font-weight:750;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.filrouge-add-plus{
+  color:var(--sdis-red);
+  font-weight:900;
+  font-size:18px;
+  line-height:1;
+}
+.filrouge-reorder-label,
+.filrouge-reorder-btn,
+.filrouge-reorder-svg{
+  color:var(--sdis-red);
+}
+.filrouge-trash-btn{
+  margin-top:22px;
+  color:var(--sdis-red);
+}
+.filrouge-trash-btn .sf-trash-icon,
+.filrouge-section .sf-trash-icon{
+  color:var(--sdis-red);
+}
+.access-email-preview-card{
+  max-width:760px;
+}
+.access-email-preview-body{
+  max-height:52vh;
+  overflow:auto;
+  padding:12px;
+  border:1px solid var(--gray-200);
+  border-radius:12px;
+  background:#fff;
+}
+.access-email-subject{
+  margin:8px 0 12px;
+}
+.copyable-url{
+  word-break:break-all;
+}

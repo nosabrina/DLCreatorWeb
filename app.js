@@ -4,7 +4,7 @@ window.DL_CREATOR_WEB_APP_JS_LOADED = true;
 if(window.DL_CREATOR_BOOT) window.DL_CREATOR_BOOT.appJsLoaded = true;
 
 const APP = {
-  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v9.10').trim().toLowerCase(),
+  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v9.12').trim().toLowerCase(),
   STORAGE_KEY: 'DL_CREATOR_WEB_LIBRARY_V1',
   PROFILE_KEY: 'DL_CREATOR_WEB_PROFILE_V1',
   SESSION_KEY: 'DL_CREATOR_WEB_SESSION_V1',
@@ -101,8 +101,8 @@ function installMissingFunctionGuard(){
   };
   Object.entries(guarded).forEach(([name,fn])=>{
     if(typeof window[name] !== 'function') window[name]=function(...args){
-      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v9.10 exécuté.`);
-      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v9.10',destructive:false},'WARN'); }catch{}
+      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v9.12 exécuté.`);
+      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v9.12',destructive:false},'WARN'); }catch{}
       return fn(...args);
     };
   });
@@ -3076,7 +3076,7 @@ function renderFilRouge(){
   const fr=dl.filRouge||[];
   fr.forEach(normalizeFilRougeSection);
   const generalHeader=`<div class="filrouge-general-header form-grid"><div class="span-6"><label>${chantierLabel('EMPLACEMENT CHANTIER','place')}</label><textarea class="auto-expand" data-path="filRougeEmplacementChantierGeneral">${esc(dl.filRougeEmplacementChantierGeneral||'')}</textarea></div><div class="span-6"><label>${chantierLabel('PRÉPARATION CHANTIER','prep')}</label><textarea class="chantier auto-expand" data-path="filRougePreparationChantierGeneral">${esc(dl.filRougePreparationChantierGeneral||'')}</textarea></div></div>`;
-  $('#panel').innerHTML=`<div class="card"><h3>Fil rouge libre</h3><div class="alert info">FIL ROUGE : texte formaté, couleurs rapides, listes et images intégrées dans le corps. Les annexes PDF documentaires sont liées à chaque section et seront ajoutées automatiquement à la fin de la DL exportée.</div>${generalHeader}<div class="toolbar"><button class="btn" onclick="addFilRouge()">Ajouter une section</button></div>${fr.map((s,i)=>`<div class="card filrouge-section"><div class="form-grid"><div class="span-2"><label>Durée</label><div class="duration-field"><span aria-hidden="true">⏱</span><input type="text" inputmode="numeric" maxlength="3" data-duration="filRouge.${i}.duree" value="${esc(formatDurationDisplay(s.duree))}" placeholder="minutes"></div></div><div class="span-9 filrouge-title-row"><div class="filrouge-title-field"><label>Titre section</label><input class="section-title-input" data-path="filRouge.${i}.titre" data-transform="upper" value="${esc((s.titre||'').toUpperCase())}"></div>${renderFilRougeReorderControls(i,fr.length)}</div><div class="span-1"><label>&nbsp;</label><button class="btn small icon-only" title="Supprimer" aria-label="Supprimer" onclick="removeFilRouge(${i})">${sfTrashIcon()}</button></div><div class="span-6"><label>EMPLACEMENT CHANTIER (spécifique)</label><textarea class="auto-expand" data-path="filRouge.${i}.emplacementChantier">${esc(s.emplacementChantier)}</textarea></div><div class="span-6"><label>PRÉPARATION CHANTIER (spécifique)</label><textarea class="chantier auto-expand" data-path="filRouge.${i}.preparationChantier">${esc(s.preparationChantier)}</textarea></div><div class="span-12">${renderLinkedSelector('BUTS LIÉS À CETTE SECTION',dl.buts,`filRouge.${i}.butsLies`,'Aucun but renseigné dans Buts & évaluations.')}</div><div class="span-12"><label>FIL ROUGE</label><div class="rich-editor-shell"><div class="rich-toolbar" role="toolbar" aria-label="Outils FIL ROUGE"><button type="button" class="btn small" title="Augmenter taille" onclick="changeSelectionFontSize(1)">A+</button><button type="button" class="btn small" title="Diminuer taille" onclick="changeSelectionFontSize(-1)">A-</button><span class="font-size-indicator" role="status" aria-live="polite" aria-label="Taille de police active" title="Taille de police active">11</span><button class="btn small color-tool color-black" title="Texte noir" onclick="setRichColor('#1f2730')" aria-label="Texte noir"></button><button class="btn small color-tool color-blue" title="Texte bleu" onclick="setRichColor('#005eb8')" aria-label="Texte bleu"></button><button class="btn small color-tool color-red" title="Texte rouge" onclick="setRichColor('#b8141d')" aria-label="Texte rouge"></button><button class="btn small" onclick="cmd('bold')">Gras</button><button class="btn small" onclick="cmd('italic')">Italique</button><button class="btn small" onclick="cmd('indent')">Indenter</button><button class="btn small" onclick="cmd('outdent')">Désindenter</button><select class="btn small list-select" onchange="insertFilRougeList(this.value);this.value=''" aria-label="Liste"><option value="">Liste</option><option value="dot">·</option><option value="dash">-</option><option value="number">1., 2., 3.</option></select><button class="btn small" onclick="applyRemark()">Formatage remarque</button><button class="btn small" onclick="insertLink()">Insérer un lien</button><label class="btn small"><input type="file" hidden accept="image/*" onchange="attachToRich(event,${i})">Import image</label><label class="btn small"><input type="file" hidden accept="application/pdf,.pdf" onchange="attachPdfPageToRich(event,${i})">Import PDF</label></div><div class="rich" contenteditable="true" data-rich="${i}">${s.contenuHtml||''}</div></div></div><div class="span-12"><label>Remarques liées à cette section</label><textarea data-path="filRouge.${i}.remarques">${esc(s.remarques)}</textarea></div><div class="span-12">${renderPdfAnnexes(i,s)}</div></div></div>`).join('')}</div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Fil rouge libre</h3><div class="alert info">FIL ROUGE : texte formaté, couleurs rapides, listes et images intégrées dans le corps. Les annexes PDF documentaires sont liées à chaque section et seront ajoutées automatiquement à la fin de la DL exportée.</div>${generalHeader}${fr.map((s,i)=>`<div class="card filrouge-section"><div class="form-grid"><div class="span-2"><label>Durée</label><div class="duration-field"><span aria-hidden="true">⏱</span><input type="text" inputmode="numeric" maxlength="3" data-duration="filRouge.${i}.duree" value="${esc(formatDurationDisplay(s.duree))}" placeholder="minutes"></div></div><div class="span-9 filrouge-title-row"><div class="filrouge-title-field"><label>Titre section</label><input class="section-title-input" data-path="filRouge.${i}.titre" data-transform="upper" value="${esc((s.titre||'').toUpperCase())}"></div>${renderFilRougeReorderControls(i,fr.length)}</div><div class="span-1"><label>&nbsp;</label><button class="btn small icon-only filrouge-trash-btn" title="Supprimer" aria-label="Supprimer" onclick="removeFilRouge(${i})">${sfTrashIcon()}</button></div><div class="span-6"><label>EMPLACEMENT CHANTIER (spécifique)</label><textarea class="auto-expand" data-path="filRouge.${i}.emplacementChantier">${esc(s.emplacementChantier)}</textarea></div><div class="span-6"><label>PRÉPARATION CHANTIER (spécifique)</label><textarea class="chantier auto-expand" data-path="filRouge.${i}.preparationChantier">${esc(s.preparationChantier)}</textarea></div><div class="span-12">${renderLinkedSelector('BUTS LIÉS À CETTE SECTION',dl.buts,`filRouge.${i}.butsLies`,'Aucun but renseigné dans Buts & évaluations.')}</div><div class="span-12"><label>FIL ROUGE</label><div class="rich-editor-shell"><div class="rich-toolbar" role="toolbar" aria-label="Outils FIL ROUGE"><button type="button" class="btn small" title="Augmenter taille" onclick="changeSelectionFontSize(1)">A+</button><button type="button" class="btn small" title="Diminuer taille" onclick="changeSelectionFontSize(-1)">A-</button><span class="font-size-indicator" role="status" aria-live="polite" aria-label="Taille de police active" title="Taille de police active">11</span><button class="btn small color-tool color-black" title="Texte noir" onclick="setRichColor('#1f2730')" aria-label="Texte noir"></button><button class="btn small color-tool color-blue" title="Texte bleu" onclick="setRichColor('#005eb8')" aria-label="Texte bleu"></button><button class="btn small color-tool color-red" title="Texte rouge" onclick="setRichColor('#b8141d')" aria-label="Texte rouge"></button><button class="btn small" onclick="cmd('bold')">Gras</button><button class="btn small" onclick="cmd('italic')">Italique</button><button class="btn small" onclick="cmd('indent')">Indenter</button><button class="btn small" onclick="cmd('outdent')">Désindenter</button><select class="btn small list-select" onchange="insertFilRougeList(this.value);this.value=''" aria-label="Liste"><option value="">Liste</option><option value="dot">·</option><option value="dash">-</option><option value="number">1., 2., 3.</option></select><button class="btn small" onclick="applyRemark()">Formatage remarque</button><button class="btn small" onclick="insertLink()">Insérer un lien</button><label class="btn small"><input type="file" hidden accept="image/*" onchange="attachToRich(event,${i})">Import image</label><label class="btn small"><input type="file" hidden accept="application/pdf,.pdf" onchange="attachPdfPageToRich(event,${i})">Import PDF</label></div><div class="rich" contenteditable="true" data-rich="${i}">${s.contenuHtml||''}</div></div></div><div class="span-12"><label>Remarques liées à cette section</label><textarea data-path="filRouge.${i}.remarques">${esc(s.remarques)}</textarea></div><div class="span-12">${renderPdfAnnexes(i,s)}</div></div></div>`).join('')}<div class="toolbar filrouge-add-bottom"><button class="btn filrouge-add-section-btn" onclick="addFilRouge()"><span class="filrouge-add-plus" aria-hidden="true">+</span><strong>Ajouter une section</strong></button></div></div>`;
   $$('.rich').forEach(r=>{r.onfocus=()=>{rememberRichSelection(r); updateFontSizeIndicator();}; r.onmouseup=()=>{rememberRichSelection(r); updateFontSizeIndicator();}; r.onkeyup=()=>{rememberRichSelection(r); updateFontSizeIndicator();}; r.onblur=()=>rememberRichSelection(r); r.oninput=()=>saveRichNode(r); r.oncopy=e=>handleRichCopy(e,false); r.oncut=e=>handleRichCopy(e,true); r.onpaste=handleRichPaste; r.ondragover=e=>{e.preventDefault();r.classList.add('drag')}; r.ondragleave=()=>r.classList.remove('drag'); r.ondrop=e=>{r.classList.remove('drag');dropRich(e)};});
   bindRichToolbarSelectionGuards($('#panel'));
   $$('[data-duration]').forEach(el=>{el.onfocus=()=>{el.value=String(el.value||'').replace(/\D/g,'');}; el.oninput=()=>{el.value=String(el.value||'').replace(/\D/g,'').slice(0,3); setByPath(APP.state.current,el.dataset.duration,el.value); syncPlanHoraireFromFilRouge(APP.state.current); updateComputedDurations(APP.state.current); refreshLiveGeneralites(); setDirty();}; el.onblur=()=>{el.value=formatDurationDisplay(el.value);};});
@@ -4112,17 +4112,17 @@ window.saveHabilitationsExplicit=function(){
     if(!managers.length){
       const recovery=currentUserRecoveryRow('ADMIN STRUCTURE APPLICATION');
       list.unshift(recovery);
-      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v9.10',destructive:false},'WARN'); }catch{}
+      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v9.12',destructive:false},'WARN'); }catch{}
     }
     saveHabilitations(list);
     APP.state.habilitations=loadHabilitations();
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v9.10',destructive:false},'AUDIT'); }catch{}
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v9.12',destructive:false},'AUDIT'); }catch{}
     actionStatus('Habilitations enregistrées. Droits conservés localement.', 'ok');
     renderHabilitations();
     return true;
   }catch(e){
-    console.error('[DL creator][v9.10] Enregistrement habilitations impossible', e);
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v9.10',destructive:false},'ERROR'); }catch{}
+    console.error('[DL creator][v9.12] Enregistrement habilitations impossible', e);
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v9.12',destructive:false},'ERROR'); }catch{}
     actionStatus('Erreur lors de l’enregistrement des habilitations. Gestion des accès reste accessible.', 'error');
     return false;
   }
@@ -4214,29 +4214,30 @@ window.editSelectedKeyword=async ()=>{
 };
 
 function buildAccessEmail(h){
+  const fullName=[h.grade,h.nom,h.prenom].filter(Boolean).join(' ').trim() || 'Utilisateur';
   const droit=normalizeAccessRight(h.droitAcces||h.role||defaultAccessRightForFunction(h.fonction));
-  const nip=String(h.nip || h.login || '').trim();
-  const rights=accessRightsSummary(droit).map(x=>`- ${x}`).join('\n');
+  const rights=accessRightsSummary(droit).map(x=>`- ${x}`).join('\n') || '- Aucun droit détaillé';
+  const admin=droit==='ADMIN STRUCTURE APPLICATION'?'\n\nAttention : ce compte dispose d’un niveau administrateur structure application.': '';
   const activationLink=activationLinkForHabilitation(h);
   const expiresAt=h.activationExpiresAt || new Date(Date.now()+1000*60*60*24*7).toISOString();
-  const admin=droit==='ADMIN STRUCTURE APPLICATION' ? '\n\nAttention : le droit ADMIN STRUCTURE APPLICATION est sensible. Il permet des actions d’administration structurelle et doit être utilisé uniquement dans le cadre autorisé.' : '';
-  const body=`Bonjour ${h.prenom||''},
+  const subject="SDIS régional du Nord vaudois : tes données d'accès à l'application DL creator web";
+  const body=`Bonjour ${fullName},
 
-Tes accès à l'application DL creator web du SDIS régional du Nord vaudois ont été préparés.
+Un accès à l'application DL creator web a été préparé pour toi.
 
 Lien d'activation sécurisé :
 ${activationLink}
 
 Identifiant de connexion (NIP) :
-${nip || 'À compléter'}
-
-Pour des raisons de sécurité, aucun mot de passe provisoire n'est transmis par e-mail. Le lien d'activation est à usage unique et te demandera de créer ton mot de passe personnel, puis de confirmer ton adresse e-mail avant activation effective du compte.
+${h.nip||h.login||''}
 
 Expiration du lien :
 ${formatDateTimeCH(expiresAt)}
 
+Pour des raisons de sécurité, aucun mot de passe provisoire n'est transmis par e-mail. Le lien d'activation est à usage unique et te demandera de créer ton mot de passe personnel, puis de confirmer ton adresse e-mail avant activation effective du compte.
+
 Fonction :
-${h.fonction || '—'}
+${h.fonction||'—'}
 
 Droits attribués :
 ${rights}${admin}
@@ -4244,7 +4245,26 @@ ${rights}${admin}
 Dans ton Profil utilisateur, tu pourras modifier uniquement ton adresse e-mail et ton mot de passe. Le NIP, le grade, le nom, le prénom, le rôle et le domaine sont gérés dans Gestion des accès.
 
 Avec mes salutations.`;
-  return {subject:"SDIS régional du Nord vaudois : tes données d'accès à l'application DL creator web", body};
+  const titleLine=(label,value)=>`<p><strong>${esc(label)}</strong><br>${value}</p>`;
+  const rightsHtml=accessRightsSummary(droit).map(x=>`<li>${esc(x)}</li>`).join('') || '<li>Aucun droit détaillé</li>';
+  const html=`<div class="access-email-preview"><p>Bonjour ${esc(fullName)},</p><p>Un accès à l'application DL creator web a été préparé pour toi.</p>${titleLine("Lien d'activation sécurisé",`<span class="copyable-url">${esc(activationLink)}</span>`)}${titleLine('Identifiant de connexion (NIP)',esc(h.nip||h.login||''))}${titleLine('Expiration du lien',esc(formatDateTimeCH(expiresAt)))}<p>Pour des raisons de sécurité, aucun mot de passe provisoire n'est transmis par e-mail. Le lien d'activation est à usage unique et te demandera de créer ton mot de passe personnel, puis de confirmer ton adresse e-mail avant activation effective du compte.</p>${titleLine('Fonction',esc(h.fonction||'—'))}<p><strong>Droits attribués</strong></p><ul>${rightsHtml}</ul>${droit==='ADMIN STRUCTURE APPLICATION'?'<p><strong>Attention</strong><br>Ce compte dispose d’un niveau administrateur structure application.</p>':''}<p>Dans ton Profil utilisateur, tu pourras modifier uniquement ton adresse e-mail et ton mot de passe. Le NIP, le grade, le nom, le prénom, le rôle et le domaine sont gérés dans Gestion des accès.</p><p>Avec mes salutations.</p></div>`;
+  return {subject, body, html};
+}
+function showAccessEmailPreviewModal(email,mailtoHref){
+  const old=document.getElementById('accessEmailPreviewOverlay');
+  if(old) old.remove();
+  const overlay=document.createElement('div');
+  overlay.id='accessEmailPreviewOverlay';
+  overlay.className='modal-overlay';
+  overlay.innerHTML=`<div class="modal-card access-email-preview-card" role="dialog" aria-modal="true"><h3>Prévisualisation de l’e-mail d’accès</h3><p class="muted">Aucun e-mail serveur n’est envoyé. Le bouton ouvre le client e-mail local avec le contenu texte prêt à copier/coller.</p><div class="access-email-subject"><strong>Objet :</strong> ${esc(email.subject)}</div><div class="access-email-preview-body">${email.html}</div><div class="modal-actions row-actions"><button class="btn" type="button" data-copy>Copier le texte</button><a class="btn red" href="${esc(mailtoHref)}" data-mailto>Ouvrir l’e-mail préparé</a><button class="btn" type="button" data-close>Fermer</button></div></div>`;
+  document.body.appendChild(overlay);
+  overlay.querySelector('[data-close]').onclick=()=>overlay.remove();
+  overlay.addEventListener('click',e=>{ if(e.target===overlay) overlay.remove(); });
+  const copy=overlay.querySelector('[data-copy]');
+  copy.onclick=async()=>{
+    try{ await navigator.clipboard.writeText(email.body); actionStatus('Contenu de l’e-mail copié.'); }
+    catch{ actionStatus('Copie automatique impossible : sélectionner le texte de la prévisualisation.','warn'); }
+  };
 }
 window.sendAccessEmail=async i=>{
   const list=loadHabilitations();
@@ -4258,7 +4278,7 @@ window.sendAccessEmail=async i=>{
   if(!droit){ actionStatus('Envoi impossible : aucun droit n’est attribué.','warn'); return; }
   if(accessRightsSummary(droit).length===0){ actionStatus('Envoi impossible : aucun droit détaillé n’est attribué.','warn'); return; }
   if(droit==='ADMIN STRUCTURE APPLICATION'){
-    const ok=await institutionalConfirm({title:'Envoi d’un accès administrateur',message:'Cette personne dispose du droit sensible ADMIN STRUCTURE APPLICATION. Confirmer l’envoi de l’e-mail d’accès ?',confirmText:'Confirmer',cancelText:'Annuler',warn:true});
+    const ok=await institutionalConfirm({title:'Envoi d’un accès administrateur',message:'Cette personne dispose du droit sensible ADMIN STRUCTURE APPLICATION. Confirmer la préparation de l’e-mail d’accès ?',confirmText:'Confirmer',cancelText:'Annuler',warn:true});
     if(!ok) return;
   }
   h.activationToken=activationTokenForHabilitation(h);
@@ -4272,10 +4292,10 @@ window.sendAccessEmail=async i=>{
   saveHabilitations(list);
   const email=buildAccessEmail(h);
   const href=`mailto:${encodeURIComponent(mail)}?subject=${encodeURIComponent(email.subject)}&body=${encodeURIComponent(email.body)}`;
-  window.location.href=href;
-  auditLocal('access-email-prepared',{nip:h.nip||'', email:'renseigné', activationPrepared:true, passwordInClear:false, destructive:false},'AUDIT');
+  auditLocal('access-email-prepared',{nip:h.nip||'', email:'renseigné', activationPrepared:true, passwordInClear:false, previewHtml:true, destructive:false},'AUDIT');
   actionStatus('E-mail d’activation préparé. Aucun mot de passe en clair n’est transmis.');
   renderHabilitations();
+  showAccessEmailPreviewModal(email,href);
 };
 
 function personalDLList(){
@@ -4302,7 +4322,7 @@ window.editPersonalDL=id=>{
 };
 function renderOutils(){
   if(!(canManageKeywords() || hasAccessAtLeast('ADMIN STRUCTURE APPLICATION'))) return accessDeniedPanel();
-  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v9.10 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v9.12 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
 }
 
 function renderDiagnosticProduction(){
@@ -4350,9 +4370,9 @@ function renderDiagnosticProduction(){
     ['Éléments préparés mais désactivés', 'Backend, stockage distant, auth serveur, e-mails transactionnels, sync distante'],
     ['PDF', vi.flags?.pdfEngineLocked ? 'Verrouillé : aucune modification moteur PDF' : 'À contrôler'],
     ['Garde-fous boot', 'Contrôle DEFAULT_DL_VERSION avant initialisation + tryPersistDraft présent + références critiques vérifiées'],
-    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v9.10' : 'Pilote limité']
+    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v9.12' : 'Pilote limité']
   ];
-  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v9.10. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v9.12. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
 }
 
 window.runFunctionsDiagnosticFromUI=async()=>{
@@ -4380,7 +4400,7 @@ window.exportLocalAuditTrail=()=>{
 
 function renderBibliotheque(){
   APP.state.library=(APP.state.library||[]).map(d=>ensureDLModel(d));
-  $('#panel').innerHTML=`<div class="split library-split"><div class="card side-list library-list-card"><h3>Bibliothèque DL</h3><div class="form-grid library-filter-grid"><div class="span-3"><label>Domaine</label><select id="fDomain"><option value="">Tous</option>${APP.DOMAINS.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="span-3"><label>Statut</label><select id="fStatus"><option value="">Tous</option>${APP.STATUSES.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="span-3"><label>Type</label><select id="fType"><option value="">Tous</option>${APP.TYPES.map(t=>`<option>${esc(t)}</option>`).join('')}<option>DL</option></select></div><div class="span-3"><label>Tri</label><select id="fSort"><option value="modified">Modifié récent</option><option value="status">Statut</option><option value="type">Type</option><option value="reference">Référence</option></select></div><div class="span-12"><label>Recherche</label><input id="fSearch" placeholder="Référence, mots-clés, thème, niveau Bloom…"></div></div><div id="libList"></div></div><div class="card library-detail-card"><h3>DL sélectionnée</h3><div id="libDetail" class="muted">Sélectionner une DL dans la bibliothèque.</div></div></div>`;
+  $('#panel').innerHTML=`<div class="split library-split"><div class="card side-list library-list-card"><h3>Bibliothèque DL</h3><div class="toolbar library-import-toolbar"><label class="btn red library-json-import-btn"><input id="libraryJsonImportInput" type="file" hidden accept="application/json,.json" onchange="importDLJsonToLibrary(this.files&&this.files[0])">Importer JSON</label></div><div class="form-grid library-filter-grid"><div class="span-3"><label>Domaine</label><select id="fDomain"><option value="">Tous</option>${APP.DOMAINS.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="span-3"><label>Statut</label><select id="fStatus"><option value="">Tous</option>${APP.STATUSES.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="span-3"><label>Type</label><select id="fType"><option value="">Tous</option>${APP.TYPES.map(t=>`<option>${esc(t)}</option>`).join('')}<option>DL</option></select></div><div class="span-3"><label>Tri</label><select id="fSort"><option value="modified">Modifié récent</option><option value="status">Statut</option><option value="type">Type</option><option value="reference">Référence</option></select></div><div class="span-12"><label>Recherche</label><input id="fSearch" placeholder="Référence, mots-clés, thème, niveau Bloom…"></div></div><div id="libList"></div></div><div class="card library-detail-card"><h3>DL sélectionnée</h3><div id="libDetail" class="muted">Sélectionner une DL dans la bibliothèque.</div></div></div>`;
   ['fDomain','fStatus','fType','fSort','fSearch'].forEach(id=>$('#'+id).oninput=drawLibraryList);
   drawLibraryList();
 }
@@ -4557,7 +4577,61 @@ async function exportJsonDocument(dl){
   }
   return fallbackDownloadJson(name,content);
 }
-function importJsonFile(file){ if(!file)return; const r=new FileReader(); r.onload=()=>{try{APP.state.current=ensureDLModel(JSON.parse(r.result)); syncPlanHoraireFromFilRouge(APP.state.current); computeReference(APP.state.current); setDirty(); renderPanel(); toast('JSON importé');}catch(e){actionStatus('Import JSON impossible : '+e.message,'warn')}}; r.readAsText(file); }
+function parseDLJsonText(text){
+  const raw=JSON.parse(String(text||''));
+  const payload=raw && raw.dl ? raw.dl : raw;
+  return ensureDLModel(payload);
+}
+function finalizeImportedDLModel(dl,{asLibrary=false}={}){
+  const d=ensureDLModel(dl);
+  syncPlanHoraireFromFilRouge(d);
+  computeReference(d);
+  d.dateModification=nowIso();
+  if(!d.id) d.id=uid();
+  return d;
+}
+function importJsonFile(file){
+  if(!file)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      APP.state.current=finalizeImportedDLModel(parseDLJsonText(r.result));
+      setDirty();
+      renderPanel();
+      toast('JSON importé');
+    }catch(e){actionStatus('Import JSON impossible : '+e.message,'warn')}
+  };
+  r.readAsText(file);
+}
+window.importDLJsonToLibrary=function(file){
+  if(!file)return;
+  const r=new FileReader();
+  r.onload=async()=>{
+    try{
+      const imported=finalizeImportedDLModel(parseDLJsonText(r.result),{asLibrary:true});
+      const existingIndex=(APP.state.library||[]).findIndex(x=>String(x?.id)===String(imported.id));
+      if(existingIndex>=0){
+        imported.id=uid();
+        imported.dateCreation=imported.dateCreation||nowIso();
+      }
+      const stored=ensureDLModel(structuredClone(imported));
+      APP.state.library=Array.isArray(APP.state.library)?APP.state.library:[];
+      APP.state.library.unshift(stored);
+      APP.state.selectedLibraryId=stored.id;
+      await saveLibrary();
+      auditLocal('library-json-import',{source:'Bibliothèque DL', reference:stored.referenceDL||computeReference(stored), destructive:false},'AUDIT');
+      renderPanel();
+      setTimeout(()=>{ try{ window.showLib(stored.id); }catch{} },0);
+      toast('DL JSON importée dans la Bibliothèque DL');
+    }catch(e){
+      console.error(e);
+      actionStatus('Import JSON Bibliothèque impossible : '+(e?.message||e),'warn');
+    }finally{
+      try{ const input=document.getElementById('libraryJsonImportInput'); if(input) input.value=''; }catch{}
+    }
+  };
+  r.readAsText(file);
+};
 
 function renderImport(){ $('#panel').innerHTML=`<div class="card"><h3>Import Word adapté au modèle Descente de leçon</h3><div class="drop-zone" id="wordDrop"><strong>Déposer une DL Word (.docx/.dotx)</strong><br><span class="muted">Le moteur lit word/document.xml, détecte tableaux, titres, champs structurés, fil rouge, couleurs bleues et remarques rouges/italiques.</span><br><br><input type="file" id="wordFile" accept=".docx,.dotx"></div></div><div class="card"><h3>Aperçu import Word</h3><div id="importResult" class="muted">Aucun fichier importé.</div></div>`; $('#wordFile').onchange=e=>parseWordFile(e.target.files[0]); const dz=$('#wordDrop'); dz.ondragover=e=>{e.preventDefault();dz.classList.add('drag')}; dz.ondragleave=()=>dz.classList.remove('drag'); dz.ondrop=e=>{e.preventDefault();dz.classList.remove('drag'); parseWordFile(e.dataTransfer.files[0]);}; }
 async function parseWordFile(file){ if(!file)return; $('#importResult').innerHTML='Lecture du fichier Word…'; try{ const zip=await MiniZip.fromBlob(file); const xml=await zip.text('word/document.xml'); const rels=await zip.text('word/_rels/document.xml.rels').catch(()=>'<Relationships/>'); const html=wordXmlToHtml(xml,rels,zip); const parsed=mapWordHtmlToDL(await html, file.name); APP.state.current=mergeParsed(APP.state.current, parsed); setDirty(); $('#importResult').innerHTML=importSummary(parsed); bindInputs(); toast('Import Word terminé'); }catch(e){ console.error(e); $('#importResult').innerHTML=`<div class="alert warn">Import Word impossible : ${esc(e.message)}<br>Le fichier peut être protégé, chiffré ou utiliser une compression non supportée par ce navigateur.</div>`; } }
