@@ -4,7 +4,7 @@ window.DL_CREATOR_WEB_APP_JS_LOADED = true;
 if(window.DL_CREATOR_BOOT) window.DL_CREATOR_BOOT.appJsLoaded = true;
 
 const APP = {
-  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v9.13').trim().toLowerCase(),
+  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.00').trim().toLowerCase(),
   STORAGE_KEY: 'DL_CREATOR_WEB_LIBRARY_V1',
   PROFILE_KEY: 'DL_CREATOR_WEB_PROFILE_V1',
   SESSION_KEY: 'DL_CREATOR_WEB_SESSION_V1',
@@ -101,8 +101,8 @@ function installMissingFunctionGuard(){
   };
   Object.entries(guarded).forEach(([name,fn])=>{
     if(typeof window[name] !== 'function') window[name]=function(...args){
-      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v9.13 exécuté.`);
-      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v9.13',destructive:false},'WARN'); }catch{}
+      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v10.00 exécuté.`);
+      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v10.00',destructive:false},'WARN'); }catch{}
       return fn(...args);
     };
   });
@@ -1064,6 +1064,18 @@ function normalizeFilRougeSection(section){
     if(a.renderError) normalized.renderError=a.renderError;
     return normalized;
   }).filter(a=>a.dataUrl);
+  if(!Array.isArray(section.images)) section.images=Array.isArray(section.sectionImages)?section.sectionImages:[];
+  section.images=section.images.map(img=>({
+    id:img.id||uid(),
+    name:img.name||img.fileName||'Image Fil rouge',
+    mimeType:img.mimeType||img.type||'image/jpeg',
+    dataUrl:img.dataUrl||img.data||img.url||'',
+    width:Number(img.width||0),
+    height:Number(img.height||0),
+    caption:img.caption||img.legende||'',
+    createdAtUTC:img.createdAtUTC||img.addedAt||nowIso()
+  })).filter(img=>img.dataUrl && /^data:image\//.test(String(img.dataUrl)));
+
   return section;
 }
 function formatBytes(bytes){
@@ -3068,6 +3080,99 @@ function chantierHeaderIcon(kind){
   if(kind==='place') return `<svg class="field-label-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75c-3.45 0-6.25 2.67-6.25 5.96 0 4.19 4.88 9.26 5.82 10.2a.6.6 0 0 0 .86 0c.94-.94 5.82-6.01 5.82-10.2 0-3.29-2.8-5.96-6.25-5.96Zm0 8.38a2.33 2.33 0 1 1 0-4.66 2.33 2.33 0 0 1 0 4.66Z" fill="currentColor"/><path d="M5.1 18.1c-1.25.42-2.1 1.05-2.1 1.8 0 1.35 4.03 2.35 9 2.35s9-1 9-2.35c0-.75-.85-1.38-2.1-1.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
   return `<svg class="field-label-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.1 4.4 9 2.5h6l.9 1.9 2.1.8 2-.7 3 5.2-1.6 1.3v2l1.6 1.3-3 5.2-2-.7-2.1.8-.9 1.9H9l-.9-1.9-2.1-.8-2 .7-3-5.2L2.6 13v-2L1 9.7l3-5.2 2 .7 2.1-.8ZM12 15.8a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z" fill="currentColor"/></svg>`;
 }
+
+function auditLocal(event,payload={},level='AUDIT'){
+  try{ window.DLCreatorCore?.auditService?.write?.(event,{...payload,destructive:payload.destructive===true},level); }catch(e){ try{ console.warn('[audit local]',event,e); }catch{} }
+}
+function sfPhotoBadgePlusIcon(){
+  return '<span class="sf-symbol sf-photo-badge-plus" aria-hidden="true"><span class="sf-photo-box"></span><span class="sf-photo-plus">+</span></span>';
+}
+function isAcceptedFilRougeImage(file){
+  const type=String(file?.type||'').toLowerCase();
+  const name=String(file?.name||'').toLowerCase();
+  return ['image/jpeg','image/jpg','image/png','image/webp'].includes(type) || /\.(jpe?g|png|webp)$/.test(name);
+}
+function resizeFilRougeImageFile(file,maxSide=1600,quality=.82){
+  return new Promise((resolve,reject)=>{
+    if(!file || !isAcceptedFilRougeImage(file)) return reject(new Error('Format image non accepté. Utiliser JPG, JPEG, PNG ou WEBP.'));
+    const reader=new FileReader();
+    reader.onerror=()=>reject(new Error('Lecture du fichier image impossible.'));
+    reader.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error('Image illisible ou corrompue.'));
+      img.onload=()=>{
+        let w=img.naturalWidth||img.width||0, h=img.naturalHeight||img.height||0;
+        if(!w || !h) return reject(new Error('Dimensions image indisponibles.'));
+        const scale=Math.min(1, maxSide/Math.max(w,h));
+        const cw=Math.max(1,Math.round(w*scale)), ch=Math.max(1,Math.round(h*scale));
+        try{
+          const canvas=document.createElement('canvas'); canvas.width=cw; canvas.height=ch;
+          const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,cw,ch);
+          const mime=file.type==='image/png'?'image/png':'image/jpeg';
+          const dataUrl=canvas.toDataURL(mime,mime==='image/jpeg'?quality:undefined);
+          resolve({id:uid(),name:file.name||'Image Fil rouge',mimeType:mime,dataUrl,width:cw,height:ch,caption:'',createdAtUTC:nowIso()});
+        }catch(e){ resolve({id:uid(),name:file.name||'Image Fil rouge',mimeType:file.type||'image/jpeg',dataUrl:String(reader.result||''),width:w,height:h,caption:'',createdAtUTC:nowIso()}); }
+      };
+      img.src=String(reader.result||'');
+    };
+    reader.readAsDataURL(file);
+  });
+}
+async function addFilRougeImages(sectionIndex,files,source='file'){
+  const section=APP.state.current?.filRouge?.[sectionIndex]; if(!section) return;
+  normalizeFilRougeSection(section);
+  const list=Array.from(files||[]).filter(Boolean);
+  if(!list.length) return;
+  const refused=list.filter(f=>!isAcceptedFilRougeImage(f));
+  const accepted=list.filter(isAcceptedFilRougeImage);
+  if(refused.length) actionStatus(`${refused.length} fichier(s) refusé(s) : format non image.`, 'warn');
+  let added=0;
+  for(const file of accepted){
+    try{ section.images.push(await resizeFilRougeImageFile(file)); added++; }
+    catch(e){ actionStatus(e?.message||'Import image impossible.', 'warn'); }
+  }
+  if(added){
+    auditLocal(source==='drop'?'filrouge-image-drop-import':'filrouge-image-file-import',{sectionIndex,count:added,destructive:false},'AUDIT');
+    auditLocal('filrouge-image-add',{sectionIndex,count:added,destructive:false},'AUDIT');
+    setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel(); actionStatus(`${added} image(s) ajoutée(s) au Fil rouge.`, 'ok');
+  }
+}
+function removeFilRougeImage(sectionIndex,imageIndex){
+  const section=APP.state.current?.filRouge?.[sectionIndex]; if(!section) return;
+  normalizeFilRougeSection(section);
+  const removed=section.images.splice(imageIndex,1)[0];
+  auditLocal('filrouge-image-delete',{sectionIndex,imageName:removed?.name||'',destructive:true},'AUDIT');
+  setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel();
+}
+function updateFilRougeImageCaption(sectionIndex,imageIndex,value){
+  const section=APP.state.current?.filRouge?.[sectionIndex]; if(!section) return;
+  normalizeFilRougeSection(section);
+  const img=section.images[imageIndex]; if(!img) return;
+  img.caption=String(value||'');
+  auditLocal('filrouge-image-caption-update',{sectionIndex,imageIndex,destructive:false},'AUDIT');
+  setDirty(); saveCurrent(false,{forceIncompleteDraft:true});
+}
+function renderFilRougeImages(sectionIndex,section){
+  normalizeFilRougeSection(section);
+  const has=(section.images||[]).length>0;
+  const inputId=`filrougeImageInput-${sectionIndex}`;
+  const gallery=has?`<div class="filrouge-image-dropzone" data-fr-image-drop="${sectionIndex}"><strong>Déposer des images ici</strong><span> ou sélectionner depuis l’ordinateur</span></div><div class="filrouge-image-gallery">${section.images.map((img,j)=>`<figure class="filrouge-image-card"><div class="filrouge-image-thumb"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}"></div><button class="btn small icon-only filrouge-image-delete" type="button" title="Supprimer l’image" aria-label="Supprimer l’image" onclick="removeFilRougeImage(${sectionIndex},${j})">${sfTrashIcon()}</button><figcaption><input type="text" value="${esc(img.caption||'')}" placeholder="Légende de l’image" onchange="updateFilRougeImageCaption(${sectionIndex},${j},this.value)" onblur="updateFilRougeImageCaption(${sectionIndex},${j},this.value)"></figcaption></figure>`).join('')}</div>`:'';
+  return `<div class="filrouge-section-images ${has?'has-images':''}"><label>IMAGES LIÉES À CETTE SECTION</label><div class="toolbar filrouge-image-toolbar"><button class="btn filrouge-add-photo-btn" type="button" onclick="document.getElementById('${inputId}').click()">${sfPhotoBadgePlusIcon()}<strong>Ajouter photo</strong></button><input id="${inputId}" type="file" hidden accept="image/jpeg,image/jpg,image/png,image/webp" multiple onchange="addFilRougeImages(${sectionIndex},this.files,'file');this.value=''">${has?'<span class="muted">Galerie locale sauvegardée avec la DL.</span>':''}</div>${gallery}</div>`;
+}
+function bindFilRougeImageDropzones(){
+  $$('[data-fr-image-drop]').forEach(zone=>{
+    const idx=Number(zone.getAttribute('data-fr-image-drop'));
+    zone.ondragover=e=>{e.preventDefault();zone.classList.add('drag')};
+    zone.ondragleave=()=>zone.classList.remove('drag');
+    zone.ondrop=e=>{e.preventDefault();zone.classList.remove('drag');addFilRougeImages(idx,e.dataTransfer?.files,'drop');};
+  });
+}
+function pdfFilRougeImages(section){
+  const imgs=(section?.images||[]).filter(img=>img?.dataUrl);
+  if(!imgs.length) return '';
+  return `<div class="pdf-fr-images"><strong>Images liées à cette section</strong><div class="pdf-fr-image-grid">${imgs.map(img=>`<figure class="pdf-fr-image"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}">${img.caption?`<figcaption>${esc(img.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`;
+}
+
 function chantierLabel(text,kind){
   return `<span class="field-label-with-icon">${chantierHeaderIcon(kind)}<span>${esc(text)}</span></span>`;
 }
@@ -3077,10 +3182,11 @@ function renderFilRouge(){
   const fr=dl.filRouge||[];
   fr.forEach(normalizeFilRougeSection);
   const generalHeader=`<div class="filrouge-general-header form-grid"><div class="span-6"><label>${chantierLabel('EMPLACEMENT CHANTIER','place')}</label><textarea class="auto-expand" data-path="filRougeEmplacementChantierGeneral">${esc(dl.filRougeEmplacementChantierGeneral||'')}</textarea></div><div class="span-6"><label>${chantierLabel('PRÉPARATION CHANTIER','prep')}</label><textarea class="chantier auto-expand" data-path="filRougePreparationChantierGeneral">${esc(dl.filRougePreparationChantierGeneral||'')}</textarea></div></div>`;
-  $('#panel').innerHTML=`<div class="card"><h3>Fil rouge libre</h3><div class="alert info">FIL ROUGE : texte formaté, couleurs rapides, listes et images intégrées dans le corps. Les annexes PDF documentaires sont liées à chaque section et seront ajoutées automatiquement à la fin de la DL exportée.</div>${generalHeader}${fr.map((s,i)=>`<div class="card filrouge-section"><div class="form-grid"><div class="span-2"><label>Durée</label><div class="duration-field"><span aria-hidden="true">⏱</span><input type="text" inputmode="numeric" maxlength="3" data-duration="filRouge.${i}.duree" value="${esc(formatDurationDisplay(s.duree))}" placeholder="minutes"></div></div><div class="span-9 filrouge-title-row"><div class="filrouge-title-field"><label>Titre section</label><input class="section-title-input" data-path="filRouge.${i}.titre" data-transform="upper" value="${esc((s.titre||'').toUpperCase())}"></div>${renderFilRougeReorderControls(i,fr.length)}</div><div class="span-1 filrouge-trash-cell"><button class="btn small icon-only filrouge-trash-btn" title="Supprimer" aria-label="Supprimer" onclick="removeFilRouge(${i})">${sfTrashIcon()}</button></div><div class="span-6"><label>EMPLACEMENT CHANTIER (spécifique)</label><textarea class="auto-expand" data-path="filRouge.${i}.emplacementChantier">${esc(s.emplacementChantier)}</textarea></div><div class="span-6"><label>PRÉPARATION CHANTIER (spécifique)</label><textarea class="chantier auto-expand" data-path="filRouge.${i}.preparationChantier">${esc(s.preparationChantier)}</textarea></div><div class="span-12">${renderLinkedSelector('BUTS LIÉS À CETTE SECTION',dl.buts,`filRouge.${i}.butsLies`,'Aucun but renseigné dans Buts & évaluations.')}</div><div class="span-12"><label>FIL ROUGE</label><div class="rich-editor-shell"><div class="rich-toolbar" role="toolbar" aria-label="Outils FIL ROUGE"><button type="button" class="btn small" title="Augmenter taille" onclick="changeSelectionFontSize(1)">A+</button><button type="button" class="btn small" title="Diminuer taille" onclick="changeSelectionFontSize(-1)">A-</button><span class="font-size-indicator" role="status" aria-live="polite" aria-label="Taille de police active" title="Taille de police active">11</span><button class="btn small color-tool color-black" title="Texte noir" onclick="setRichColor('#1f2730')" aria-label="Texte noir"></button><button class="btn small color-tool color-blue" title="Texte bleu" onclick="setRichColor('#005eb8')" aria-label="Texte bleu"></button><button class="btn small color-tool color-red" title="Texte rouge" onclick="setRichColor('#b8141d')" aria-label="Texte rouge"></button><button class="btn small" onclick="cmd('bold')">Gras</button><button class="btn small" onclick="cmd('italic')">Italique</button><button class="btn small" onclick="cmd('indent')">Indenter</button><button class="btn small" onclick="cmd('outdent')">Désindenter</button><select class="btn small list-select" onchange="insertFilRougeList(this.value);this.value=''" aria-label="Liste"><option value="">Liste</option><option value="dot">·</option><option value="dash">-</option><option value="number">1., 2., 3.</option></select><button class="btn small" onclick="applyRemark()">Formatage remarque</button><button class="btn small" onclick="insertLink()">Insérer un lien</button><label class="btn small"><input type="file" hidden accept="image/*" onchange="attachToRich(event,${i})">Import image</label><label class="btn small"><input type="file" hidden accept="application/pdf,.pdf" onchange="attachPdfPageToRich(event,${i})">Import PDF</label></div><div class="rich" contenteditable="true" data-rich="${i}">${s.contenuHtml||''}</div></div></div><div class="span-12"><label>Remarques liées à cette section</label><textarea data-path="filRouge.${i}.remarques">${esc(s.remarques)}</textarea></div><div class="span-12">${renderPdfAnnexes(i,s)}</div></div></div>`).join('')}<div class="toolbar filrouge-add-bottom"><button class="btn filrouge-add-section-btn" onclick="addFilRouge()"><span class="filrouge-add-plus" aria-hidden="true">+</span><strong>Ajouter une section</strong></button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Fil rouge libre</h3><div class="alert info">FIL ROUGE : texte formaté, couleurs rapides, listes et images intégrées dans le corps. Les annexes PDF documentaires sont liées à chaque section et seront ajoutées automatiquement à la fin de la DL exportée.</div>${generalHeader}${fr.map((s,i)=>`<div class="card filrouge-section"><div class="form-grid"><div class="span-2"><label>Durée</label><div class="duration-field"><span aria-hidden="true">⏱</span><input type="text" inputmode="numeric" maxlength="3" data-duration="filRouge.${i}.duree" value="${esc(formatDurationDisplay(s.duree))}" placeholder="minutes"></div></div><div class="span-9 filrouge-title-row"><div class="filrouge-title-field"><label>Titre section</label><input class="section-title-input" data-path="filRouge.${i}.titre" data-transform="upper" value="${esc((s.titre||'').toUpperCase())}"></div>${renderFilRougeReorderControls(i,fr.length)}</div><div class="span-1 filrouge-trash-cell"><button class="btn small icon-only filrouge-trash-btn" title="Supprimer" aria-label="Supprimer" onclick="removeFilRouge(${i})">${sfTrashIcon()}</button></div><div class="span-6"><label>EMPLACEMENT CHANTIER (spécifique)</label><textarea class="auto-expand" data-path="filRouge.${i}.emplacementChantier">${esc(s.emplacementChantier)}</textarea></div><div class="span-6"><label>PRÉPARATION CHANTIER (spécifique)</label><textarea class="chantier auto-expand" data-path="filRouge.${i}.preparationChantier">${esc(s.preparationChantier)}</textarea></div><div class="span-12">${renderLinkedSelector('BUTS LIÉS À CETTE SECTION',dl.buts,`filRouge.${i}.butsLies`,'Aucun but renseigné dans Buts & évaluations.')}</div><div class="span-12"><label>FIL ROUGE</label><div class="rich-editor-shell"><div class="rich-toolbar" role="toolbar" aria-label="Outils FIL ROUGE"><button type="button" class="btn small" title="Augmenter taille" onclick="changeSelectionFontSize(1)">A+</button><button type="button" class="btn small" title="Diminuer taille" onclick="changeSelectionFontSize(-1)">A-</button><span class="font-size-indicator" role="status" aria-live="polite" aria-label="Taille de police active" title="Taille de police active">11</span><button class="btn small color-tool color-black" title="Texte noir" onclick="setRichColor('#1f2730')" aria-label="Texte noir"></button><button class="btn small color-tool color-blue" title="Texte bleu" onclick="setRichColor('#005eb8')" aria-label="Texte bleu"></button><button class="btn small color-tool color-red" title="Texte rouge" onclick="setRichColor('#b8141d')" aria-label="Texte rouge"></button><button class="btn small" onclick="cmd('bold')">Gras</button><button class="btn small" onclick="cmd('italic')">Italique</button><button class="btn small" onclick="cmd('indent')">Indenter</button><button class="btn small" onclick="cmd('outdent')">Désindenter</button><select class="btn small list-select" onchange="insertFilRougeList(this.value);this.value=''" aria-label="Liste"><option value="">Liste</option><option value="dot">·</option><option value="dash">-</option><option value="number">1., 2., 3.</option></select><button class="btn small" onclick="applyRemark()">Formatage remarque</button><button class="btn small" onclick="insertLink()">Insérer un lien</button><label class="btn small"><input type="file" hidden accept="image/*" onchange="attachToRich(event,${i})">Import image</label><label class="btn small"><input type="file" hidden accept="application/pdf,.pdf" onchange="attachPdfPageToRich(event,${i})">Import PDF</label></div><div class="rich" contenteditable="true" data-rich="${i}">${s.contenuHtml||''}</div></div></div><div class="span-12"><label>Remarques liées à cette section</label><textarea data-path="filRouge.${i}.remarques">${esc(s.remarques)}</textarea></div><div class="span-12">${renderFilRougeImages(i,s)}</div><div class="span-12">${renderPdfAnnexes(i,s)}</div></div></div>`).join('')}<div class="toolbar filrouge-add-bottom"><button class="btn filrouge-add-section-btn" onclick="addFilRouge()"><span class="filrouge-add-plus" aria-hidden="true">+</span><strong>Ajouter une section</strong></button></div></div>`;
   $$('.rich').forEach(r=>{r.onfocus=()=>{rememberRichSelection(r); updateFontSizeIndicator();}; r.onmouseup=()=>{rememberRichSelection(r); updateFontSizeIndicator();}; r.onkeyup=()=>{rememberRichSelection(r); updateFontSizeIndicator();}; r.onblur=()=>rememberRichSelection(r); r.oninput=()=>saveRichNode(r); r.oncopy=e=>handleRichCopy(e,false); r.oncut=e=>handleRichCopy(e,true); r.onpaste=handleRichPaste; r.ondragover=e=>{e.preventDefault();r.classList.add('drag')}; r.ondragleave=()=>r.classList.remove('drag'); r.ondrop=e=>{r.classList.remove('drag');dropRich(e)};});
   bindRichToolbarSelectionGuards($('#panel'));
   $$('[data-duration]').forEach(el=>{el.onfocus=()=>{el.value=String(el.value||'').replace(/\D/g,'');}; el.oninput=()=>{el.value=String(el.value||'').replace(/\D/g,'').slice(0,3); setByPath(APP.state.current,el.dataset.duration,el.value); syncPlanHoraireFromFilRouge(APP.state.current); updateComputedDurations(APP.state.current); refreshLiveGeneralites(); setDirty();}; el.onblur=()=>{el.value=formatDurationDisplay(el.value);};});
+  bindFilRougeImageDropzones();
   initMediaWidgets(); initPdfWidgets();
 }
 function richIndex(r){
@@ -4113,17 +4219,17 @@ window.saveHabilitationsExplicit=function(){
     if(!managers.length){
       const recovery=currentUserRecoveryRow('ADMIN STRUCTURE APPLICATION');
       list.unshift(recovery);
-      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v9.13',destructive:false},'WARN'); }catch{}
+      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v10.00',destructive:false},'WARN'); }catch{}
     }
     saveHabilitations(list);
     APP.state.habilitations=loadHabilitations();
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v9.13',destructive:false},'AUDIT'); }catch{}
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v10.00',destructive:false},'AUDIT'); }catch{}
     actionStatus('Habilitations enregistrées. Droits conservés localement.', 'ok');
     renderHabilitations();
     return true;
   }catch(e){
-    console.error('[DL creator][v9.13] Enregistrement habilitations impossible', e);
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v9.13',destructive:false},'ERROR'); }catch{}
+    console.error('[DL creator][v10.00] Enregistrement habilitations impossible', e);
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v10.00',destructive:false},'ERROR'); }catch{}
     actionStatus('Erreur lors de l’enregistrement des habilitations. Gestion des accès reste accessible.', 'error');
     return false;
   }
@@ -4323,7 +4429,7 @@ window.editPersonalDL=id=>{
 };
 function renderOutils(){
   if(!(canManageKeywords() || hasAccessAtLeast('ADMIN STRUCTURE APPLICATION'))) return accessDeniedPanel();
-  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v9.13 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.00 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
 }
 
 function renderDiagnosticProduction(){
@@ -4371,9 +4477,9 @@ function renderDiagnosticProduction(){
     ['Éléments préparés mais désactivés', 'Backend, stockage distant, auth serveur, e-mails transactionnels, sync distante'],
     ['PDF', vi.flags?.pdfEngineLocked ? 'Verrouillé : aucune modification moteur PDF' : 'À contrôler'],
     ['Garde-fous boot', 'Contrôle DEFAULT_DL_VERSION avant initialisation + tryPersistDraft présent + références critiques vérifiées'],
-    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v9.13' : 'Pilote limité']
+    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.00' : 'Pilote limité']
   ];
-  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v9.13. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.00. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
 }
 
 window.runFunctionsDiagnosticFromUI=async()=>{
@@ -5113,7 +5219,8 @@ function pdfFilRougeSection(dl){
     const chunks=splitPdfRichHtmlIntoChunks(s.contenuHtml);
     chunks.forEach((chunk,chunkIndex)=>{
       const body=`${chunkIndex===0?intro:''}<div class="pdf-rich-content">${chunk}</div>`;
-      const tail=chunkIndex===chunks.length-1 ? `${remarques}${annexes}` : '';
+      const images=pdfFilRougeImages(s);
+      const tail=chunkIndex===chunks.length-1 ? `${remarques}${images}${annexes}` : '';
       const article=pdfFilRougeArticle(s,i,body,chunkIndex>0,tail);
       const articleChars=estimatePdfHtmlChars(body+tail)+320;
       if(current.length && currentChars+articleChars>pageBudget) flush();

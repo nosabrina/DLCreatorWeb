@@ -25,6 +25,8 @@
     safariSessionResumeGuardV912: true,
     accessEmailPreviewBoldTitlesV912: true,
     filRougeUiAddSectionBottomV912: true,
-    filRougeIconsAlignmentV913: true
+    filRougeIconsAlignmentV913: true,
+    filRougeSectionImagesV1000: true,
+    filRougeImageGalleryPdfV1000: true
   });
 })(window);

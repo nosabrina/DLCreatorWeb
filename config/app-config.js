@@ -4,8 +4,8 @@
   const flags = window.DL_CREATOR_FEATURE_FLAGS || {};
   window.DL_CREATOR_APP_CONFIG = Object.freeze({
     appName: runtime.appName || 'DL Creator Web',
-    version: runtime.version || 'v9.13',
-    build: runtime.build || '2026.05.12-v9.13-filrouge-icons-alignment',
+    version: runtime.version || 'v10.00',
+    build: runtime.build || '2026.05.12-v10.00-filrouge-section-images-gallery-pdf',
     environment: runtime.environment || 'local',
     productionMode: runtime.productionMode || 'pilote',
     authMode: 'local',
