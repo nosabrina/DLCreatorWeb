@@ -4,10 +4,10 @@
   const runtime = window.DL_CREATOR_RUNTIME_CONFIG || {};
   const runtimeFlags = window.DL_CREATOR_FEATURE_FLAGS || {};
   const versionInfo = Object.freeze({
-    version: runtime.version || 'v9.12',
-    numericVersion: runtime.numericVersion || '9.12',
-    build: runtime.build || '2026.05.12-v9.12-library-import-safari-session-access-mail-filrouge-ui',
-    buildIncrement: runtime.buildIncrement || 112,
+    version: runtime.version || 'v9.13',
+    numericVersion: runtime.numericVersion || '9.13',
+    build: runtime.build || '2026.05.12-v9.13-filrouge-icons-alignment',
+    buildIncrement: runtime.buildIncrement || 113,
     buildDate: runtime.buildDate || '2026-05-12',
     buildDateUTC: new Date(runtime.buildDateUTC || '2026-05-12T07:30:00Z').toISOString(),
     environment: runtime.environment || 'local',
@@ -121,7 +121,8 @@
       libraryJsonImportV912: true,
       safariSessionResumeGuardV912: true,
       accessEmailPreviewBoldTitlesV912: true,
-      filRougeUiAddSectionBottomV912: true
+      filRougeUiAddSectionBottomV912: true,
+    filRougeIconsAlignmentV913: true
     })
   });
   root.versionInfo = versionInfo;

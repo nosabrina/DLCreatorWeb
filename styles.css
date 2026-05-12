@@ -2136,8 +2136,8 @@ label.btn,.rich-toolbar label.btn{display:inline-flex;text-transform:none!import
   padding:0;
 }
 .filrouge-reorder-svg{
-  width:20px;
-  height:20px;
+  width:22px;
+  height:22px;
   display:block;
 }
 .filrouge-reorder-btn:disabled{
@@ -4015,7 +4015,7 @@ textarea.invalid{
 .keyword-library #keywordSearchInput:focus{outline:2px solid rgba(184,20,29,.18);border-color:rgba(184,20,29,.55)}
 
 
-/* Correctif v9.12 — Bibliothèque DL, e-mail accès, Fil rouge */
+/* Correctifs v9.12-v9.13 — Bibliothèque DL, e-mail accès, Fil rouge */
 .library-import-toolbar{
   justify-content:flex-start;
   margin:0 0 12px 0;
@@ -4044,8 +4044,14 @@ textarea.invalid{
 .filrouge-reorder-svg{
   color:var(--sdis-red);
 }
+.filrouge-trash-cell{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding-top:22px;
+}
 .filrouge-trash-btn{
-  margin-top:22px;
+  margin-top:0;
   color:var(--sdis-red);
 }
 .filrouge-trash-btn .sf-trash-icon,

@@ -24,6 +24,7 @@
     libraryJsonImportV912: true,
     safariSessionResumeGuardV912: true,
     accessEmailPreviewBoldTitlesV912: true,
-    filRougeUiAddSectionBottomV912: true
+    filRougeUiAddSectionBottomV912: true,
+    filRougeIconsAlignmentV913: true
   });
 })(window);

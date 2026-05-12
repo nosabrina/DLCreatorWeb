@@ -1,20 +1,17 @@
 # DL Creator Web — version courante
 
-- Version : v9.12
-- Build : 2026.05.12-v9.12-library-import-safari-session-access-mail-filrouge-ui
-- Build increment : 112
+- Version : v9.13
+- Build : 2026.05.12-v9.13-filrouge-icons-alignment
+- Build increment : 113
 - Date : 2026-05-12
-- Type : correctif fonctionnel ciblé
+- Type : correctif UI ciblé
 
-## Périmètre v9.12
+## Périmètre v9.13
 
-- Import JSON direct depuis Bibliothèque DL.
-- Garde-fou Safari / reprise de session inactive après chargement applicatif.
-- Préparation locale/offline de l’e-mail d’accès sans envoi serveur réel.
-- Titres de l’e-mail d’accès en gras dans la prévisualisation HTML.
-- Bouton Ajouter une section déplacé sous la dernière section du Fil rouge.
-- Icônes de réorganisation et suppression Fil rouge en rouge RAL3000.
+- Fil rouge : remplacement des icônes de réorganisation par les équivalents SF Symbols `arrow.up.document.fill` et `arrow.down.document.fill`.
+- Fil rouge : maintien des icônes de réorganisation en rouge RAL3000.
+- Fil rouge : alignement de la poubelle avec la ligne du champ `TITRE SECTION`.
 
 ## Zones verrouillées
 
-Le moteur PDF, l’aperçu A4, la pagination, l’impression, IndexedDB, le RBAC, les Netlify Functions et l’authentification serveur ne sont pas modifiés.
+Le moteur PDF, l’aperçu A4, la pagination, l’impression, l’import/export JSON, IndexedDB, localStorage, le RBAC, les workflows de validation, la Gestion des accès, la Bibliothèque DL, les Netlify Functions, le backend et les e-mails serveur ne sont pas modifiés.

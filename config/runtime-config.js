@@ -1,17 +1,17 @@
 (function(window){
   'use strict';
   /**
-   * DL Creator Web v9.12 — configuration runtime publique.
+   * DL Creator Web v9.13 — configuration runtime publique.
    * Ce fichier ne contient aucun secret. Les valeurs sensibles doivent rester
    * exclusivement dans les variables d'environnement Netlify / serveur.
    */
   const existing = window.DL_CREATOR_RUNTIME_CONFIG || {};
   const runtimeConfig = Object.freeze({
     appName: 'DL Creator Web',
-    version: 'v9.12',
-    numericVersion: '9.12',
-    build: '2026.05.12-v9.12-library-import-safari-session-access-mail-filrouge-ui',
-    buildIncrement: 112,
+    version: 'v9.13',
+    numericVersion: '9.13',
+    build: '2026.05.12-v9.13-filrouge-icons-alignment',
+    buildIncrement: 113,
     buildDate: '2026-05-12',
     buildDateUTC: '2026-05-12T07:30:00.000Z',
     environment: existing.environment || 'local',
