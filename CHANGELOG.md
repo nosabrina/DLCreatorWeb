@@ -1,6 +1,17 @@
+## v10.02 — 2026-05-12
+
+### Correctif mineur ciblé
+
+- Correction de l’alignement du titre PDF `IMAGES LIÉES À CETTE SECTION` avec le contenu de section.
+- Affichage du contenu `PUBLIC CIBLE` en gras dans la page de garde PDF et dans `GÉNÉRALITÉS`, en respectant la casse saisie.
+- Fond légèrement grisé pour les champs de légende des photos dans le Fil rouge, avec texte lisible.
+- Fond légèrement grisé pour les légendes PDF, largeur identique aux photos 5 cm, alignement du texte à gauche.
+- Normalisation des légendes : première lettre automatiquement en majuscule, sauf si le premier caractère est un chiffre.
+- Aucun changement RBAC, validation, backend, Netlify Functions, e-mails, synchronisation distante ou autres blocs PDF.
+
 # Changelog
 
-## v10.01 — 2026-05-12
+## v10.02 — 2026-05-12
 
 Correctif mineur ciblé sur la galerie images du Fil rouge, sans modification RBAC, backend, Netlify Functions, e-mails, workflows de validation ni autres blocs PDF.
 

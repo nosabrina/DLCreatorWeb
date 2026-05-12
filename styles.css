@@ -4077,7 +4077,7 @@ textarea.invalid{
 }
 
 
-/* DL Creator Web v10.01 — Galerie images Fil rouge : Drag&Drop direct, crop 4:3, PDF 5 cm */
+/* DL Creator Web v10.02 — Galerie images Fil rouge : Drag&Drop direct, crop 4:3, PDF 5 cm */
 .sf-photo-badge-plus{position:relative;display:inline-flex;align-items:center;justify-content:center;width:19px;height:17px;color:var(--sdis-red);flex:0 0 auto}.sf-photo-box{width:16px;height:13px;border:2px solid currentColor;border-radius:3px;display:block;position:relative}.sf-photo-box::after{content:'';position:absolute;left:3px;bottom:2px;width:7px;height:5px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:skew(-18deg)}.sf-photo-plus{position:absolute;right:-3px;top:-5px;width:11px;height:11px;border-radius:999px;background:#fff;color:var(--sdis-red);font-size:13px;line-height:10px;font-weight:900;text-align:center}
 .filrouge-section-images{border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:#fff;padding:10px}.filrouge-image-help{margin:-2px 0 8px 0;font-size:12px}.filrouge-image-toolbar,.filrouge-add-photo-btn{display:none!important}
 .filrouge-image-dropzone{border:2px dashed var(--gray-300);border-radius:var(--radius);background:var(--gray-50);padding:13px 14px;color:var(--gray-700);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;text-align:left;transition:border-color .15s ease,background .15s ease,color .15s ease}.filrouge-image-dropzone .sf-photo-badge-plus{color:var(--sdis-red)}.filrouge-image-dropzone:hover,.filrouge-image-dropzone:focus{outline:none;border-color:var(--sdis-red);background:var(--sdis-red-soft);color:var(--sdis-red)}.filrouge-image-dropzone.drag{border-color:var(--sdis-red);background:var(--sdis-red-soft);color:var(--sdis-red)}
@@ -4086,5 +4086,68 @@ textarea.invalid{
 @media(max-width:700px){.filrouge-image-gallery{grid-template-columns:repeat(auto-fill,minmax(125px,1fr))}.filrouge-section-images{padding:8px}.filrouge-image-dropzone{justify-content:flex-start}}
 @media print{.filrouge-image-toolbar,.filrouge-image-dropzone,.filrouge-image-delete{display:none!important}.pdf-fr-image{width:5cm!important;max-width:5cm!important}.pdf-fr-image img{width:5cm!important;max-width:5cm!important;border:0!important;object-fit:cover!important}}
 
-/* DL Creator Web v10.01 — confirmation suppression photo Fil rouge */
+/* DL Creator Web v10.02 — confirmation suppression photo Fil rouge */
 .filrouge-delete-confirm-overlay{position:fixed;inset:0;z-index:10020;background:rgba(15,23,42,.48);display:flex;align-items:center;justify-content:center;padding:18px}.filrouge-delete-confirm{width:min(420px,94vw);background:#fff;border-radius:12px;box-shadow:0 22px 60px rgba(0,0,0,.28);padding:18px;border-top:5px solid var(--sdis-red)}.filrouge-delete-confirm h3{margin:0 0 8px 0;color:#111827}.filrouge-delete-confirm p{margin:0 0 14px 0;color:#374151}.filrouge-delete-confirm .row-actions{justify-content:flex-end}
+
+/* DL Creator Web v10.02 — correctifs ciblés PDF/Public cible/Légendes Fil rouge */
+.pdf-public-cible-bold,
+.pdf-public-cible-bold span{
+  font-weight:800!important;
+  text-transform:none!important;
+  letter-spacing:normal!important;
+}
+.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-bold,
+.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-bold span,
+.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-bold,
+.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-bold span{
+  font-weight:800!important;
+  text-transform:none!important;
+}
+.filrouge-image-card figcaption{
+  background:#f3f4f6;
+  border:1px solid #e1e5ea;
+  border-radius:7px;
+  padding:5px;
+}
+.filrouge-image-card input{
+  background:#f8fafc;
+  border-color:#d8dde5;
+  color:#1f2730;
+  text-align:left;
+}
+.pdf-fr-images{
+  margin:3mm;
+  break-inside:avoid;
+  page-break-inside:avoid;
+}
+.pdf-fr-images>strong{
+  display:block;
+  margin:0 0 2.5mm 0;
+  padding:0;
+  text-align:left;
+}
+.pdf-fr-image figcaption{
+  box-sizing:border-box;
+  width:5cm;
+  max-width:5cm;
+  margin-top:1.5mm;
+  padding:1.4mm 1.6mm;
+  background:#f3f4f6;
+  border:1px solid #e1e5ea;
+  border-radius:1.5mm;
+  font-size:8pt;
+  line-height:1.15;
+  color:#1f2730;
+  text-align:left;
+  word-break:break-word;
+  print-color-adjust:exact;
+  -webkit-print-color-adjust:exact;
+}
+@media print{
+  .filrouge-image-card figcaption,
+  .filrouge-image-card input,
+  .pdf-fr-image figcaption{
+    print-color-adjust:exact!important;
+    -webkit-print-color-adjust:exact!important;
+  }
+}

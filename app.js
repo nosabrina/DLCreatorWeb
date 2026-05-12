@@ -4,7 +4,7 @@ window.DL_CREATOR_WEB_APP_JS_LOADED = true;
 if(window.DL_CREATOR_BOOT) window.DL_CREATOR_BOOT.appJsLoaded = true;
 
 const APP = {
-  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.01').trim().toLowerCase(),
+  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.02').trim().toLowerCase(),
   STORAGE_KEY: 'DL_CREATOR_WEB_LIBRARY_V1',
   PROFILE_KEY: 'DL_CREATOR_WEB_PROFILE_V1',
   SESSION_KEY: 'DL_CREATOR_WEB_SESSION_V1',
@@ -101,8 +101,8 @@ function installMissingFunctionGuard(){
   };
   Object.entries(guarded).forEach(([name,fn])=>{
     if(typeof window[name] !== 'function') window[name]=function(...args){
-      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v10.01 exécuté.`);
-      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v10.01',destructive:false},'WARN'); }catch{}
+      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v10.02 exécuté.`);
+      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v10.02',destructive:false},'WARN'); }catch{}
       return fn(...args);
     };
   });
@@ -3169,20 +3169,30 @@ async function removeFilRougeImage(sectionIndex,imageIndex){
   auditLocal('filrouge-image-delete-confirmed',{sectionIndex,imageName:removed?.name||'',destructive:true},'AUDIT');
   setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel();
 }
+function normalizeFilRougeImageCaption(value){
+  const raw=String(value||'').trimStart();
+  if(!raw) return '';
+  const first=raw.charAt(0);
+  if(/[0-9]/.test(first)) return raw;
+  return first.toLocaleUpperCase('fr-CH') + raw.slice(1);
+}
+window.normalizeFilRougeImageCaption=normalizeFilRougeImageCaption;
 function updateFilRougeImageCaption(sectionIndex,imageIndex,value){
   const section=APP.state.current?.filRouge?.[sectionIndex]; if(!section) return;
   normalizeFilRougeSection(section);
   const img=section.images[imageIndex]; if(!img) return;
-  img.caption=String(value||'');
+  const caption=normalizeFilRougeImageCaption(value);
+  if(img.caption===caption) return;
+  img.caption=caption;
   auditLocal('filrouge-image-caption-update',{sectionIndex,imageIndex,destructive:false},'AUDIT');
-  setDirty(); saveCurrent(false,{forceIncompleteDraft:true});
+  setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel();
 }
 function renderFilRougeImages(sectionIndex,section){
   normalizeFilRougeSection(section);
   const has=(section.images||[]).length>0;
   const inputId=`filrougeImageInput-${sectionIndex}`;
   const dropzone=`<div class="filrouge-image-dropzone" role="button" tabindex="0" aria-label="Déposer ou sélectionner des images" data-fr-image-drop="${sectionIndex}" data-fr-image-input="${inputId}">${sfPhotoBadgePlusIcon()}<span>Déposer des images ici ou sélectionner depuis l’ordinateur</span></div>`;
-  const gallery=has?`<div class="filrouge-image-gallery">${section.images.map((img,j)=>`<figure class="filrouge-image-card"><div class="filrouge-image-thumb"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}"></div><button class="btn small icon-only filrouge-image-delete" type="button" title="Supprimer l’image" aria-label="Supprimer l’image" onclick="removeFilRougeImage(${sectionIndex},${j})">${sfTrashIcon()}</button><figcaption><input type="text" value="${esc(img.caption||'')}" placeholder="Légende de l’image" onchange="updateFilRougeImageCaption(${sectionIndex},${j},this.value)" onblur="updateFilRougeImageCaption(${sectionIndex},${j},this.value)"></figcaption></figure>`).join('')}</div>`:'';
+  const gallery=has?`<div class="filrouge-image-gallery">${section.images.map((img,j)=>`<figure class="filrouge-image-card"><div class="filrouge-image-thumb"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}"></div><button class="btn small icon-only filrouge-image-delete" type="button" title="Supprimer l’image" aria-label="Supprimer l’image" onclick="removeFilRougeImage(${sectionIndex},${j})">${sfTrashIcon()}</button><figcaption><input type="text" value="${esc(img.caption||'')}" placeholder="Légende de l’image" oninput="this.value=normalizeFilRougeImageCaption(this.value)" onchange="updateFilRougeImageCaption(${sectionIndex},${j},this.value)" onblur="updateFilRougeImageCaption(${sectionIndex},${j},this.value)"></figcaption></figure>`).join('')}</div>`:'';
   return `<div class="filrouge-section-images ${has?'has-images':''}"><label>IMAGES LIÉES À CETTE SECTION</label><input id="${inputId}" type="file" hidden accept="image/jpeg,image/jpg,image/png,image/webp" multiple onchange="addFilRougeImages(${sectionIndex},this.files,'click');this.value=''">${dropzone}${has?'<div class="filrouge-image-help muted">Galerie locale sauvegardée avec la DL.</div>':''}${gallery}</div>`;
 }
 function bindFilRougeImageDropzones(){
@@ -3198,7 +3208,7 @@ function bindFilRougeImageDropzones(){
 function pdfFilRougeImages(section){
   const imgs=(section?.images||[]).filter(img=>img?.dataUrl);
   if(!imgs.length) return '';
-  return `<div class="pdf-fr-images"><strong>Images liées à cette section</strong><div class="pdf-fr-image-grid">${imgs.map(img=>`<figure class="pdf-fr-image"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}">${img.caption?`<figcaption>${esc(img.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`;
+  return `<div class="pdf-fr-images"><strong>IMAGES LIÉES À CETTE SECTION</strong><div class="pdf-fr-image-grid">${imgs.map(img=>`<figure class="pdf-fr-image"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}">${img.caption?`<figcaption>${esc(normalizeFilRougeImageCaption(img.caption))}</figcaption>`:''}</figure>`).join('')}</div></div>`;
 }
 
 function chantierLabel(text,kind){
@@ -4247,17 +4257,17 @@ window.saveHabilitationsExplicit=function(){
     if(!managers.length){
       const recovery=currentUserRecoveryRow('ADMIN STRUCTURE APPLICATION');
       list.unshift(recovery);
-      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v10.01',destructive:false},'WARN'); }catch{}
+      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v10.02',destructive:false},'WARN'); }catch{}
     }
     saveHabilitations(list);
     APP.state.habilitations=loadHabilitations();
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v10.01',destructive:false},'AUDIT'); }catch{}
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v10.02',destructive:false},'AUDIT'); }catch{}
     actionStatus('Habilitations enregistrées. Droits conservés localement.', 'ok');
     renderHabilitations();
     return true;
   }catch(e){
-    console.error('[DL creator][v10.01] Enregistrement habilitations impossible', e);
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v10.01',destructive:false},'ERROR'); }catch{}
+    console.error('[DL creator][v10.02] Enregistrement habilitations impossible', e);
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v10.02',destructive:false},'ERROR'); }catch{}
     actionStatus('Erreur lors de l’enregistrement des habilitations. Gestion des accès reste accessible.', 'error');
     return false;
   }
@@ -4457,7 +4467,7 @@ window.editPersonalDL=id=>{
 };
 function renderOutils(){
   if(!(canManageKeywords() || hasAccessAtLeast('ADMIN STRUCTURE APPLICATION'))) return accessDeniedPanel();
-  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.01 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.02 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
 }
 
 function renderDiagnosticProduction(){
@@ -4505,9 +4515,9 @@ function renderDiagnosticProduction(){
     ['Éléments préparés mais désactivés', 'Backend, stockage distant, auth serveur, e-mails transactionnels, sync distante'],
     ['PDF', vi.flags?.pdfEngineLocked ? 'Verrouillé : aucune modification moteur PDF' : 'À contrôler'],
     ['Garde-fous boot', 'Contrôle DEFAULT_DL_VERSION avant initialisation + tryPersistDraft présent + références critiques vérifiées'],
-    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.01' : 'Pilote limité']
+    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.02' : 'Pilote limité']
   ];
-  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.01. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.02. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
 }
 
 window.runFunctionsDiagnosticFromUI=async()=>{
@@ -5082,7 +5092,7 @@ function publicCiblePdfHtml(dl){
   const values=[...selected];
   if(libre) values.push(libre);
   if(!values.length) return '—';
-  return `<div class="pdf-public-cible pdf-public-cible-text">${values.map(v=>`<span>${esc(v)}</span>`).join('<br>')}</div>`;
+  return `<div class="pdf-public-cible pdf-public-cible-text pdf-public-cible-bold">${values.map(v=>`<span>${esc(v)}</span>`).join('<br>')}</div>`;
 }
 function formateursPdfHtml(dl){
   const people=sortPeopleByGradeHighToLow(dl.responsables?.formateurs);

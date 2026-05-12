@@ -31,6 +31,10 @@
     filRougeImagesDragDropDirectV1001: true,
     filRougeImagesCrop43V1001: true,
     filRougeImagesDeleteConfirmV1001: true,
-    filRougeImagesPdfSpacingFixedV1001: true
+    filRougeImagesPdfSpacingFixedV1001: true,
+    filRougeImagesPdfTitleAlignV1002: true,
+    publicCiblePdfBoldCaseV1002: true,
+    filRougeImageCaptionGreyLeftV1002: true,
+    filRougeImageCaptionSentenceCaseV1002: true
   });
 })(window);
