@@ -4,10 +4,10 @@
   const runtime = window.DL_CREATOR_RUNTIME_CONFIG || {};
   const runtimeFlags = window.DL_CREATOR_FEATURE_FLAGS || {};
   const versionInfo = Object.freeze({
-    version: runtime.version || 'v10.03',
-    numericVersion: runtime.numericVersion || '10.03',
-    build: runtime.build || '2026.05.12-v10.03-pdf-public-cible-bold-black-11pt',
-    buildIncrement: runtime.buildIncrement || 203,
+    version: runtime.version || 'v10.04',
+    numericVersion: runtime.numericVersion || '10.04',
+    build: runtime.build || '2026.05.12-v10.04-filrouge-image-reorder-pdf-public-cible-10pt-validation-status-import',
+    buildIncrement: runtime.buildIncrement || 204,
     buildDate: runtime.buildDate || '2026-05-12',
     buildDateUTC: new Date(runtime.buildDateUTC || '2026-05-12T07:30:00Z').toISOString(),
     environment: runtime.environment || 'local',
@@ -132,6 +132,9 @@
     filRougeImagesPdfTitleAlignV1002: true,
     publicCiblePdfBoldCaseV1002: true,
     publicCiblePdfBoldBlack11V1003: true,
+    filRougeImageReorderV1004: true,
+    publicCiblePdfBoldBlack10V1004: true,
+    validationStatusPreservedOnImportV1004: true,
     filRougeImageCaptionGreyLeftV1002: true,
     filRougeImageCaptionSentenceCaseV1002: true
     })

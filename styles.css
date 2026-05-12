@@ -2868,7 +2868,7 @@ textarea.auto-expand:not(.section-title-input){
 
 
 /* DL Creator Web v7.16 — PDF institutionnel final */
-.pdf-eval-table td{font-size:11pt!important;line-height:1.22!important;}
+.pdf-eval-table td{font-size:10pt!important;line-height:1.22!important;}
 .pdf-eval-table th{font-size:8pt!important;}
 .pdf-formateurs-cible .pdf-public-list{margin:0;padding-left:4mm;}
 .pdf-formateurs-cible .pdf-public-list li{margin:.7mm 0;break-inside:avoid;page-break-inside:avoid;}
@@ -3385,7 +3385,7 @@ textarea.auto-expand:not(.section-title-input){
   box-sizing:border-box!important;
   overflow:hidden!important;
 }
-.pdf-annex-render-error strong{font-size:11pt!important;text-transform:uppercase!important;letter-spacing:.2px!important;}
+.pdf-annex-render-error strong{font-size:10pt!important;text-transform:uppercase!important;letter-spacing:.2px!important;}
 .pdf-annex-render-error span{display:block!important;color:#4b5563!important;}
 .pdf-annex-page object,
 .pdf-annex-page embed,
@@ -4153,18 +4153,27 @@ textarea.invalid{
 }
 
 
-/* DL Creator Web v10.03 — correctif strict Export PDF : PUBLIC CIBLE noir / bold / 11 pt */
-.pdf-public-cible-v1003,
-.pdf-public-cible-v1003 span,
-.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-v1003,
-.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-v1003 span,
-.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-v1003,
-.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-v1003 span{
+/* DL Creator Web v10.04 — correctif strict Export PDF : PUBLIC CIBLE noir / bold / 10 pt */
+.pdf-public-cible-v1004,
+.pdf-public-cible-v1004 span,
+.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-v1004,
+.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-v1004 span,
+.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-v1004,
+.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-v1004 span{
   color:#000!important;
   font-weight:800!important;
-  font-size:11pt!important;
+  font-size:10pt!important;
   line-height:1.18!important;
   text-transform:none!important;
   letter-spacing:normal!important;
   text-align:left!important;
 }
+
+
+/* DL Creator Web v10.04 — réorganisation photos Fil rouge */
+.filrouge-image-card.dragging{opacity:.62;outline:2px dashed var(--sdis-red)}
+.filrouge-image-card.drag-over{outline:2px solid var(--sdis-red);background:#fff7f8}
+.filrouge-image-reorder{display:flex;gap:4px;justify-content:flex-start;margin-bottom:6px;padding-right:34px}
+.filrouge-image-move{width:28px;height:28px;line-height:1;font-size:15px;font-weight:900;color:var(--gray-800);background:#fff;border-color:var(--gray-300)}
+.filrouge-image-move:disabled{opacity:.32;cursor:not-allowed}
+@media print{.filrouge-image-reorder,.filrouge-image-move{display:none!important}}

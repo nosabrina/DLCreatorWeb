@@ -1,12 +1,13 @@
-## v10.03 — 2026-05-12
+## v10.04 — 2026-05-12
 
-### Correctif simple Export PDF
+### Correctif mineur ciblé
 
-- Correction stricte du rendu du contenu PUBLIC CIBLE sur la première page PDF.
-- Correction stricte du rendu du contenu PUBLIC CIBLE dans GÉNÉRALITÉS.
-- Style imposé : noir, bold, taille 11 pt.
-- Casse utilisateur respectée.
-- Aucun changement volontaire sur RBAC, bibliothèque DL, Fil rouge, JSON, audit, backend, e-mails ou autres blocs PDF.
+- Fil rouge : ajout d’une réorganisation des photos par flèches gauche/droite, avec Drag&Drop horizontal local en complément.
+- Fil rouge : conservation des légendes avec leur photo lors du déplacement, sauvegarde/rechargement et export/import JSON.
+- Export PDF : PUBLIC CIBLE en première page et dans GÉNÉRALITÉS rendu en noir, bold, 10 pt, en respectant la casse utilisateur.
+- Import/export JSON : conservation du statut métier d’une DL validée, avec date, validateur et métadonnées existantes si présentes.
+- Audit local : ajout de `filRougeImageReordered` et `dlValidationStatusPreservedOnImport` sans création d’une nouvelle validation locale.
+- Aucun changement volontaire sur RBAC global, Gestion des accès, backend, Netlify Functions, e-mails, synchronisation distante, menus ou autres blocs PDF.
 
 ## v10.02 — 2026-05-12
 

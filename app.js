@@ -4,7 +4,7 @@ window.DL_CREATOR_WEB_APP_JS_LOADED = true;
 if(window.DL_CREATOR_BOOT) window.DL_CREATOR_BOOT.appJsLoaded = true;
 
 const APP = {
-  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.03').trim().toLowerCase(),
+  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.04').trim().toLowerCase(),
   STORAGE_KEY: 'DL_CREATOR_WEB_LIBRARY_V1',
   PROFILE_KEY: 'DL_CREATOR_WEB_PROFILE_V1',
   SESSION_KEY: 'DL_CREATOR_WEB_SESSION_V1',
@@ -3187,13 +3187,53 @@ function updateFilRougeImageCaption(sectionIndex,imageIndex,value){
   auditLocal('filrouge-image-caption-update',{sectionIndex,imageIndex,destructive:false},'AUDIT');
   setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel();
 }
+function moveFilRougeImage(sectionIndex,imageIndex,delta){
+  const section=APP.state.current?.filRouge?.[sectionIndex]; if(!section) return;
+  normalizeFilRougeSection(section);
+  const images=section.images||[];
+  const from=Number(imageIndex);
+  const to=from+Number(delta||0);
+  if(!Number.isInteger(from) || !Number.isInteger(to) || from<0 || to<0 || from>=images.length || to>=images.length || from===to) return;
+  const [img]=images.splice(from,1);
+  images.splice(to,0,img);
+  auditLocal('filRougeImageReordered',{sectionIndex,oldIndex:from,newIndex:to,destructive:false},'AUDIT');
+  setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel();
+}
+window.moveFilRougeImage=moveFilRougeImage;
+window.startFilRougeImageDrag=function(event,sectionIndex,imageIndex){
+  try{
+    event.dataTransfer.effectAllowed='move';
+    event.dataTransfer.setData('application/x-dlcreator-filrouge-image', JSON.stringify({sectionIndex,imageIndex}));
+    event.currentTarget?.classList?.add('dragging');
+  }catch{}
+};
+window.endFilRougeImageDrag=function(event){ try{ event.currentTarget?.classList?.remove('dragging'); }catch{} };
+window.dropFilRougeImage=function(event,sectionIndex,targetIndex){
+  event.preventDefault();
+  try{ event.currentTarget?.classList?.remove('drag-over'); }catch{}
+  let payload=null;
+  try{ payload=JSON.parse(event.dataTransfer.getData('application/x-dlcreator-filrouge-image')||'null'); }catch{}
+  if(!payload || Number(payload.sectionIndex)!==Number(sectionIndex)) return;
+  const from=Number(payload.imageIndex);
+  const to=Number(targetIndex);
+  if(from===to) return;
+  const section=APP.state.current?.filRouge?.[sectionIndex]; if(!section) return;
+  normalizeFilRougeSection(section);
+  const images=section.images||[];
+  if(from<0 || to<0 || from>=images.length || to>=images.length) return;
+  const [img]=images.splice(from,1);
+  images.splice(to,0,img);
+  auditLocal('filRougeImageReordered',{sectionIndex,oldIndex:from,newIndex:to,mode:'dragdrop',destructive:false},'AUDIT');
+  setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel();
+};
 function renderFilRougeImages(sectionIndex,section){
   normalizeFilRougeSection(section);
   const has=(section.images||[]).length>0;
+  const total=(section.images||[]).length;
   const inputId=`filrougeImageInput-${sectionIndex}`;
   const dropzone=`<div class="filrouge-image-dropzone" role="button" tabindex="0" aria-label="Déposer ou sélectionner des images" data-fr-image-drop="${sectionIndex}" data-fr-image-input="${inputId}">${sfPhotoBadgePlusIcon()}<span>Déposer des images ici ou sélectionner depuis l’ordinateur</span></div>`;
-  const gallery=has?`<div class="filrouge-image-gallery">${section.images.map((img,j)=>`<figure class="filrouge-image-card"><div class="filrouge-image-thumb"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}"></div><button class="btn small icon-only filrouge-image-delete" type="button" title="Supprimer l’image" aria-label="Supprimer l’image" onclick="removeFilRougeImage(${sectionIndex},${j})">${sfTrashIcon()}</button><figcaption><input type="text" value="${esc(img.caption||'')}" placeholder="Légende de l’image" oninput="this.value=normalizeFilRougeImageCaption(this.value)" onchange="updateFilRougeImageCaption(${sectionIndex},${j},this.value)" onblur="updateFilRougeImageCaption(${sectionIndex},${j},this.value)"></figcaption></figure>`).join('')}</div>`:'';
-  return `<div class="filrouge-section-images ${has?'has-images':''}"><label>IMAGES LIÉES À CETTE SECTION</label><input id="${inputId}" type="file" hidden accept="image/jpeg,image/jpg,image/png,image/webp" multiple onchange="addFilRougeImages(${sectionIndex},this.files,'click');this.value=''">${dropzone}${has?'<div class="filrouge-image-help muted">Galerie locale sauvegardée avec la DL.</div>':''}${gallery}</div>`;
+  const gallery=has?`<div class="filrouge-image-gallery">${section.images.map((img,j)=>`<figure class="filrouge-image-card" draggable="true" ondragstart="startFilRougeImageDrag(event,${sectionIndex},${j})" ondragend="endFilRougeImageDrag(event)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="dropFilRougeImage(event,${sectionIndex},${j})"><div class="filrouge-image-reorder" aria-label="Réorganiser l’image"><button class="btn small icon-only filrouge-image-move" type="button" title="Déplacer à gauche" aria-label="Déplacer l’image à gauche" onclick="moveFilRougeImage(${sectionIndex},${j},-1)" ${j<=0?'disabled':''}>←</button><button class="btn small icon-only filrouge-image-move" type="button" title="Déplacer à droite" aria-label="Déplacer l’image à droite" onclick="moveFilRougeImage(${sectionIndex},${j},1)" ${j>=total-1?'disabled':''}>→</button></div><div class="filrouge-image-thumb"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}"></div><button class="btn small icon-only filrouge-image-delete" type="button" title="Supprimer l’image" aria-label="Supprimer l’image" onclick="removeFilRougeImage(${sectionIndex},${j})">${sfTrashIcon()}</button><figcaption><input type="text" value="${esc(img.caption||'')}" placeholder="Légende de l’image" oninput="this.value=normalizeFilRougeImageCaption(this.value)" onchange="updateFilRougeImageCaption(${sectionIndex},${j},this.value)" onblur="updateFilRougeImageCaption(${sectionIndex},${j},this.value)"></figcaption></figure>`).join('')}</div>`:'';
+  return `<div class="filrouge-section-images ${has?'has-images':''}"><label>IMAGES LIÉES À CETTE SECTION</label><input id="${inputId}" type="file" hidden accept="image/jpeg,image/jpg,image/png,image/webp" multiple onchange="addFilRougeImages(${sectionIndex},this.files,'click');this.value=''">${dropzone}${has?'<div class="filrouge-image-help muted">Galerie locale sauvegardée avec la DL. Les flèches déplacent une photo d’un cran ; le glisser-déposer horizontal est également accepté.</div>':''}${gallery}</div>`;
 }
 function bindFilRougeImageDropzones(){
   $$('[data-fr-image-drop]').forEach(zone=>{
@@ -4467,7 +4507,7 @@ window.editPersonalDL=id=>{
 };
 function renderOutils(){
   if(!(canManageKeywords() || hasAccessAtLeast('ADMIN STRUCTURE APPLICATION'))) return accessDeniedPanel();
-  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.03 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.04 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
 }
 
 function renderDiagnosticProduction(){
@@ -4515,9 +4555,9 @@ function renderDiagnosticProduction(){
     ['Éléments préparés mais désactivés', 'Backend, stockage distant, auth serveur, e-mails transactionnels, sync distante'],
     ['PDF', vi.flags?.pdfEngineLocked ? 'Verrouillé : aucune modification moteur PDF' : 'À contrôler'],
     ['Garde-fous boot', 'Contrôle DEFAULT_DL_VERSION avant initialisation + tryPersistDraft présent + références critiques vérifiées'],
-    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.03' : 'Pilote limité']
+    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.04' : 'Pilote limité']
   ];
-  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.03. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.04. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
 }
 
 window.runFunctionsDiagnosticFromUI=async()=>{
@@ -4727,12 +4767,41 @@ function parseDLJsonText(text){
   const payload=raw && raw.dl ? raw.dl : raw;
   return ensureDLModel(payload);
 }
+function importedValidationSnapshot(raw){
+  const validation=raw?.validation||{};
+  const status=displayStatusFromAny(validation.statut||raw?.statut||'');
+  return {
+    status,
+    isValidated: status==='Validé',
+    validateur: validation.validateur||raw?.validateur||'',
+    dateValidation: validation.dateValidation||raw?.dateValidation||'',
+    role: validation.role||validation.fonction||raw?.validationRole||'',
+    workflowState: raw?.workflow?.state||raw?.workflowState||''
+  };
+}
+function restoreImportedValidationSnapshot(d,snapshot){
+  if(!snapshot?.status) return;
+  d.validation=d.validation||{};
+  d.validation.statut=snapshot.status;
+  if(snapshot.validateur && !d.validation.validateur) d.validation.validateur=snapshot.validateur;
+  if(snapshot.dateValidation && !d.validation.dateValidation) d.validation.dateValidation=snapshot.dateValidation;
+  if(snapshot.role && !d.validation.role && !d.validation.fonction) d.validation.role=snapshot.role;
+  d.statut=snapshot.status;
+  d.workflow=d.workflow||{};
+  if(snapshot.workflowState) d.workflow.state=snapshot.workflowState;
+  else if(!displayStatusFromWorkflowState(d.workflow.state)) d.workflow.state=workflowStateForDisplayStatus(snapshot.status);
+}
 function finalizeImportedDLModel(dl,{asLibrary=false}={}){
+  const snapshot=importedValidationSnapshot(dl);
   const d=ensureDLModel(dl);
+  restoreImportedValidationSnapshot(d,snapshot);
   syncPlanHoraireFromFilRouge(d);
   computeReference(d);
   d.dateModification=nowIso();
   if(!d.id) d.id=uid();
+  if(snapshot.isValidated){
+    auditLocal('dlValidationStatusPreservedOnImport',{source:asLibrary?'Bibliothèque DL':'Import JSON',dlId:d.id,reference:d.referenceDL||'',status:d.validation?.statut||d.statut||'',dateValidation:d.validation?.dateValidation||'',validateur:d.validation?.validateur||'',destructive:false},'AUDIT');
+  }
   return d;
 }
 function importJsonFile(file){
@@ -5092,7 +5161,7 @@ function publicCiblePdfHtml(dl){
   const values=[...selected];
   if(libre) values.push(libre);
   if(!values.length) return '—';
-  return `<div class="pdf-public-cible pdf-public-cible-text pdf-public-cible-bold pdf-public-cible-v1003">${values.map(v=>`<span>${esc(v)}</span>`).join('<br>')}</div>`;
+  return `<div class="pdf-public-cible pdf-public-cible-text pdf-public-cible-bold pdf-public-cible-v1004">${values.map(v=>`<span>${esc(v)}</span>`).join('<br>')}</div>`;
 }
 function formateursPdfHtml(dl){
   const people=sortPeopleByGradeHighToLow(dl.responsables?.formateurs);

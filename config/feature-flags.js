@@ -35,6 +35,9 @@
     filRougeImagesPdfTitleAlignV1002: true,
     publicCiblePdfBoldCaseV1002: true,
     publicCiblePdfBoldBlack11V1003: true,
+    filRougeImageReorderV1004: true,
+    publicCiblePdfBoldBlack10V1004: true,
+    validationStatusPreservedOnImportV1004: true,
     filRougeImageCaptionGreyLeftV1002: true,
     filRougeImageCaptionSentenceCaseV1002: true
   });
