@@ -1,0 +1,15 @@
+# Non nécessaire au déploiement statique Netlify gratuit
+server/
+docs/
+.git/
+.github/
+.DS_Store
+__MACOSX/
+node_modules/
+.env
+.env.*
+*.sqlite
+*.sqlite3
+*.db
+*.log
+exports/

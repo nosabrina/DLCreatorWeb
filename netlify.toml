@@ -1,0 +1,138 @@
+[build]
+  publish = "."
+  command = ""
+  functions = "netlify/functions"
+
+[context.production.environment]
+  APP_ENV = "production"
+  API_BASE_URL = "/.netlify/functions"
+  AUTH_MODE = "local"
+  MAIL_PROVIDER = "disabled"
+  ENABLE_REMOTE_SYNC = "false"
+  ENABLE_AUDIT_SERVER = "false"
+  DL_CREATOR_ENV = "production"
+  DL_CREATOR_BACKEND_ENABLED = "false"
+  DL_CREATOR_VERSION = "v9.10"
+  DL_CREATOR_MAINTENANCE_MODE = "false"
+  DL_CREATOR_MAIL_PROVIDER = "disabled"
+
+[context.deploy-preview.environment]
+  APP_ENV = "pilote"
+  API_BASE_URL = "/.netlify/functions"
+  AUTH_MODE = "local"
+  MAIL_PROVIDER = "disabled"
+  ENABLE_REMOTE_SYNC = "false"
+  ENABLE_AUDIT_SERVER = "false"
+  DL_CREATOR_ENV = "preview"
+  DL_CREATOR_BACKEND_ENABLED = "false"
+  DL_CREATOR_VERSION = "v9.10"
+  DL_CREATOR_MAINTENANCE_MODE = "false"
+
+[context.branch-deploy.environment]
+  APP_ENV = "pilote"
+  API_BASE_URL = "/.netlify/functions"
+  AUTH_MODE = "local"
+  MAIL_PROVIDER = "disabled"
+  ENABLE_REMOTE_SYNC = "false"
+  ENABLE_AUDIT_SERVER = "false"
+  DL_CREATOR_ENV = "preview"
+  DL_CREATOR_BACKEND_ENABLED = "false"
+  DL_CREATOR_VERSION = "v9.10"
+  DL_CREATOR_MAINTENANCE_MODE = "false"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https: http://localhost:3000 http://localhost:8888; worker-src 'self' blob:; object-src 'self' blob:; frame-src 'self' blob:; base-uri 'self'; form-action 'self'"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+
+[[headers]]
+  for = "/app.js"
+  [headers.values]
+    Cache-Control = "no-cache, max-age=0"
+
+[[headers]]
+  for = "/js/config/version.js"
+  [headers.values]
+    Cache-Control = "no-cache, max-age=0"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "no-cache, max-age=0"
+
+[[headers]]
+  for = "/data/*.csv"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/.env*"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow"
+
+[[redirects]]
+  from = "/server/*"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/docs/*"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/.env*"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = false
+
+
+[[headers]]
+  for = "/.github/*"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow"
+
+[[redirects]]
+  from = "/.github/*"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/CHANGELOG.md"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/VERSION.md"
+  to = "/index.html"
+  status = 404
+
+# SPA fallback contrôlé : placé après /api/* et les protections sensibles.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false

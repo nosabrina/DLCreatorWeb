@@ -1,0 +1,2 @@
+const {json,safeHandler}=require('./_shared');
+exports.handler=safeHandler(async(event)=>json(200,{service:'DL Creator Web',version:'v9.10',apiVersion:'2026-05-pilot-v7',environment:process.env.DL_CREATOR_ENV||process.env.APP_ENV||'pilote',backendEnabled:false,remoteSyncEnabled:false,pdfEngine:'locked-client-side',status:'ok',pilotMultiUsers:true,workflowPrepared:true,diagnosticMode:true,writeEnabled:false},event),['GET']);

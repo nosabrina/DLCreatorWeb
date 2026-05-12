@@ -1,0 +1,4015 @@
+:root{--sdis-red:#e30613;--sdis-red-dark:#b0000f;--sdis-red-soft:#fde8ea;--gray-900:#1f2730;--gray-800:#2d3742;--gray-700:#4a5562;--gray-600:#6b7785;--gray-500:#8a95a3;--gray-400:#aab3bf;--gray-300:#cdd4dc;--gray-200:#e3e7ec;--gray-100:#f1f3f6;--gray-50:#f8f9fb;--bg:#f4f5f8;--card:#fff;--field-h:38px;--radius:6px;--radius-sm:4px;--shadow-sm:0 1px 2px rgba(20,30,50,.06);--shadow:0 2px 6px rgba(20,30,50,.08);--sans:Arial,Helvetica,sans-serif}*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--gray-900);font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.4}.boot-message{display:flex;align-items:center;justify-content:center;height:100vh;color:var(--gray-600)}h1,h2,h3,h4{margin:0 0 .5em;font-weight:650}h1{font-size:22px}h2{font-size:18px}h3{font-size:15px;text-transform:uppercase;letter-spacing:.6px;color:var(--sdis-red);border-bottom:1px solid var(--gray-200);padding-bottom:6px;margin-bottom:14px}.muted{color:var(--gray-500);font-size:12.5px}.container{max-width:1340px;margin:0 auto;padding:18px}.card{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);margin-bottom:14px}.topbar{background:linear-gradient(90deg,var(--sdis-red),var(--sdis-red-dark));color:#fff;border-bottom:4px solid #8c000b}.topbar-inner{max-width:1340px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:14px}.brand-logo{width:58px;height:58px;object-fit:contain}.brand-title{font-size:21px;font-weight:750;line-height:1.1}.brand-subtitle{font-size:13px;opacity:.9}.top-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.tabs{max-width:1340px;margin:14px auto 0;padding:0 18px;display:flex;gap:4px;flex-wrap:wrap}.tab{height:39px;padding:0 14px;border:1px solid var(--gray-300);border-bottom-color:var(--sdis-red);background:#fff;color:var(--gray-800);font-weight:650;cursor:pointer;border-radius:4px 4px 0 0}.tab.active{background:#2f343b;border-color:#2f343b;color:#fff}.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid var(--gray-300);background:#fff;color:var(--gray-800);cursor:pointer;font:650 13px var(--sans);text-decoration:none}.btn:hover{border-color:#2f343b;color:#2f343b}.btn.red{background:#2f343b;color:#fff;border-color:#2f343b}.btn.red:hover{background:var(--sdis-red-dark);color:#fff}.btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}.btn.small{height:30px;padding:0 10px;font-size:12px}.btn:disabled{opacity:.5;cursor:not-allowed}label{display:block;font-size:11.5px;font-weight:650;text-transform:uppercase;letter-spacing:.5px;color:var(--gray-700);margin-bottom:4px}input,select,textarea,.field{height:var(--field-h);width:100%;background:#fff;border:1px solid var(--gray-300);border-radius:var(--radius-sm);padding:0 10px;font:14px var(--sans);color:var(--gray-900)}textarea{height:auto;min-height:74px;padding:8px 10px;line-height:1.45;resize:vertical}input:focus,select:focus,textarea:focus,.rich:focus{outline:none;border-color:var(--sdis-red);background:#fffbfb}.form-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.span-1{grid-column:span 1}.span-2{grid-column:span 2}.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-9{grid-column:span 9}.span-10{grid-column:span 10}.span-11{grid-column:span 11}.span-12{grid-column:span 12}@media(max-width:900px){.form-grid>*{grid-column:span 12!important}.topbar-inner{align-items:flex-start}.top-actions{margin-left:0}.tabs{overflow:auto;flex-wrap:nowrap}}table.data{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border:1px solid var(--gray-200)}table.data th,table.data td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--gray-200);vertical-align:top}table.data th{background:var(--gray-50);font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--gray-700)}table.data tr:hover td{background:#fcfcfd}.badge{display:inline-block;padding:2px 8px;border-radius:99px;background:var(--gray-100);color:var(--gray-700);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}.badge.red{background:var(--sdis-red-soft);color:var(--sdis-red)}.badge.green{background:#e3f5ea;color:#0e7c3f}.badge.blue{background:#e8f1fb;color:#1f4e8a}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.action-toolbar{align-items:center}.action-status{min-width:150px;min-height:20px;display:inline-flex;align-items:center;margin-left:4px;padding:2px 8px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;color:var(--gray-600);background:transparent;white-space:nowrap}.action-status.ok:not(:empty){color:#0e7c3f;background:#e3f5ea;border:1px solid #bbe3c8}.action-status.warn:not(:empty){color:#8a6500;background:#fff8e1;border:1px solid #f0d68b}.action-status.info:not(:empty){color:#1f4e8a;background:#e8f1fb;border:1px solid #bcd4ee}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}.login-wrap{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#8c000b,#e30613 48%,#f4f5f8 48%)}.login-card{width:min(520px,92vw);background:#fff;border:1px solid var(--gray-200);border-radius:8px;box-shadow:0 18px 45px rgba(0,0,0,.18);padding:26px}.login-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}.login-head img{width:74px;background:var(--sdis-red);padding:8px;border-radius:6px}.dl-ref{font-weight:700;color:var(--sdis-red)}.status-line{font-size:12px;color:var(--gray-500);margin-left:auto}.pillbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.pill{border:1px solid var(--gray-300);padding:6px 9px;border-radius:99px;background:#fff;cursor:pointer;font-size:12px;font-weight:650}.pill.active{background:var(--sdis-red);border-color:var(--sdis-red);color:#fff}.rich-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.rich{min-height:170px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);background:#fff;padding:10px;overflow:auto}.rich img{max-width:100%;height:auto}.rich,.rich *{font-family:Arial,Helvetica,sans-serif}.list-select{width:auto;min-width:92px;text-transform:none}.chantier{color:#005eb8;font-weight:400}.remarque{color:#e30613;font-style:italic}.drop-zone{border:2px dashed var(--gray-300);background:var(--gray-50);padding:16px;text-align:center;border-radius:var(--radius);color:var(--gray-600)}.drop-zone.drag{border-color:var(--sdis-red);background:var(--sdis-red-soft)}.alert{padding:10px 12px;border-radius:var(--radius-sm);font-size:13px;border:1px solid transparent;margin-bottom:12px}.alert.warn{background:#fff8e1;color:#8a6500;border-color:#f0d68b}.alert.info{background:#e8f1fb;color:#1f4e8a;border-color:#bcd4ee}.alert.ok{background:#e3f5ea;color:#0e7c3f;border-color:#bbe3c8}.split{display:grid;grid-template-columns:330px 1fr;gap:14px}@media(max-width:1050px){.split{grid-template-columns:1fr}}.side-list{max-height:70vh;overflow:auto}.group-title{background:var(--gray-100);border:1px solid var(--gray-200);padding:8px 10px;font-weight:750;color:var(--gray-800)}.dl-item{padding:10px;border:1px solid var(--gray-200);border-top:0;cursor:pointer;background:#fff}.dl-item:hover,.dl-item.active{background:var(--sdis-red-soft)}.autocomplete-wrap{position:relative}.suggestions{position:absolute;z-index:50;top:100%;left:0;right:0;background:#fff;border:1px solid var(--gray-300);box-shadow:var(--shadow);max-height:220px;overflow:auto}.suggestion{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--gray-100)}.suggestion:hover{background:var(--sdis-red-soft)}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi .box{background:var(--gray-50);border:1px solid var(--gray-200);border-left:4px solid var(--sdis-red);padding:10px;border-radius:var(--radius-sm)}.box strong{display:block;font-size:18px}.import-preview{display:grid;grid-template-columns:1fr 1fr;gap:12px}.preview-pane{border:1px solid var(--gray-200);background:#fff;padding:12px;max-height:420px;overflow:auto}.unclassified{border-left:4px solid #d58a00;background:#fff8e1}.pdf-root{background:white;color:#111}.print-only{display:none}@media print{body{background:#fff}.topbar,.tabs,.no-print,.toolbar,.row-actions,.btn{display:none!important}.container{max-width:none;padding:0}.card{box-shadow:none;border:0;break-inside:avoid}.print-only{display:block}.rich{border:0;padding:0}.pdf-root h1{color:#111}.pdf-header{display:flex;align-items:center;gap:12px;border-bottom:3px solid #e30613;padding-bottom:10px;margin-bottom:14px}.pdf-header img{width:58px;background:#e30613;padding:6px}.tab-panel{display:block!important}} 
+
+/* Corrections production onglet FIL ROUGE */
+.filrouge-section .section-title-input{font-family:Arial,Helvetica,sans-serif;font-size:12pt;font-weight:750;text-transform:uppercase;letter-spacing:.3px}
+.duration-field{display:flex;align-items:center;gap:6px;height:var(--field-h);border:1px solid var(--gray-300);border-radius:var(--radius-sm);background:#fff;padding:0 8px}
+.duration-field span{font-size:16px;line-height:1;color:var(--gray-700)}
+.duration-field input{height:calc(var(--field-h) - 2px);border:0;padding:0;width:100%;text-align:center;font-weight:700;background:transparent}
+.duration-field input:focus{outline:0;background:transparent}
+textarea.auto-expand{overflow:hidden;resize:none;min-height:74px}
+textarea.chantier{color:#005eb8;font-weight:400}
+.rich-toolbar .color-tool{width:30px;padding:0;border-radius:50%;position:relative}
+.rich-toolbar .color-tool::before{content:"";width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.18);display:block}
+.color-black::before{background:#1f2730}.color-blue::before{background:#005eb8}.color-red::before{background:#e30613}
+.resizable-media{display:block;position:relative;resize:both;overflow:auto;min-width:120px;min-height:90px;max-width:100%;border:1px dashed var(--gray-300);border-radius:var(--radius-sm);padding:6px;background:var(--gray-50);margin:10px 0}
+.resizable-media img,.resizable-media object,.resizable-media iframe{display:block;width:100%;height:calc(100% - 24px);object-fit:contain;background:#fff;border:1px solid var(--gray-200)}
+.resizable-media iframe{overflow:hidden}.pdf-fallback{display:none;font-size:12px;margin-top:4px}
+.resizable-media figcaption{font-size:11px;color:var(--gray-600);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rich .resizable-media:focus-within,.rich .resizable-media:hover{border-color:var(--sdis-red);background:#fffafa}
+
+@media print{.rich-toolbar{display:none!important}.resizable-media{resize:none;overflow:hidden;break-inside:avoid;background:#fff;border:0}.resizable-media iframe,.resizable-media object,.resizable-media img{display:block!important;visibility:visible!important;width:100%!important;height:calc(100% - 24px)!important}.pdf-media{display:block!important;visibility:visible!important}.pdf-fallback{display:none!important}}
+
+/* Corrections strictes FIL ROUGE - production terrain */
+.rich-editor-shell{position:relative;display:block}
+.rich-toolbar{position:sticky;top:0;z-index:30;background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-sm);padding:6px;box-shadow:var(--shadow-sm);margin:6px 0 8px}
+.rich{font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.45;overflow-x:hidden;word-break:normal;overflow-wrap:anywhere}
+.rich p,.rich div,.rich li{font-size:11pt;line-height:1.45}
+.rich .fr-list{margin:4px 0 8px 1.8em;padding-left:1.2em;list-style-position:outside}
+.rich .fr-list li{padding-left:.15em;margin:2px 0}
+.rich .fr-list-dot{list-style-type:disc}
+.rich .fr-list-dot li::marker{content:'·  '}
+.rich .fr-list-dash{list-style-type:'-  '}
+.rich .fr-list-number{list-style-type:decimal}
+.rich .fr-list-number li::marker{content:counter(list-item) '.  '}
+.duration-field input{min-width:92px;text-align:left;font-weight:650}
+.pdf-media{width:min(50%,420px);height:300px;max-width:100%;overflow:hidden}
+.image-media{width:min(100%,360px);height:240px;max-width:100%;overflow:hidden}
+.pdf-media .pdf-preview{width:100%;height:100%;overflow:hidden;border:0;background:#fff;display:block}
+.resizable-media{max-width:100%;overflow:hidden}
+.rich .resizable-media,.rich .resizable-media *{box-sizing:border-box}
+@media(max-width:900px){.rich-toolbar{top:0}.pdf-media{width:100%;height:260px}.image-media{width:100%;height:220px}}
+@media print{.rich-editor-shell{display:block}.rich{overflow:visible!important;word-break:normal}.rich .fr-list{break-inside:avoid}.resizable-media{max-width:100%!important;overflow:hidden!important;page-break-inside:avoid}.pdf-media{width:50%!important;height:300px!important}.pdf-preview{display:block!important;visibility:visible!important;width:100%!important;height:100%!important;overflow:hidden!important;border:0!important}}
+
+/* Correctifs production FIL ROUGE - libellés, PDF, champs critiques */
+label.btn,.rich-toolbar label.btn{display:inline-flex;text-transform:none!important;letter-spacing:0;margin-bottom:0;font-size:12px;font-weight:650;color:var(--gray-800)}
+.filrouge-section .section-title-input,.filrouge-section .duration-field{background:var(--sdis-red-soft)!important;border-color:#f5b7bd}
+.filrouge-section .section-title-input:focus,.filrouge-section .duration-field:focus-within{background:#fff1f2!important;border-color:var(--sdis-red)}
+.pdf-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;padding:6px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:#fff}
+.pdf-controls label{display:inline-flex;align-items:center;gap:5px;margin:0;text-transform:none;letter-spacing:0;font-size:12px;color:var(--gray-700)}
+.pdf-controls select{width:auto;min-width:92px;height:28px;padding:0 6px;font-size:12px}
+.pdf-controls input[type=range]{width:120px;height:28px;padding:0;border:0;background:transparent}
+.pdf-size-value{font-size:12px;font-weight:700;color:var(--sdis-red)}
+.pdf-media{width:min(100%,420px);height:520px;max-width:100%;overflow:hidden;background:#fff}
+.pdf-media .pdf-preview{display:block;width:100%;height:calc(100% - 78px);max-width:100%;border:1px solid var(--gray-200);background:#fff;overflow:hidden}
+.rich .pdf-media{resize:both;min-width:260px;min-height:360px}
+@media(max-width:900px){.pdf-media{width:100%!important;height:420px!important}.pdf-controls input[type=range]{width:90px}}
+@media print{label.btn,.pdf-controls{display:none!important}.pdf-media{width:100%!important;max-width:100%!important;height:520px!important;overflow:hidden!important;border:0!important;background:#fff!important}.pdf-media .pdf-preview{display:block!important;visibility:visible!important;width:100%!important;height:500px!important;border:0!important;overflow:hidden!important}.filrouge-section .section-title-input,.filrouge-section .duration-field{background:#fff!important}}
+
+/* Refonte production FIL ROUGE + CONCLUSION & DIFFUSION */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(31,39,48,.48);display:grid;place-items:center;padding:18px}
+.modal-card{width:min(460px,94vw);background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);box-shadow:0 22px 60px rgba(0,0,0,.22);padding:20px}
+.modal-card label{text-transform:none;letter-spacing:0;font-size:13px}.modal-card select{margin:6px 0 14px}.modal-actions{justify-content:flex-end;margin-bottom:0}
+.pdf-page-image{resize:both;overflow:hidden;max-width:100%;min-width:220px;min-height:180px;background:#fff}
+.pdf-page-image img{width:100%;height:calc(100% - 24px);object-fit:contain;background:#fff;border:1px solid var(--gray-200)}
+.legacy-pdf-media{opacity:.92}.legacy-pdf-media::before{content:'Ancien aperçu PDF brut — réimporter le PDF pour convertir une page en image.';display:block;font-size:11px;color:var(--sdis-red);margin-bottom:4px}
+.conclusion-card .toolbar{margin-bottom:14px}.conclusion-point{border-left:4px solid var(--sdis-red-soft)}
+.point-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.point-head h4{color:var(--sdis-red);text-transform:uppercase;letter-spacing:.4px;margin:0}
+.conclusion-toolbar{position:sticky;top:0;z-index:25}.conclusion-rich{width:100%;min-height:130px;margin-bottom:12px}
+.conclusion-linked{display:grid;grid-template-columns:1fr;gap:10px}.linked-summary{border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:var(--gray-50);padding:10px}.linked-summary strong{display:block;color:var(--gray-800);font-size:12px;letter-spacing:.45px;margin-bottom:6px}.linked-summary ol{margin:0 0 0 20px;padding:0}.linked-summary li{margin:2px 0}.linked-summary textarea{background:#fff}
+.distribution-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.distribution-group{border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:#fff;padding:12px}.distribution-group h4{font-size:13px;color:var(--sdis-red);text-transform:uppercase;letter-spacing:.5px;margin:0 0 8px}.checkline{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;font-weight:600;color:var(--gray-800);margin:6px 0}.checkline input{width:auto;height:auto}.free-field{text-transform:none;letter-spacing:0;font-size:12px;margin-top:10px;color:var(--gray-700)}.free-field input{margin-top:4px}
+@media(max-width:900px){.distribution-grid{grid-template-columns:1fr}.conclusion-toolbar{top:0}}
+@media print{.modal-overlay,.conclusion-toolbar{display:none!important}.pdf-page-image{resize:none!important;overflow:hidden!important;break-inside:avoid;border:0;background:#fff}.pdf-page-image img{display:block!important;width:100%!important;height:calc(100% - 24px)!important;object-fit:contain!important}.legacy-pdf-media{display:none!important}.conclusion-point{break-inside:avoid;border-left:0}.linked-summary{background:#fff}}
+
+/* Correctifs production — insertion média au curseur, clipboard, aperçu et sélection métier */
+.rich figure.resizable-media{position:relative;user-select:auto}
+.media-preview-btn{position:absolute;top:6px;right:6px;z-index:5;width:30px;height:30px;border:0;border-radius:999px;background:rgba(31,39,48,.82);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.media-preview-btn:hover{background:var(--sdis-red)}
+.preview-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:24px}
+.preview-modal{position:relative;max-width:96vw;max-height:96vh;display:flex;flex-direction:column;align-items:center;gap:10px}
+.preview-modal img{display:block;max-width:96vw;max-height:88vh;object-fit:contain;background:#fff;border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.45)}
+.preview-close{position:absolute;top:-16px;right:-16px;width:38px;height:38px;border:0;border-radius:999px;background:#fff;color:var(--sdis-red);font-size:28px;line-height:1;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+.preview-caption{color:#fff;font-weight:700;text-align:center;max-width:92vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.linked-selector .checkline{align-items:flex-start;line-height:1.25}
+.linked-selector .checkline span{display:inline-block;flex:1}
+@media print{.media-preview-btn,.preview-overlay{display:none!important}}
+
+
+/* Autocomplete responsabilités — PersonnelSDIS.csv offline */
+.person-ac-box{position:relative;display:flex;gap:8px;align-items:flex-start}
+.person-ac-box .person-ac-input{flex:1;min-width:0}
+.person-ac-suggestions{display:none;position:absolute;z-index:150;top:calc(100% + 2px);left:0;right:0;max-height:260px;overflow:auto;background:#fff;border:1px solid var(--gray-300);border-radius:var(--radius-sm);box-shadow:0 8px 22px rgba(20,30,50,.16)}
+.person-ac-suggestions.show{display:block}
+.person-ac-option{padding:8px 10px;border-bottom:1px solid var(--gray-100);font-size:13px;line-height:1.25;cursor:pointer;background:#fff;color:var(--gray-900)}
+.person-ac-option:hover,.person-ac-option.active{background:var(--sdis-red-soft);color:var(--sdis-red)}
+.person-ac-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;min-height:30px}
+.person-chip{display:inline-flex;align-items:center;gap:6px;text-transform:none;letter-spacing:0;font-size:12px;max-width:100%;white-space:normal;text-align:left}
+.chip-remove{border:0;background:transparent;color:inherit;font-weight:900;cursor:pointer;font-size:14px;line-height:1;padding:0 2px}
+.chip-remove:hover{color:var(--sdis-red)}
+
+/* Autocomplete centralisé type RIN Creator Web — CSV /data */
+.ac-field{position:relative}
+.ac-box{position:relative;display:flex;gap:8px;align-items:flex-start}
+.ac-box .ac-input{flex:1;min-width:0}
+.lookup-suggestions{display:none;position:absolute;z-index:250;top:calc(100% + 2px);left:0;right:0;max-height:280px;overflow:auto;background:#fff;border:1px solid var(--gray-300);border-radius:var(--radius-sm);box-shadow:0 10px 28px rgba(20,30,50,.18)}
+.lookup-suggestions.open,.lookup-suggestions.show{display:block}
+.addr-suggestion{width:100%;border:0;border-bottom:1px solid var(--gray-100);background:#fff;color:var(--gray-900);padding:8px 10px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.25}
+.addr-suggestion small{font-size:11px;color:var(--gray-600);font-weight:500}
+.addr-suggestion:hover,.addr-suggestion.active{background:var(--sdis-red-soft);color:var(--sdis-red)}
+.addr-suggestion:hover small,.addr-suggestion.active small{color:var(--sdis-red)}
+
+.ac-help{font-size:11.5px;color:var(--gray-500);margin-top:5px;line-height:1.25}.ac-field{position:relative}.ac-box{position:relative;z-index:1}.lookup-suggestions{min-width:100%}
+
+
+/* Correctif final production FIL ROUGE — imports PDF offline et redimensionnables */
+.pdf-media{resize:both;overflow:hidden;max-width:100%;min-width:220px;min-height:180px;background:#fff}
+.pdf-media .pdf-preview{display:block;width:100%;height:calc(100% - 24px);border:1px solid var(--gray-200);background:#fff}
+.pdf-media figcaption{height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media print{.pdf-media{resize:none!important;break-inside:avoid}.pdf-media .pdf-preview{width:100%!important;height:500px!important}}
+
+.plan-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 14px;padding:10px 12px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);background:#f7f8fa}
+.plan-total span{font-size:18px;font-weight:750;color:var(--sdis-red)}
+.data tr.auto-sequence td{background:#fff3f4}
+.data tr.auto-sequence input[readonly]{background:#f3f4f6;color:#1f2730;font-weight:650}
+
+/* Corrections production — Plan horaire + Matériel & véhicules */
+.plan-table th:nth-child(3),.plan-table td:nth-child(3){width:86px;max-width:86px}
+.plan-duration-input{width:5.5ch;min-width:5.5ch;max-width:5.5ch;text-align:center;padding-left:4px;padding-right:4px;font-weight:750}
+.plan-theme-input{min-width:360px}
+.material-section{margin-top:14px}
+.material-table th:nth-child(1),.material-table td:nth-child(1){width:42%}
+.material-table th:nth-child(2),.material-table td:nth-child(2){width:96px}
+.material-table th:nth-child(3),.material-table td:nth-child(3){width:180px}
+.material-table th:nth-child(5),.material-table td:nth-child(5){width:48px;text-align:center}
+.material-table .span-12{grid-column:auto!important;width:100%}
+.material-table .ac-field{width:100%}
+.material-table .ac-help{display:none}
+.qty-input{max-width:82px;text-align:center}
+@media(max-width:900px){.plan-theme-input{min-width:220px}.material-table{display:block;overflow-x:auto}.material-table th:nth-child(1),.material-table td:nth-child(1){min-width:260px}}
+
+
+/* Refonte Généralités — référence métier DL */
+.generalites-card{overflow:visible}
+.generalites-grid{display:grid;grid-template-columns:10ch minmax(260px,1.5fr) 5.5ch minmax(210px,1fr);gap:12px;align-items:end}
+.generalites-grid .g-field{min-width:0}
+.generalites-grid .g-field input,.generalites-grid .g-field select{height:var(--field-h)}
+.generalites-grid .g-domain{grid-column:1}.generalites-grid .g-theme{grid-column:2}.generalites-grid .g-code{grid-column:3}.generalites-grid .g-type{grid-column:4}
+.generalites-grid .g-spacer{grid-column:1}.generalites-grid .g-wide{grid-column:2 / 5}.generalites-grid .g-participants{grid-column:1 / 3}.generalites-grid .g-duration{grid-column:3 / 5}.generalites-grid .g-created{grid-column:1 / 3}.generalites-grid .g-reference{grid-column:3 / 5}.generalites-grid .g-version{grid-column:1 / 2}.generalites-grid .g-status{grid-column:2 / 4}.generalites-grid .g-tags{grid-column:1 / 5}
+.generalites-grid .g-code input,.generalites-grid .g-code select{text-align:center;font-weight:750;padding-left:4px;padding-right:4px;text-transform:none}
+.generalites-grid .g-domain select{padding-left:4px;padding-right:4px}
+.generalites-grid .computed input,.generalites-grid .computed .field{background:var(--sdis-red-soft);border-color:#f5b7bd;font-weight:750;color:var(--gray-900)}
+.generalites-grid .g-duration input{text-align:center;font-weight:900;color:var(--sdis-red)}
+.generalites-grid .readonly-field{display:flex;align-items:center;min-height:var(--field-h);line-height:1.15;padding-top:0;padding-bottom:0}
+.generalites-grid .g-reference input{font-family:Arial,Helvetica,sans-serif;font-weight:900;color:var(--sdis-red)}
+.generalites-grid .ac-field{position:relative}
+.generalites-grid .ac-box{width:100%}
+.generalites-grid .ac-box input{width:100%}
+@media(max-width:900px){.generalites-grid{grid-template-columns:1fr}.generalites-grid .g-field,.generalites-grid .g-domain,.generalites-grid .g-theme,.generalites-grid .g-code,.generalites-grid .g-type,.generalites-grid .g-spacer,.generalites-grid .g-wide,.generalites-grid .g-participants,.generalites-grid .g-duration,.generalites-grid .g-created,.generalites-grid .g-reference,.generalites-grid .g-version,.generalites-grid .g-status,.generalites-grid .g-tags{grid-column:1!important}.generalites-grid .g-spacer{display:none}}
+
+/* Ajustements production Généralités — layout compact + codes 12 caractères */
+.generalites-grid{
+  grid-template-columns:minmax(160px,.55fr) minmax(260px,1.35fr) 12ch minmax(260px,1.45fr);
+  column-gap:12px;
+  row-gap:12px;
+}
+.generalites-grid .g-domain{grid-column:1}
+.generalites-grid .g-domain select{width:10ch;max-width:10ch}
+.generalites-grid .g-theme{grid-column:2}
+.generalites-grid .g-code{grid-column:3;width:12ch;max-width:12ch}
+.generalites-grid .g-code input,.generalites-grid .g-code select{width:12ch;max-width:12ch;text-align:center;font-weight:750}
+.generalites-grid .g-type-doc{grid-column:3}
+.generalites-grid .g-type{grid-column:4}
+.generalites-grid .g-spacer{grid-column:1}
+.generalites-grid .g-wide{grid-column:2}
+.generalites-grid .g-type-formation{grid-column:2;max-width:20ch}
+.generalites-grid .g-type-formation select{max-width:20ch}
+.generalites-grid .g-participants{grid-column:3;width:12ch;max-width:12ch}
+.generalites-grid .g-participants input{max-width:8ch;text-align:center}
+.generalites-grid .g-duration{grid-column:4}
+.generalites-grid .g-created{grid-column:1;min-width:0}
+.generalites-grid .g-created .readonly-field{font-size:11.5px;line-height:1.15;overflow:hidden;text-overflow:ellipsis}
+.generalites-grid .g-version{grid-column:2;max-width:12ch}
+.generalites-grid .g-version input{max-width:12ch;text-align:center;font-weight:750}
+.generalites-grid .g-status{grid-column:3;max-width:20ch}
+.generalites-grid .g-status select,.generalites-grid .g-status input{max-width:20ch}
+.generalites-grid .g-reference{grid-column:4}
+.generalites-grid .g-tags{grid-column:1 / 5}
+.generalites-grid [data-ac-path="identification.publicCible"] .ac-input{max-width:20ch}
+@media(max-width:900px){
+  .generalites-grid{grid-template-columns:1fr}
+  .generalites-grid .g-domain select,.generalites-grid .g-code,.generalites-grid .g-code input,.generalites-grid .g-code select,.generalites-grid .g-type-formation,.generalites-grid .g-type-formation select,.generalites-grid .g-participants,.generalites-grid .g-version,.generalites-grid .g-version input,.generalites-grid .g-status,.generalites-grid .g-status select,.generalites-grid .g-status input,.generalites-grid [data-ac-path="identification.publicCible"] .ac-input{width:100%;max-width:none}
+}
+
+/* Correctifs production — Généralités v2 */
+.generalites-grid{
+  grid-template-columns:minmax(230px,.72fr) minmax(260px,1.2fr) 12ch minmax(280px,1.5fr);
+}
+.generalites-grid .g-domain select{
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-code,
+.generalites-grid .g-code input,
+.generalites-grid .g-code select{
+  width:12ch;
+  max-width:12ch;
+}
+.generalites-grid .g-type-doc{
+  grid-column:3;
+}
+.generalites-grid .g-type-formation{
+  grid-column:2;
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-type-formation select{
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-participants{
+  grid-column:3;
+  justify-self:start;
+  width:12ch;
+  max-width:12ch;
+  margin-left:0;
+}
+.generalites-grid .g-participants input{
+  width:8ch;
+  max-width:8ch;
+  text-align:center;
+}
+.generalites-grid .g-duration{
+  grid-column:4;
+  justify-self:start;
+  width:5ch;
+  max-width:5ch;
+}
+.generalites-grid .g-duration input{
+  width:5ch;
+  max-width:5ch;
+  min-width:5ch;
+  padding-left:4px;
+  padding-right:4px;
+}
+.generalites-grid .g-created{
+  grid-column:1;
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-status{
+  grid-column:2;
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-status select,
+.generalites-grid .g-status input{
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-version{
+  grid-column:3;
+  width:12ch;
+  max-width:12ch;
+}
+.generalites-grid .g-version input{
+  width:12ch;
+  max-width:12ch;
+  text-align:center;
+  font-weight:750;
+}
+.generalites-grid .g-reference{
+  grid-column:4;
+  min-width:0;
+}
+.generalites-grid .ac-box .ac-input{
+  min-width:0;
+}
+@media(max-width:900px){
+  .generalites-grid .g-domain select,
+  .generalites-grid .g-type-formation,
+  .generalites-grid .g-type-formation select,
+  .generalites-grid .g-duration,
+  .generalites-grid .g-duration input,
+  .generalites-grid .g-status,
+  .generalites-grid .g-status select,
+  .generalites-grid .g-version,
+  .generalites-grid .g-version input{
+    width:100%;
+    max-width:none;
+  }
+}
+
+/* Lisibilité durée : seul le champ de saisie est limité à 5 caractères, le libellé reste lisible. */
+.generalites-grid .g-duration{
+  width:auto;
+  max-width:none;
+}
+
+/* Correctifs production — Généralités v3 + sauvegarde */
+.action-toolbar #saveState{
+  margin-left:8px;
+  flex:0 0 auto;
+}
+.action-toolbar .dl-ref{
+  margin-left:auto;
+  min-width:180px;
+  text-align:right;
+}
+.action-status{
+  flex:0 0 auto;
+}
+.generalites-grid{
+  grid-template-columns:minmax(38ch,.95fr) minmax(260px,1.05fr) 12ch minmax(320px,1.45fr);
+}
+.generalites-grid .g-domain select{
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-type-formation{
+  grid-column:2;
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-type-formation select{
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-participants{
+  grid-column:3;
+  justify-self:start;
+  width:12ch;
+  max-width:12ch;
+}
+.generalites-grid .g-participants input{
+  width:12ch;
+  max-width:12ch;
+  text-align:center;
+}
+.generalites-grid .g-duration{
+  grid-column:4;
+  justify-self:start;
+  width:12ch;
+  max-width:12ch;
+}
+.generalites-grid .g-duration input{
+  width:12ch;
+  min-width:12ch;
+  max-width:12ch;
+  text-align:center;
+  padding-left:4px;
+  padding-right:4px;
+}
+.generalites-grid .g-created{
+  grid-column:1;
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-status{
+  grid-column:2;
+  justify-self:end;
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-status select,
+.generalites-grid .g-status input{
+  width:20ch;
+  max-width:20ch;
+}
+.generalites-grid .g-version{
+  grid-column:3;
+  width:12ch;
+  max-width:12ch;
+}
+.generalites-grid .g-version input{
+  width:12ch;
+  max-width:12ch;
+  text-align:center;
+  font-weight:750;
+}
+.generalites-grid .g-reference{
+  grid-column:4;
+  min-width:0;
+}
+@media(max-width:900px){
+  .generalites-grid{grid-template-columns:1fr}
+  .generalites-grid .g-domain select,
+  .generalites-grid .g-type-formation,
+  .generalites-grid .g-type-formation select,
+  .generalites-grid .g-participants,
+  .generalites-grid .g-participants input,
+  .generalites-grid .g-duration,
+  .generalites-grid .g-duration input,
+  .generalites-grid .g-status,
+  .generalites-grid .g-status select,
+  .generalites-grid .g-version,
+  .generalites-grid .g-version input{
+    width:100%;
+    max-width:none;
+  }
+}
+
+/* Correctifs production — Généralités v4 : alignement professionnel participants/durée/statut */
+.generalites-grid{
+  grid-template-columns:minmax(38ch,.95fr) minmax(260px,1.05fr) 12ch minmax(190px,.65fr) minmax(280px,1.35fr);
+  column-gap:16px;
+  row-gap:14px;
+  align-items:end;
+}
+.generalites-grid .g-domain{grid-column:1}
+.generalites-grid .g-domain select{width:100%;max-width:none}
+.generalites-grid .g-theme{grid-column:2}
+.generalites-grid .g-code{grid-column:3;width:12ch;max-width:12ch}
+.generalites-grid .g-code input,
+.generalites-grid .g-code select{width:12ch;max-width:12ch}
+.generalites-grid .g-type-doc{grid-column:3}
+.generalites-grid .g-type-formation{grid-column:2;width:20ch;max-width:20ch;justify-self:start}
+.generalites-grid .g-type-formation select{width:20ch;max-width:20ch}
+.generalites-grid .g-participants{
+  grid-column:4;
+  width:100%;
+  max-width:190px;
+  justify-self:start;
+}
+.generalites-grid .g-participants label,
+.generalites-grid .g-duration label{white-space:nowrap}
+.generalites-grid .g-participants input{
+  width:100%;
+  max-width:none;
+  text-align:center;
+}
+.generalites-grid .g-duration{
+  grid-column:5;
+  width:100%;
+  max-width:280px;
+  justify-self:start;
+}
+.generalites-grid .g-duration input{
+  width:100%;
+  min-width:0;
+  max-width:none;
+  text-align:center;
+  padding-left:10px;
+  padding-right:10px;
+}
+.generalites-grid .g-created{
+  grid-column:1;
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-created .readonly-field{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.generalites-grid .g-status{
+  grid-column:2;
+  width:100%;
+  max-width:20ch;
+  justify-self:end;
+}
+.generalites-grid .g-status select,.generalites-grid .g-status input{width:100%;max-width:none}
+.generalites-grid .g-version{
+  grid-column:3;
+  width:12ch;
+  max-width:12ch;
+}
+.generalites-grid .g-version input{width:12ch;max-width:12ch;text-align:center;font-weight:750}
+.generalites-grid .g-reference{
+  grid-column:4 / 6;
+  min-width:0;
+}
+.generalites-grid .g-tags{grid-column:1 / 6}
+@media(max-width:900px){
+  .generalites-grid{grid-template-columns:1fr}
+  .generalites-grid .g-field,
+  .generalites-grid .g-domain,
+  .generalites-grid .g-theme,
+  .generalites-grid .g-code,
+  .generalites-grid .g-type-doc,
+  .generalites-grid .g-type-formation,
+  .generalites-grid .g-participants,
+  .generalites-grid .g-duration,
+  .generalites-grid .g-created,
+  .generalites-grid .g-status,
+  .generalites-grid .g-version,
+  .generalites-grid .g-reference,
+  .generalites-grid .g-tags{grid-column:1!important;width:100%;max-width:none;justify-self:stretch}
+  .generalites-grid .g-field input,
+  .generalites-grid .g-field select{width:100%;max-width:none}
+}
+
+/* Refonte visuelle professionnelle — écran Généralités */
+.generalites-card{
+  padding:18px 18px 20px;
+  border:1px solid var(--gray-200);
+  box-shadow:0 1px 3px rgba(15,23,42,.06);
+}
+.generalites-card h3{
+  margin-bottom:16px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--gray-200);
+}
+.generalites-grid{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:16px;
+  row-gap:14px;
+  align-items:end;
+}
+.generalites-grid .g-field{
+  min-width:0;
+}
+.generalites-grid .g-field label{
+  display:block;
+  min-height:16px;
+  margin-bottom:6px;
+  line-height:1.15;
+  letter-spacing:.02em;
+}
+.generalites-grid .g-field input,
+.generalites-grid .g-field select,
+.generalites-grid .readonly-field{
+  width:100%;
+  max-width:none;
+  min-width:0;
+  height:var(--field-h);
+  box-sizing:border-box;
+}
+.generalites-grid .g-spacer{
+  grid-column:1 / 4;
+  display:block;
+  min-height:1px;
+}
+.generalites-grid .g-domain{
+  grid-column:1 / 4;
+}
+.generalites-grid .g-theme{
+  grid-column:4 / 8;
+}
+.generalites-grid .g-code{
+  grid-column:8 / 10;
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-code input,
+.generalites-grid .g-code select{
+  width:100%;
+  max-width:none;
+  text-align:center;
+  font-weight:750;
+}
+.generalites-grid .g-type-doc{
+  grid-column:8 / 10;
+}
+.generalites-grid .g-type-formation{
+  grid-column:4 / 6;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .g-type-formation select{
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-participants{
+  grid-column:6 / 9;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .g-participants input{
+  width:100%;
+  max-width:none;
+  text-align:center;
+}
+.generalites-grid .g-duration{
+  grid-column:9 / 13;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .g-duration input{
+  width:100%;
+  max-width:none;
+  text-align:center;
+  font-weight:900;
+}
+.generalites-grid .g-participants label,
+.generalites-grid .g-duration label{
+  white-space:nowrap;
+}
+.generalites-grid .g-created{
+  grid-column:1 / 4;
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-created .readonly-field{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:11.5px;
+}
+.generalites-grid .g-status{
+  grid-column:4 / 6;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .g-status select,
+.generalites-grid .g-status input{
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-version{
+  grid-column:6 / 8;
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-version input{
+  width:100%;
+  max-width:none;
+  text-align:center;
+  font-weight:750;
+}
+.generalites-grid .g-reference{
+  grid-column:8 / 13;
+  min-width:0;
+}
+.generalites-grid .g-tags{
+  grid-column:1 / 13;
+}
+.generalites-grid [data-ac-path="identification.publicCible"] .ac-input{
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .computed input,
+.generalites-grid .computed .field{
+  background:#fde8ea;
+  border-color:#f5b7bd;
+}
+.generalites-grid .g-reference input,
+.generalites-grid .g-duration input,
+.generalites-grid .g-status input{
+  color:var(--gray-900);
+}
+@media(max-width:1100px){
+  .generalites-grid{grid-template-columns:repeat(6,minmax(0,1fr));}
+  .generalites-grid .g-spacer{display:none;}
+  .generalites-grid .g-domain{grid-column:1 / 3;}
+  .generalites-grid .g-theme{grid-column:3 / 6;}
+  .generalites-grid .g-code,.generalites-grid .g-type-doc{grid-column:6 / 7;}
+  .generalites-grid .g-type-formation{grid-column:1 / 3;}
+  .generalites-grid .g-participants{grid-column:3 / 5;}
+  .generalites-grid .g-duration{grid-column:5 / 7;}
+  .generalites-grid .g-created{grid-column:1 / 3;}
+  .generalites-grid .g-status{grid-column:3 / 4;}
+  .generalites-grid .g-version{grid-column:4 / 5;}
+  .generalites-grid .g-reference{grid-column:5 / 7;}
+  .generalites-grid .g-tags{grid-column:1 / 7;}
+}
+@media(max-width:760px){
+  .generalites-grid{grid-template-columns:1fr;}
+  .generalites-grid .g-field,
+  .generalites-grid .g-domain,
+  .generalites-grid .g-theme,
+  .generalites-grid .g-code,
+  .generalites-grid .g-type-doc,
+  .generalites-grid .g-type-formation,
+  .generalites-grid .g-participants,
+  .generalites-grid .g-duration,
+  .generalites-grid .g-created,
+  .generalites-grid .g-status,
+  .generalites-grid .g-version,
+  .generalites-grid .g-reference,
+  .generalites-grid .g-tags{
+    grid-column:1!important;
+    width:100%;
+    max-width:none;
+    justify-self:stretch;
+  }
+}
+
+/* Correctif production — Généralités : alignement Participants / Durée sous Bloom */
+.generalites-grid .g-type-formation{
+  grid-column:4 / 6;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .g-type-formation select{
+  width:100%;
+  max-width:none;
+}
+.generalites-grid .g-participants{
+  grid-column:6 / 8;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .g-participants input{
+  width:100%;
+  max-width:none;
+  text-align:center;
+}
+.generalites-grid .g-duration{
+  grid-column:8 / 10;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .g-duration input{
+  width:100%;
+  max-width:none;
+  min-width:0;
+  text-align:center;
+  padding-left:4px;
+  padding-right:4px;
+}
+@media(max-width:1100px){
+  .generalites-grid .g-type-formation{grid-column:1 / 3;}
+  .generalites-grid .g-participants{grid-column:3 / 5;}
+  .generalites-grid .g-duration{grid-column:5 / 7;}
+}
+@media(max-width:760px){
+  .generalites-grid .g-type-formation,
+  .generalites-grid .g-participants,
+  .generalites-grid .g-duration{grid-column:1!important;width:100%;max-width:none;}
+}
+
+/* Correctif production — Généralités : champs codifiés / calculés */
+.generalites-grid .coded-field input,
+.generalites-grid .coded-field select,
+.generalites-grid .calculated-code input[readonly]{
+  background:#f1f3f5;
+  border-color:#cfd4da;
+  color:#1f2730;
+  font-weight:750;
+}
+.generalites-grid .calculated-code input[readonly]{
+  cursor:not-allowed;
+  user-select:none;
+}
+.generalites-grid .coded-field input:focus,
+.generalites-grid .coded-field select:focus{
+  background:#eef1f4;
+  border-color:#aeb6bf;
+  box-shadow:0 0 0 2px rgba(31,39,48,.08);
+}
+
+/* Correctifs production : autocomplétion compacte en tableaux */
+.ac-field.ac-inline{position:relative;width:100%;min-width:180px}
+.ac-field.ac-inline .ac-box{width:100%}
+.ac-field.ac-inline .ac-input{width:100%}
+.ac-field.ac-inline label,.ac-field.ac-inline .ac-help{display:none!important}
+.plan-table .ac-field.ac-inline{min-width:180px}
+.material-table .ac-field.ac-inline{min-width:240px}
+
+/* Personnel multi-sélection : affichage clair des personnes ajoutées */
+.selected-personnel-list{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.selected-personnel-row{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #d8dde5;background:#f8fafc;border-radius:8px;padding:6px 8px;font-size:.95rem}
+.selected-personnel-row span{font-weight:600;color:#1f2937;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.compact-actions{display:flex;gap:4px;justify-content:flex-end;flex-wrap:nowrap}
+.compact-actions .btn.small{min-width:28px;padding:4px 7px}
+
+/* Authentification locale — écran d'accueil DL Creator Web */
+.login-wrap{
+  background:
+    radial-gradient(circle at 18% 12%, rgba(227,6,19,.10), transparent 28%),
+    linear-gradient(145deg,#f4f5f7 0%,#eceff3 48%,#ffffff 100%);
+  padding:22px;
+}
+.login-card-modern{border-top:6px solid var(--sdis-red);border-radius:14px;box-shadow:0 22px 60px rgba(31,39,48,.16)}
+.login-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 12px}
+.login-title-row h2{margin:0;color:var(--gray-900);font-size:20px;letter-spacing:.2px}
+.login-badge{display:inline-flex;align-items:center;border:1px solid var(--gray-300);background:var(--gray-50);border-radius:999px;padding:4px 9px;font-size:11px;font-weight:800;color:var(--gray-700);text-transform:uppercase;letter-spacing:.4px}
+.login-grid{margin-top:10px}.login-grid label{text-transform:uppercase;letter-spacing:.45px}.login-grid input,.login-grid select{height:42px}.login-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px}.login-actions .btn.red{min-width:170px;justify-content:center}
+@media(max-width:720px){.login-card-modern{width:min(100%,94vw);padding:20px}.login-actions .btn{width:100%;justify-content:center}}
+
+/* Login professionnel DL Creator Web */
+.login-wrap{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:28px 16px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(227,6,19,.10), transparent 34%),
+    linear-gradient(135deg,#f8f9fb 0%,#eef1f5 48%,#f6e8e9 100%);
+}
+.login-card-modern{
+  width:min(460px,94vw);
+  border-top:0;
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 22px 60px rgba(31,39,48,.16);
+}
+.login-logo-block{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:18px;
+}
+.login-logo{
+  width:168px;
+  max-width:58vw;
+  height:auto;
+  display:block;
+  object-fit:contain;
+  border-radius:24px;
+  box-shadow:0 10px 28px rgba(184,20,29,.20);
+}
+.login-title-row{
+  border-top:1px solid var(--gray-200);
+  padding-top:16px;
+}
+.login-actions .btn.ghost.login-link-btn{
+  background:#fff;
+  color:var(--gray-700);
+  border-color:var(--gray-300);
+}
+.login-actions .btn.ghost.login-link-btn:hover{
+  color:var(--sdis-red);
+  border-color:var(--sdis-red);
+}
+@media(max-width:720px){
+  .login-logo{width:138px;border-radius:20px}
+  .login-card-modern{padding:22px}
+}
+
+
+/* Production 2026-05-06 — Fil rouge à gauche / Plan horaire à droite */
+.plan-scroll{overflow-x:auto}
+
+/* Production 2026-05-06 — Buts et évaluations auto-extensibles */
+.one-line-textarea{min-height:var(--field-h);height:var(--field-h);resize:none;overflow:hidden;line-height:1.35;padding-top:8px;padding-bottom:8px}.objectif-item{margin-bottom:10px}
+
+/* Production 2026-05-06 — Aide contextuelle Bloom */
+.bloom-help{border:1px solid #e8c1c4;border-left:4px solid var(--sdis-red);background:#fff7f8;border-radius:var(--radius-sm);padding:12px;margin-top:2px}.bloom-help-empty{display:flex;gap:10px;align-items:center;color:var(--gray-600);background:var(--gray-50);border-color:var(--gray-200);border-left-color:var(--gray-400)}.bloom-help-title{font-weight:850;color:var(--sdis-red);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}.bloom-help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}.bloom-help strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.35px;color:var(--gray-700);margin-bottom:3px}.bloom-help p{margin:0;color:var(--gray-900)}.bloom-verbs{line-height:1.5}@media(max-width:760px){.bloom-help-grid{grid-template-columns:1fr}}
+
+/* Production 2026-05-06 — Contrôles Buts et évaluations restaurés */
+.check-list{margin:0;padding-left:20px;color:var(--gray-800);line-height:1.5}
+
+/* Correctif production — Généralités : pyramide indépendante sans décaler les champs */
+.generalites-grid{
+  position:relative;
+  align-items:end;
+  row-gap:14px;
+}
+.generalites-grid .bloom-pyramid-panel{
+  position:absolute;
+  left:0;
+  top:150px;
+  width:calc(25% - 10px);
+  min-width:260px;
+  max-width:440px;
+  height:310px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  margin:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  pointer-events:none;
+  z-index:0;
+}
+.generalites-grid .bloom-pyramid-panel img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  max-height:100%;
+  object-fit:contain;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+}
+.generalites-grid .g-field{
+  position:relative;
+  z-index:1;
+}
+/* Le bloc TYPE DE FORMATION doit suivre immédiatement NIVEAU BLOOM, sans espace vertical artificiel. */
+.generalites-grid .g-type-formation,
+.generalites-grid .g-participants,
+.generalites-grid .g-duration{
+  margin-top:0;
+}
+@media(max-width:1100px){
+  .generalites-grid .bloom-pyramid-panel{
+    display:none;
+  }
+}
+@media print{
+  .generalites-grid .bloom-pyramid-panel{
+    top:135px;
+    height:260px;
+  }
+}
+
+/* Production 2026-05-06 — Correctifs Bloom officiels + FIL ROUGE A4 */
+:root{
+  --bloom-memoriser:#399BF2;
+  --bloom-comprendre:#6BD3ED;
+  --bloom-appliquer:#70DC56;
+  --bloom-analyser:#FAE91F;
+  --bloom-evaluer:#FF9F23;
+  --bloom-creer:#FF5459;
+}
+.bloom-help{border-left-width:5px;background:linear-gradient(180deg,color-mix(in srgb,var(--bloom-accent,#e30613) 11%,#fff),#fff);border-color:color-mix(in srgb,var(--bloom-accent,#e30613) 34%,#fff);box-shadow:0 1px 2px rgba(20,30,50,.04)}
+.bloom-help-title{color:color-mix(in srgb,var(--bloom-accent,#e30613) 82%,#1f2730)}
+.bloom-help-memoriser{--bloom-accent:var(--bloom-memoriser)}
+.bloom-help-comprendre{--bloom-accent:var(--bloom-comprendre)}
+.bloom-help-appliquer{--bloom-accent:var(--bloom-appliquer)}
+.bloom-help-analyser{--bloom-accent:var(--bloom-analyser)}
+.bloom-help-evaluer{--bloom-accent:var(--bloom-evaluer)}
+.bloom-help-creer{--bloom-accent:var(--bloom-creer)}
+.bloom-help-empty{background:var(--gray-50);border-color:var(--gray-200);border-left-color:var(--gray-400)}
+.generalites-grid .bloom-pyramid-panel{top:131px}
+@media print{.generalites-grid .bloom-pyramid-panel{top:116px}}
+.filrouge-section{background:#fff;border-color:var(--gray-200)}
+.filrouge-section .form-grid{justify-items:stretch;align-items:start}
+.filrouge-section .span-12,.filrouge-section .rich-editor-shell,.filrouge-section .rich,.filrouge-section .linked-selector{width:100%;max-width:100%}
+.filrouge-section textarea,.filrouge-section input,.filrouge-section select{max-width:100%}
+.filrouge-section .rich-editor-shell{background:#fff;border:0;padding:0;margin:0}
+.filrouge-section .rich{background:#fff;min-height:190px;font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.45;overflow-wrap:anywhere;word-break:normal}
+.filrouge-section .rich-toolbar{justify-content:flex-start;background:#fff}
+.font-size-indicator{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:30px;padding:0 9px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);background:#fff;color:var(--gray-900);font:800 12px Arial,Helvetica,sans-serif}
+.rich .fr-list,.rich .fr-list ul,.rich .fr-list ol{margin-top:4px;margin-bottom:8px;padding-left:1.35em;list-style-position:outside}
+.rich .fr-list-dash,.rich .fr-list-dash ul{list-style-type:'-  '}
+.rich .fr-list-dot,.rich .fr-list-dot ul{list-style-type:disc}
+.rich .fr-list-dot li::marker{content:'·  '}
+.rich .fr-list-number,.rich .fr-list-number ol{list-style-type:decimal}
+.rich .fr-list-number li::marker{content:counter(list-item) '.  '}
+@media print{.filrouge-section{background:#fff!important;border:0!important;box-shadow:none!important;break-inside:avoid}.filrouge-section .rich{border:0!important;padding-left:0;padding-right:0;overflow:visible!important;font-size:11pt}.font-size-indicator{display:none!important}}
+
+/* Production 2026-05-06 — Validation CSV, saisie libre matériel/fournitures, Bloom layout référence */
+.bloom-help{
+  padding:14px;
+  border-radius:8px;
+}
+.bloom-help-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  align-items:stretch;
+}
+.bloom-help-card{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.82);
+  border-radius:6px;
+  padding:12px 14px;
+  min-height:118px;
+}
+.bloom-help-card strong{
+  color:var(--sdis-red);
+  font-weight:850;
+  font-size:12px;
+  letter-spacing:.35px;
+}
+.bloom-help-verbs{
+  grid-column:1 / -1;
+  min-height:auto;
+}
+.bloom-verbs{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(110px,1fr));
+  gap:7px 22px;
+  margin-top:8px!important;
+  line-height:1.25;
+}
+.bloom-verbs span{
+  display:block;
+  font-weight:700;
+  break-inside:avoid;
+}
+.conclusion-rich{
+  min-height:65px;
+}
+.conclusion-point textarea.auto-expand,
+.linked-summary textarea{
+  min-height:37px;
+}
+@media(max-width:1000px){
+  .bloom-help-grid{grid-template-columns:1fr;}
+  .bloom-help-verbs{grid-column:auto;}
+  .bloom-verbs{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media print{
+  .bloom-help-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .bloom-verbs{grid-template-columns:repeat(5,minmax(0,1fr));}
+}
+.bloom-help-title{color:var(--sdis-red);font-weight:900;}
+
+
+/* Menu séparé en entête — Bibliothèque DL / Import Word / Profil */
+.header-menu{position:relative;display:inline-flex;align-items:center}
+.header-menu-btn{min-width:82px;text-transform:none;letter-spacing:.02em}
+.header-menu-panel{display:none;position:absolute;right:0;top:calc(100% + 8px);min-width:210px;background:#fff;color:var(--gray-900);border:1px solid var(--gray-200);border-radius:12px;box-shadow:0 14px 34px rgba(20,30,50,.22);padding:6px;z-index:500}
+.header-menu.open .header-menu-panel{display:block}
+.header-menu-item{display:flex;align-items:center;gap:10px;width:100%;border:0;background:#fff;color:var(--gray-900);text-align:left;padding:10px 12px;border-radius:8px;font-weight:800;font-size:13px;letter-spacing:.01em;cursor:pointer}
+.header-menu-item:hover{background:var(--sdis-red-soft);color:var(--sdis-red)}
+.section-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.section-title-row h3{margin-bottom:0}
+@media(max-width:760px){.header-menu-panel{right:auto;left:0}.section-title-row{align-items:stretch}.section-title-row .btn{width:100%}}
+
+/* Navigation centrale production — écran d'accueil et modules */
+.brand-home{display:inline-flex;align-items:center;gap:14px;border:0;background:transparent;color:#fff;text-align:left;padding:0;cursor:pointer;font:inherit}
+.brand-home:hover .brand-title{text-decoration:none}
+.brand-home span span{display:block}.module-toolbar{justify-content:flex-end;min-height:38px}.header-menu-item.active{background:var(--sdis-red);color:#fff}.header-menu-item.active:hover{background:var(--sdis-red-dark);color:#fff}.home-hero{display:flex;align-items:center;justify-content:space-between;gap:22px;background:linear-gradient(135deg,#fff,#fff 58%,var(--sdis-red-soft));border:1px solid var(--gray-200);border-left:6px solid var(--sdis-red);border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:18px}.home-hero h1{font-size:28px;margin:4px 0 8px}.home-hero p{max-width:760px;margin:0;color:var(--gray-700);font-size:15px}.home-kicker{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;background:var(--sdis-red);color:#fff;font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.06em}.home-hero-badge{min-width:142px;text-align:center;border:1px solid var(--gray-200);background:#fff;border-radius:999px;padding:10px 14px;color:var(--sdis-red);font-weight:900;text-transform:uppercase;letter-spacing:.05em;box-shadow:var(--shadow-sm)}.home-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.home-card{min-height:178px;border:1px solid var(--gray-200);background:#fff;color:var(--gray-900);border-radius:16px;padding:20px;text-align:left;cursor:pointer;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;justify-content:space-between;transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}.home-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(20,30,50,.14);border-color:var(--sdis-red)}.home-card.primary{background:linear-gradient(135deg,var(--sdis-red),var(--sdis-red-dark));color:#fff;border-color:var(--sdis-red-dark)}.home-card-icon{width:44px;height:44px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;background:var(--sdis-red-soft);color:var(--sdis-red);font-size:23px;font-weight:900}.home-card.primary .home-card-icon{background:rgba(255,255,255,.18);color:#fff}.home-card strong{font-size:15px;letter-spacing:.04em}.home-card small{font-size:13px;line-height:1.35;color:var(--gray-600)}.home-card.primary small{color:rgba(255,255,255,.86)}@media(max-width:1050px){.home-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero{align-items:flex-start;flex-direction:column}.home-hero-badge{text-align:left}}@media(max-width:720px){.topbar-inner{flex-direction:column;align-items:stretch}.brand-home{align-items:center}.top-actions{justify-content:space-between}.home-grid{grid-template-columns:1fr}.home-hero{padding:20px}.home-hero h1{font-size:23px}.home-card{min-height:145px}}
+
+
+/* Ajustements icônes SF Symbols et typographie menu */
+.sf-symbol{width:1.45em;height:1.45em;display:block;color:var(--sdis-red);fill:currentColor;flex:0 0 auto}
+.header-menu-icon{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;color:var(--sdis-red);flex:0 0 24px}
+.header-menu-icon .sf-symbol{width:22px;height:22px;color:var(--sdis-red)}
+.header-menu-item.active .header-menu-icon .sf-symbol{color:#fff}
+.home-card-icon .sf-symbol{width:28px;height:28px;color:var(--sdis-red)}
+.home-card.primary .home-card-icon{background:#fff;color:var(--sdis-red)}
+.home-card.primary .home-card-icon .sf-symbol{color:var(--sdis-red)}
+.home-card strong{text-transform:none}
+.brand-home,.brand-home:hover,.brand-home:focus,.brand-home:active{text-decoration:none}
+.brand-home:hover .brand-title,.brand-home:focus .brand-title,.brand-home:active .brand-title{text-decoration:none}
+
+/* Correctifs production 2026-05-06 — demandes finales DL Creator Web */
+.action-toolbar .new-dl-btn,
+.action-toolbar .icon-btn{
+  height:36px;
+  min-height:36px;
+  align-self:center;
+}
+.action-toolbar .icon-btn{
+  width:42px;
+  padding:0;
+  position:relative;
+  color:var(--gray-900);
+  overflow:visible;
+}
+.action-toolbar .icon-btn:hover{
+  color:var(--gray-800);
+}
+.sf-action-icon{
+  width:22px;
+  height:22px;
+  display:block;
+  fill:currentColor;
+  flex:0 0 auto;
+}
+.action-toolbar .icon-btn::after{
+  content:attr(data-tooltip);
+  position:absolute;
+  left:50%;
+  top:calc(100% + 8px);
+  transform:translateX(-50%) translateY(-2px);
+  z-index:600;
+  max-width:220px;
+  width:max-content;
+  padding:6px 9px;
+  border-radius:6px;
+  background:var(--gray-900);
+  color:#fff;
+  font:700 12px var(--sans);
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  box-shadow:0 8px 22px rgba(20,30,50,.22);
+  transition:opacity .12s ease 2s, transform .12s ease 2s;
+}
+.action-toolbar .icon-btn:hover::after,
+.action-toolbar .icon-btn:focus-visible::after{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+.action-toolbar .icon-btn:not(:hover):not(:focus-visible)::after{
+  transition-delay:0s;
+}
+
+.rich .fr-list,
+.rich .fr-list ul,
+.rich .fr-list ol{
+  margin-top:4px;
+  margin-bottom:6px;
+  padding-left:1.55em;
+  list-style-position:outside;
+}
+.rich .fr-list li{
+  margin:1px 0;
+  padding-left:.12em;
+}
+.rich .fr-list-dash,
+.rich .fr-list-dash ul{
+  list-style-type:'-  ';
+}
+.rich .fr-list-dot,
+.rich .fr-list-dot ul{
+  list-style-type:disc;
+}
+.rich .fr-list-number,
+.rich .fr-list-number ol{
+  list-style-type:decimal;
+}
+.rich .fr-list-dot li::marker{content:'·  ';}
+.rich .fr-list-number li::marker{content:counter(list-item) '.  ';}
+
+.eval-point-textarea,
+.objectif-item select[data-path*=".mesurable"],
+.objectif-item input[data-path*=".butsLies"]{
+  min-height:var(--field-h);
+  height:var(--field-h);
+  line-height:1.35;
+}
+
+.logistics-remarks-card{padding:14px 16px;}
+.logistics-remarks-row{
+  display:grid;
+  grid-template-columns:minmax(260px,1fr) auto;
+  gap:12px;
+  align-items:center;
+}
+.logistics-remarks-field .card{
+  border:0;
+  box-shadow:none;
+  padding:0;
+  margin:0;
+}
+.logistics-remarks-field textarea{
+  min-height:74px;
+  max-height:110px;
+  resize:vertical;
+}
+.logistics-order-btn{
+  height:var(--field-h);
+  white-space:nowrap;
+  margin-bottom:0;
+  align-self:center;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.material-section{margin-top:10px;padding:14px 16px;}
+.material-section h3{margin-bottom:10px;}
+.material-section .toolbar{margin-bottom:8px;}
+.material-table th,
+.material-table td{
+  padding:5px 8px;
+  vertical-align:middle;
+}
+.material-table tbody tr:nth-child(odd) td{background:#fff;}
+.material-table tbody tr:nth-child(even) td{background:var(--gray-50);}
+.material-table tbody tr:hover td{background:#fff7f8;}
+.material-table input,
+.material-table select{
+  height:32px;
+  font-size:13px;
+  padding:0 8px;
+}
+.material-table .btn.small{
+  height:28px;
+  min-width:28px;
+  padding:0 8px;
+}
+.material-table .ac-help{display:none!important;}
+@media(max-width:760px){
+  .logistics-remarks-row{grid-template-columns:1fr;align-items:stretch;}
+  .logistics-order-btn{width:100%;}
+}
+
+.generalites-grid .bloom-pyramid-panel{
+  width:calc(21.25% - 9px);
+  min-width:221px;
+  max-width:374px;
+  height:264px;
+}
+@media print{
+  .generalites-grid .bloom-pyramid-panel{height:221px;}
+}
+
+/* ======================================================================
+   PDF navigateur professionnel SDIS — DL Creator Web
+   ----------------------------------------------------------------------
+   Rendu A4 offline-first : page de garde, pagination, tableaux longs,
+   fil rouge riche, images PDF importées, Bloom, logistique et diffusion.
+   ====================================================================== */
+.pdf-body{background:#f3f4f6;color:#111827;font-family:Arial,Helvetica,sans-serif;margin:0}
+.pdf-document{width:210mm;min-height:297mm;margin:0 auto;background:#fff;color:#111827;font-size:10.5pt;line-height:1.35;box-shadow:0 0 22px rgba(0,0,0,.18)}
+.pdf-document *{box-sizing:border-box}.pdf-document img{max-width:100%;height:auto}.pdf-document p{margin:0 0 7px}.pdf-document strong{font-weight:750}.pdf-document .muted,.pdf-empty{color:#6b7280}.pdf-cover{min-height:287mm;padding:20mm 18mm 16mm;display:flex;flex-direction:column;gap:12mm;page-break-after:always;position:relative;background:linear-gradient(180deg,#fff 0,#fff 72%,#f7f8fa 72%,#f7f8fa 100%)}
+.pdf-cover:before{content:"";position:absolute;left:0;top:0;bottom:0;width:8mm;background:#2f343b}.pdf-cover:after{content:"";position:absolute;right:18mm;bottom:15mm;width:56mm;height:2px;background:#b8141d}.pdf-cover-top{display:grid;grid-template-columns:34mm 1fr;gap:12mm;align-items:center}.pdf-cover-logo{width:32mm;border-radius:8px;background:#b8141d;padding:4mm}.pdf-org{text-transform:uppercase;letter-spacing:.8px;color:#4b5563;font-weight:800;font-size:10pt}.pdf-cover h1{font-size:30pt;line-height:1;margin:4px 0;text-transform:uppercase;letter-spacing:.6px;color:#111827}.pdf-cover-top p{font-size:14pt;font-weight:700;color:#374151}.pdf-cover-title{border-top:2px solid #111827;border-bottom:2px solid #111827;padding:9mm 0}.pdf-cover-title span{display:block;font-size:10pt;text-transform:uppercase;letter-spacing:1px;color:#6b7280;font-weight:800}.pdf-cover-title strong{display:block;font-size:24pt;line-height:1.12;margin:4mm 0 2mm;text-transform:uppercase}.pdf-cover-title em{font-style:normal;color:#b8141d;font-weight:800;word-break:break-word}.pdf-cover-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}.pdf-meta{border:1px solid #d9dde3;background:#fff;padding:3.2mm;min-height:18mm;break-inside:avoid}.pdf-meta span,.pdf-info-box span{display:block;text-transform:uppercase;letter-spacing:.45px;color:#6b7280;font-size:7.2pt;font-weight:800;margin-bottom:1.5mm}.pdf-meta strong,.pdf-info-box strong{display:block;font-size:10pt;color:#111827;word-break:break-word}.pdf-section{padding:8mm 12mm 3mm;break-inside:auto;page-break-inside:auto}.pdf-section h2{margin:0 0 4mm;padding:2.3mm 3mm;background:#e5e7eb;border-left:4px solid #2f343b;color:#111827;text-transform:uppercase;letter-spacing:.45px;font-size:13pt;line-height:1.1;break-after:avoid}.pdf-section h3.pdf-subtitle{font-size:10.5pt;text-transform:uppercase;letter-spacing:.35px;margin:4mm 0 2mm;color:#2f343b;break-after:avoid}.pdf-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm}.pdf-info-box{border:1px solid #d9dde3;background:#fff;padding:3mm;min-height:16mm;break-inside:avoid}.pdf-bloom-layout{display:grid;grid-template-columns:1fr 58mm;gap:6mm;align-items:center}.pdf-bloom-main{border:1px solid #d9dde3;border-left:7mm solid #9ca3af;padding:4mm;background:#fff;break-inside:avoid}.pdf-bloom-main strong{display:block;font-size:18pt;text-transform:uppercase;margin:1mm 0}.pdf-bloom-main em{font-style:normal;font-weight:800;color:#4b5563}.pdf-bloom-pyramid{width:56mm;display:block;margin-left:auto;image-rendering:auto}.pdf-but-card{display:grid;grid-template-columns:12mm 1fr;gap:4mm;border:1px solid #d9dde3;border-left:7mm solid #9ca3af;background:#fff;padding:3.5mm;margin-bottom:3mm;break-inside:avoid}.pdf-but-num{width:9mm;height:9mm;border-radius:999px;background:#2f343b;color:#fff;display:grid;place-items:center;font-weight:800}.pdf-but-card h3{font-size:11.2pt;margin:0 0 1.5mm;color:#111827}.pdf-but-card p{font-size:9pt;color:#374151;margin:0}.bloom-memoriser{border-left-color:#e84d3d!important}.bloom-comprendre{border-left-color:#f2a33a!important}.bloom-appliquer{border-left-color:#f2cf43!important}.bloom-analyser{border-left-color:#4fb46a!important}.bloom-evaluer{border-left-color:#3a86c8!important}.bloom-creer{border-left-color:#8756b5!important}.pdf-table{width:100%;border-collapse:collapse;font-size:9.4pt;margin:0 0 4mm;table-layout:fixed;page-break-inside:auto}.pdf-table thead{display:table-header-group}.pdf-table tfoot{display:table-footer-group}.pdf-table tr{break-inside:avoid;page-break-inside:avoid}.pdf-table th{background:#2f343b;color:#fff;text-transform:uppercase;letter-spacing:.25px;font-size:7.6pt;text-align:left;padding:2mm;border:1px solid #2f343b}.pdf-table td{vertical-align:top;padding:2mm;border:1px solid #d9dde3;word-wrap:break-word;overflow-wrap:anywhere}.pdf-table tbody tr:nth-child(even) td{background:#f7f8fa}.pdf-table .num{text-align:center;font-weight:800;white-space:nowrap}.pdf-plan-table th:nth-child(1),.pdf-plan-table th:nth-child(2){width:14mm}.pdf-plan-table th:nth-child(3){width:17mm}.pdf-plan-table th:nth-child(5){width:32mm}.pdf-eval-table th:nth-child(1){width:10mm}.pdf-eval-table th:nth-child(3){width:22mm}.pdf-eval-table th:nth-child(4){width:26mm}.pdf-material-table th:nth-child(2){width:15mm}.pdf-material-table th:nth-child(3){width:36mm}.pdf-fil-section{border:1px solid #d9dde3;background:#fff;margin-bottom:5mm;break-inside:auto;page-break-inside:auto}.pdf-fil-head{display:grid;grid-template-columns:22mm 1fr;align-items:stretch;background:#2f343b;color:#fff;break-after:avoid}.pdf-fil-head span{display:grid;place-items:center;background:#b8141d;font-weight:900;font-size:12pt}.pdf-fil-head h3{margin:0;padding:2.5mm 3mm;font-size:12pt;text-transform:uppercase;letter-spacing:.3px;color:#fff}.pdf-linked,.pdf-prep{margin:3mm;padding:2.5mm;background:#f7f8fa;border:1px solid #e5e7eb;font-size:9.2pt}.pdf-rich-content{padding:3mm;overflow:visible;word-break:normal}.pdf-rich-content *{max-width:100%;font-family:Arial,Helvetica,sans-serif}.pdf-rich-content p,.pdf-rich-content div{margin-top:0}.pdf-rich-content ul,.pdf-rich-content ol{margin-top:1.5mm;margin-bottom:2mm;padding-left:7mm}.pdf-rich-content li{margin:1mm 0;break-inside:avoid}.pdf-rich-content blockquote{margin:2mm 0 2mm 7mm;padding-left:4mm;border-left:2px solid #d1d5db}.pdf-rich-content figure,.pdf-rich-content .resizable-media,.pdf-rich-content .pdf-page-image,.pdf-rich-content .image-media{display:block!important;max-width:100%!important;break-inside:avoid;page-break-inside:avoid;margin:3mm auto!important;background:#fff;border:0!important;overflow:hidden!important}.pdf-rich-content figure img,.pdf-rich-content .pdf-page-image img,.pdf-rich-content .image-media img{display:block!important;max-width:100%!important;width:100%!important;height:auto!important;object-fit:contain!important;border:1px solid #d9dde3!important;background:#fff}.pdf-rich-content figcaption{font-size:8pt;color:#6b7280;text-align:center;margin-top:1mm}.pdf-rich-content .pdf-media{display:none!important}.pdf-note{border:1px solid #d9dde3;background:#f7f8fa;padding:3mm;margin:3mm 0;break-inside:avoid}.pdf-tags{display:flex;gap:2mm;flex-wrap:wrap}.pdf-tags span{display:inline-block;border:1px solid #d9dde3;background:#f7f8fa;border-radius:99px;padding:1.6mm 3mm;font-weight:800;font-size:8.5pt}.pdf-conclusion{border:1px solid #d9dde3;padding:3mm;margin-bottom:3mm;break-inside:avoid}.pdf-conclusion h3{margin:0 0 2mm;color:#2f343b}.pdf-footer{display:none}
+@page{size:A4;margin:12mm 10mm 15mm}@media print{html,body{width:210mm;background:#fff!important}.pdf-document{width:auto;min-height:0;margin:0;box-shadow:none;font-size:10.2pt}.pdf-cover{min-height:270mm;padding:10mm 8mm 8mm 12mm}.pdf-cover-grid{gap:3mm}.pdf-section{padding:0 0 5mm}.pdf-section h2{margin-top:0}.pdf-footer{display:block;position:fixed;left:0;right:0;bottom:0;border-top:1px solid #b8141d;padding:2mm 0 0;font-size:7.2pt;color:#4b5563;text-transform:uppercase}.pdf-footer span{display:inline-block;width:33%;vertical-align:top}.pdf-footer span:nth-child(2){text-align:center}.pdf-footer span:nth-child(3){text-align:right}.pdf-cover+.pdf-section{page-break-before:always}.pdf-section,.pdf-table,.pdf-rich-content{orphans:3;widows:3}.pdf-table thead{display:table-header-group}.pdf-table tr{break-inside:avoid;page-break-inside:avoid}.pdf-rich-content .media-preview-btn,.pdf-rich-content .no-print,.pdf-rich-content style{display:none!important}.pdf-rich-content .pdf-page-image{height:auto!important}.pdf-rich-content .pdf-page-image img{height:auto!important}.pdf-bloom-pyramid{print-color-adjust:exact;-webkit-print-color-adjust:exact}.pdf-table th,.pdf-fil-head span,.pdf-fil-head h3,.pdf-cover-logo{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+@media screen{.pdf-document{padding-bottom:12mm}.pdf-footer{display:flex;gap:4mm;margin:8mm 12mm 0;border-top:1px solid #b8141d;padding-top:2mm;font-size:8pt;color:#4b5563}.pdf-footer span{flex:1}.pdf-footer span:nth-child(2){text-align:center}.pdf-footer span:nth-child(3){text-align:right}}
+
+/* Annexes PDF liées aux sections FIL ROUGE */
+.annexes-pdf-block{border:1px solid var(--gray-200);background:var(--gray-50);border-radius:var(--radius);padding:12px;margin-top:4px}.annexes-pdf-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.annexes-pdf-head label{margin:0}.annex-import-btn{background:#fff}.annex-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}.annex-card{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-sm);padding:9px;box-shadow:var(--shadow-sm)}.annex-icon{width:38px;height:44px;border-radius:5px;background:#2f343b;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:900;letter-spacing:.5px}.annex-info{min-width:0}.annex-info strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.annex-info span{display:block;color:var(--gray-600);font-size:12px}.annex-actions{display:flex;align-items:center;gap:5px}.btn.icon-only{width:31px;padding:0}.annex-empty{border:1px dashed var(--gray-300);background:#fff;color:var(--gray-600);border-radius:var(--radius-sm);padding:10px;font-size:12.5px;text-align:center}.pdf-annex-overlay{position:fixed;inset:0;background:rgba(15,23,42,.72);z-index:10000;display:flex;align-items:center;justify-content:center;padding:24px}.pdf-annex-modal{width:min(1180px,96vw);height:min(900px,94vh);background:#fff;border-radius:8px;box-shadow:0 22px 70px rgba(0,0,0,.38);display:grid;grid-template-rows:auto auto 1fr;overflow:hidden}.pdf-annex-modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:#2f343b;color:#fff}.pdf-annex-modal-head strong{display:block;font-size:15px}.pdf-annex-modal-head span{display:block;font-size:12px;opacity:.86}.pdf-annex-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 14px;border-bottom:1px solid var(--gray-200);background:var(--gray-50)}.pdf-annex-tools input[type=number]{width:62px;height:30px}.pdf-annex-tools input[type=range]{width:130px;vertical-align:middle}.pdf-annex-frame{width:100%;height:100%;border:0;background:#52565f}.preview-close{border:0;background:transparent;color:inherit;font-size:28px;line-height:1;cursor:pointer}.pdf-annexes-index{padding:8mm 12mm 3mm;page-break-before:always}.pdf-annexes-index h2{margin:0 0 4mm;padding:2.3mm 3mm;background:#e5e7eb;border-left:4px solid #2f343b;color:#111827;text-transform:uppercase;letter-spacing:.45px;font-size:13pt}.pdf-annex-page{width:210mm;min-height:297mm;padding:8mm;background:#fff;page-break-before:always;break-before:page;display:grid;grid-template-rows:auto 1fr}.pdf-annex-page-head{display:flex;justify-content:space-between;gap:8mm;align-items:flex-start;border-bottom:1px solid #2f343b;margin-bottom:4mm;padding-bottom:2mm;font-size:8.5pt;color:#111827}.pdf-annex-page-head strong{font-size:9pt}.pdf-annex-page-head span{text-align:right;color:#4b5563}.pdf-annex-page iframe{width:100%;height:273mm;border:0;background:#fff}@media(max-width:780px){.annex-card{grid-template-columns:40px 1fr}.annex-actions{grid-column:1/-1;justify-content:flex-end}.pdf-annex-overlay{padding:8px}.pdf-annex-tools{align-items:flex-start}.pdf-annex-modal{height:96vh}}@media print{.annexes-pdf-block,.pdf-annex-overlay{display:none!important}.pdf-annexes-index{padding:0 0 5mm;page-break-before:always}.pdf-annex-page{box-shadow:none;width:auto;min-height:0;padding:0;page-break-before:always}.pdf-annex-page-head{print-color-adjust:exact;-webkit-print-color-adjust:exact}.pdf-annex-page iframe{height:270mm;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+/* Correctif import PDF toolbar FIL ROUGE : choix page avec aperçus + suppression image */
+.media-preview-btn,.media-delete-btn{position:absolute;z-index:8;width:30px;height:30px;border:0;border-radius:999px;background:rgba(31,39,48,.86);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.media-preview-btn{top:6px;right:42px}.media-delete-btn{top:6px;right:6px;background:#b8141d}.media-preview-btn:hover,.media-delete-btn:hover{filter:brightness(.92);transform:translateY(-1px)}
+.sf-eye-icon{width:18px;height:18px;border:2px solid currentColor;border-radius:999px;display:inline-block;position:relative}.sf-eye-icon:before{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;background:currentColor;border-radius:999px;transform:translate(-50%,-50%)}
+.sf-trash-icon{font-size:22px;font-weight:900;line-height:1;transform:translateY(-1px)}
+.pdf-page-picker-overlay{position:fixed;inset:0;background:rgba(15,23,42,.62);z-index:12000;display:flex;align-items:center;justify-content:center;padding:18px}.pdf-page-picker-modal{width:min(520px,92vw);max-height:88vh;background:#fff;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);display:grid;grid-template-rows:auto auto 1fr auto;overflow:hidden}.pdf-page-picker-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid var(--gray-200)}.pdf-page-picker-head strong{display:block;font-size:15px;color:#1f2730}.pdf-page-picker-head span{display:block;margin-top:2px;color:var(--gray-600);font-size:12px}.pdf-page-picker-help{padding:9px 14px;background:var(--gray-50);font-size:12.5px;color:var(--gray-700);border-bottom:1px solid var(--gray-200)}.pdf-page-grid{padding:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;overflow:auto;max-height:52vh}.pdf-page-thumb{border:1px solid var(--gray-200);background:#fff;border-radius:10px;padding:7px;display:grid;gap:6px;justify-items:center;cursor:pointer;box-shadow:var(--shadow-sm)}.pdf-page-thumb:hover,.pdf-page-thumb.selected{border-color:var(--sdis-red);box-shadow:0 0 0 2px rgba(184,20,29,.14)}.pdf-page-thumb canvas{width:78px;max-height:112px;object-fit:contain;border:1px solid var(--gray-200);background:#fff}.pdf-page-thumb strong{font-size:12px;color:#1f2730}.pdf-page-thumb-loading{height:112px;width:78px;display:grid;place-items:center;text-align:center;color:var(--gray-600);font-size:11px;border:1px dashed var(--gray-300);border-radius:6px;background:var(--gray-50)}.pdf-page-picker-actions{display:flex;justify-content:flex-end;gap:8px;padding:10px 14px;border-top:1px solid var(--gray-200);background:#fff}.pdf-page-picker-actions .btn[disabled]{opacity:.45;cursor:not-allowed}
+@media(max-width:560px){.pdf-page-picker-modal{width:94vw}.pdf-page-grid{grid-template-columns:repeat(2,1fr)}}
+@media print{.media-delete-btn,.pdf-page-picker-overlay{display:none!important}}
+
+/* Correctif production — listes métier pour CODE THÈME / SOUS-THÈME / PUBLIC */
+.generalites-grid .code-select-field{position:relative;overflow:visible}
+.generalites-grid .code-select-box{position:relative;width:12ch;max-width:12ch}
+.generalites-grid .code-select-box input{width:12ch;max-width:12ch;text-align:center;font-weight:750;letter-spacing:.02em}
+.generalites-grid .code-suggestions{left:auto;right:0;min-width:280px;max-width:min(420px,80vw);z-index:520;text-align:left}
+.generalites-grid .code-option{font-size:12.5px;padding:8px 10px;white-space:normal}
+.generalites-grid .code-option span{display:block;color:inherit}
+.generalites-grid .code-option strong{font-weight:850;letter-spacing:.03em}
+@media(max-width:900px){
+  .generalites-grid .code-select-box,
+  .generalites-grid .code-select-box input{width:100%;max-width:none}
+  .generalites-grid .code-suggestions{left:0;right:0;min-width:100%;max-width:100%}
+}
+
+
+/* Correctif production — visibilité des listes CODE + largeur homogène des champs codifiés */
+.generalites-grid .code-select-field.code-dropdown-open{
+  z-index:5000;
+}
+.generalites-grid .code-select-field.code-dropdown-open .code-select-box{
+  z-index:5001;
+}
+.generalites-grid .code-select-field.code-dropdown-open .code-suggestions{
+  z-index:5002;
+  display:block;
+}
+.generalites-grid .code-suggestions{
+  top:calc(100% + 6px);
+  min-width:300px;
+  max-width:min(380px,80vw);
+  overflow:auto;
+}
+.generalites-grid .code-select-field,
+.generalites-grid .g-type-doc,
+.generalites-grid .calculated-code{
+  grid-column:8 / 9;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+}
+.generalites-grid .code-select-box,
+.generalites-grid .code-select-box input,
+.generalites-grid .g-type-doc input,
+.generalites-grid .calculated-code input[readonly]{
+  width:100%;
+  max-width:none;
+  min-width:0;
+  box-sizing:border-box;
+}
+@media(max-width:1100px){
+  .generalites-grid .code-select-field,
+  .generalites-grid .g-type-doc,
+  .generalites-grid .calculated-code{
+    grid-column:6 / 7;
+  }
+  .generalites-grid .code-suggestions{
+    right:0;
+    left:auto;
+    min-width:300px;
+    max-width:min(380px,88vw);
+  }
+}
+@media(max-width:760px){
+  .generalites-grid .code-select-field,
+  .generalites-grid .g-type-doc,
+  .generalites-grid .calculated-code{
+    grid-column:1!important;
+    width:100%;
+    max-width:none;
+  }
+  .generalites-grid .code-suggestions{
+    left:0;
+    right:0;
+    min-width:100%;
+    max-width:100%;
+  }
+}
+
+/* Refonte PDF DL professionnelle SDIS — 06.05.2026 */
+.pdf-document .pdf-cover{min-height:287mm;padding:14mm 14mm 12mm 18mm;gap:8mm;background:linear-gradient(180deg,#ffffff 0%,#ffffff 64%,#f3f4f6 64%,#f3f4f6 100%)}
+.pdf-document .pdf-cover:before{width:7mm;background:#2f343b}.pdf-document .pdf-cover:after{background:#b8141d;height:2px}
+.pdf-cover-brand{display:grid;grid-template-columns:36mm 1fr;gap:10mm;align-items:center;border-bottom:3px solid #2f343b;padding-bottom:7mm}
+.pdf-cover-brand .pdf-cover-logo{width:34mm;border-radius:6px;background:#b8141d;padding:5mm;box-shadow:none}
+.pdf-cover-brand h1{font-size:28pt;line-height:1;margin:2mm 0 1mm;color:#111827;text-transform:uppercase;letter-spacing:.7px}
+.pdf-cover-brand p{margin:0;font-weight:800;color:#4b5563;font-size:12pt}.pdf-cover-title{padding:7mm 0;border-top:0;border-bottom:2px solid #111827}.pdf-cover-title strong{font-size:22pt}.pdf-cover-title em{display:block;font-style:normal;font-size:13pt;color:#374151;font-weight:800;margin-top:1mm}.pdf-cover-grid{grid-template-columns:repeat(4,1fr);gap:3mm}.pdf-cover-bloom{display:grid;grid-template-columns:1fr 72mm;gap:7mm;align-items:center;border:1px solid #d9dde3;border-left:8mm solid #9ca3af;background:#fff;padding:5mm;break-inside:avoid}.pdf-cover-bloom span{display:block;text-transform:uppercase;letter-spacing:.45px;color:#6b7280;font-size:8pt;font-weight:900}.pdf-cover-bloom strong{display:block;margin:1mm 0;font-size:20pt;text-transform:uppercase;color:#111827}.pdf-cover-bloom em{font-style:normal;font-weight:900;color:#4b5563}.pdf-bloom-visual{display:grid;gap:2mm;justify-items:center}.pdf-bloom-visual img{width:66mm;display:block}.pdf-bloom-arrow{background:#2f343b;color:#fff;border-radius:3px;padding:2mm 3mm;font-size:8.5pt;font-weight:900;text-align:center;width:100%}.pdf-plan-section{break-inside:avoid;page-break-inside:avoid;break-before:auto}.pdf-plan-section .pdf-table{break-inside:avoid;page-break-inside:avoid}.pdf-plan-section h2{break-after:avoid}.pdf-rich-content .fr-list,.pdf-rich-content .fr-list ul,.pdf-rich-content .fr-list ol{margin:1.5mm 0 2mm 7mm;padding-left:5mm;list-style-position:outside}.pdf-rich-content .fr-list-dash,.pdf-rich-content .fr-list-dash ul{list-style-type:'-  '}.pdf-rich-content .fr-list-dot,.pdf-rich-content .fr-list-dot ul{list-style-type:disc}.pdf-rich-content .fr-list-dot li::marker{content:'·  '}.pdf-rich-content .fr-list-number,.pdf-rich-content .fr-list-number ol{list-style-type:decimal}.pdf-rich-content .fr-list-number li::marker{content:counter(list-item) '.  '}.pdf-rich-content ul ul,.pdf-rich-content ol ol,.pdf-rich-content ul ol,.pdf-rich-content ol ul{margin-top:1mm;margin-bottom:1mm}.pdf-section h2{background:#eef0f3;border-left-color:#2f343b}.pdf-section.pdf-filrouge h2{background:#2f343b;color:#fff;border-left-color:#b8141d}.pdf-footer .pageNumber:before{content:counter(page)}@media print{.pdf-document .pdf-cover{min-height:270mm;padding:10mm 8mm 8mm 12mm}.pdf-cover-brand{grid-template-columns:30mm 1fr;gap:8mm}.pdf-cover-brand .pdf-cover-logo{width:29mm}.pdf-cover-grid{gap:2.5mm}.pdf-cover-bloom{grid-template-columns:1fr 62mm;gap:5mm;padding:4mm}.pdf-bloom-visual img{width:58mm}.pdf-plan-section{break-inside:avoid!important;page-break-inside:avoid!important}.pdf-footer .pageNumber:before{content:counter(page)}}
+
+/* Production 2026-05-06 — Corrections bibliothèque / logistique compacte / taille police informative */
+.font-size-indicator{
+  background:var(--gray-100)!important;
+  color:var(--gray-700)!important;
+  border-color:var(--gray-300)!important;
+  cursor:default!important;
+  user-select:none;
+  pointer-events:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75);
+}
+.font-size-indicator::after{content:' pt';font-weight:700;color:var(--gray-500);margin-left:1px}
+.material-section{
+  margin-top:6px!important;
+  margin-bottom:6px!important;
+  padding:9px 12px!important;
+}
+.material-section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:4px;
+  border-bottom:1px solid var(--gray-200);
+  padding-bottom:4px;
+}
+.material-section-head h3{
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+.material-table{border-collapse:collapse!important;font-size:12.5px!important}
+.material-table th,
+.material-table td{
+  padding:2px 6px!important;
+  line-height:1.15!important;
+  vertical-align:middle!important;
+}
+.material-table th{height:25px!important;font-size:10.5px!important}
+.material-table input,
+.material-table select{
+  height:25px!important;
+  min-height:25px!important;
+  font-size:12.5px!important;
+  padding:0 6px!important;
+  border-radius:3px!important;
+}
+.material-table .btn.small{
+  height:23px!important;
+  min-height:23px!important;
+  min-width:25px!important;
+  padding:0 7px!important;
+}
+.material-table .ac-box,
+.material-table .compact-ac{margin:0!important}
+.material-table tbody tr{height:29px!important}
+.material-table tbody tr:nth-child(odd) td{background:#fff!important}
+.material-table tbody tr:nth-child(even) td{background:var(--gray-50)!important}
+.material-table tbody tr:hover td{background:#fff7f8!important}
+.library-split{
+  grid-template-columns:minmax(500px,1.4fr) minmax(360px,.9fr)!important;
+  align-items:start;
+}
+.library-list-card{max-height:74vh;overflow:auto}
+.library-detail-card{max-height:74vh;overflow:auto}
+.library-filter-grid{gap:8px!important;margin-bottom:10px}
+.dl-item{padding:8px 10px!important;width:100%;display:block;text-align:left;border:1px solid var(--gray-200);background:#fff;border-radius:8px;margin:0 0 6px 0;cursor:pointer;font:inherit;color:inherit}
+.dl-item:hover,.dl-item.selected{border-color:var(--gray-400);background:var(--gray-50);box-shadow:0 0 0 2px rgba(31,41,55,.06)}
+.dl-item-main{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.dl-item-main strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dl-item-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px;color:var(--gray-600);font-size:11.5px}
+.dl-item-meta span{border:1px solid var(--gray-200);background:var(--gray-50);border-radius:999px;padding:1px 6px}
+.dl-item small{display:block;margin-top:4px;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge.gray{background:var(--gray-100);color:var(--gray-700)}
+.library-detail-badges{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 12px}
+.library-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;margin:10px 0 12px}
+.library-detail-grid p{margin:0;padding:8px;border:1px solid var(--gray-200);background:var(--gray-50);border-radius:4px;overflow-wrap:anywhere}
+@media(max-width:1050px){.library-split{grid-template-columns:1fr!important}.library-list-card,.library-detail-card{max-height:none}}
+
+/* Production 2026-05-06 — Page 1 PDF ciblée + restauration bibliothèque sélection */
+.pdf-document .pdf-cover:before{background:#2f343b!important}
+.pdf-cover-brand .pdf-cover-logo.pdf-cover-logo-color{
+  width:38mm!important;
+  max-height:27mm!important;
+  object-fit:contain!important;
+  border-radius:0!important;
+  background:transparent!important;
+  padding:0!important;
+}
+.pdf-cover-brand h1{font-size:24pt!important}
+.pdf-cover-brand p{font-size:12pt!important}
+.pdf-cover-title{
+  padding:5.6mm 0!important;
+  min-height:0!important;
+}
+.pdf-cover-title span{display:none!important}
+.pdf-cover-title strong{font-size:22pt!important;margin:0 0 1.5mm!important}
+.pdf-cover-grid.pdf-cover-grid-v2{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:2.6mm!important;
+}
+.pdf-cover-grid-v2 .pdf-meta{min-height:14.4mm!important;padding:2.6mm!important}
+.pdf-cover-grid-v2 .pdf-meta-reference{grid-column:span 3;white-space:nowrap;overflow:hidden}
+.pdf-cover-grid-v2 .pdf-meta-reference strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;word-break:normal!important}
+.pdf-cover-grid-v2 .pdf-meta-version{grid-column:span 1;text-align:right}
+.pdf-cover-grid-v2 .pdf-meta-version span,.pdf-cover-grid-v2 .pdf-meta-version strong{text-align:right}
+.pdf-cover-bloom{border-left-width:8mm!important}
+.pdf-cover-bloom em,.pdf-bloom-arrow{display:none!important}
+.library-split{
+  grid-template-columns:minmax(360px,.8fr) minmax(520px,1.2fr)!important;
+}
+.library-detail-card{min-width:0}
+.library-detail-card .row-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+@media print{
+  .pdf-cover-brand .pdf-cover-logo.pdf-cover-logo-color{width:33mm!important;max-height:24mm!important}
+  .pdf-cover-brand h1{font-size:24pt!important}
+  .pdf-cover-title{padding:5.2mm 0!important}
+  .pdf-cover-grid-v2 .pdf-meta{min-height:13mm!important;padding:2.4mm!important}
+}
+
+
+/* Production 2026-05-06 — PDF navigateur ciblé page 1 / Bloom / statut */
+.pdf-document .pdf-cover:before{background:#63676c!important}
+.pdf-cover-title{padding:5.32mm 0!important}
+.pdf-cover-bloom.bloom-memoriser{border-left-color:#399BF2!important}
+.pdf-cover-bloom.bloom-comprendre{border-left-color:#6BD3ED!important}
+.pdf-cover-bloom.bloom-appliquer{border-left-color:#70DC56!important}
+.pdf-cover-bloom.bloom-analyser{border-left-color:#FAE91F!important}
+.pdf-cover-bloom.bloom-evaluer{border-left-color:#FF9F23!important}
+.pdf-cover-bloom.bloom-creer{border-left-color:#FF5459!important}
+@media print{
+  .pdf-cover-title{padding:4.94mm 0!important}
+}
+
+/* Production 2026-05-06 — Pagination PDF, page 2, buts Bloom, Fil rouge final */
+@media screen{
+  .pdf-body{background:#eef0f3!important;padding:12mm 0!important}
+  .pdf-document{width:auto!important;min-height:0!important;margin:0!important;background:transparent!important;box-shadow:none!important;padding:0!important}
+  .pdf-document>.pdf-page,
+  .pdf-annexes-index,
+  .pdf-annex-page{
+    width:210mm!important;
+    min-height:297mm!important;
+    margin:0 auto 12mm!important;
+    background:#fff!important;
+    box-shadow:0 10px 28px rgba(15,23,42,.18)!important;
+    position:relative;
+    overflow:visible;
+  }
+  .pdf-document>.pdf-section.pdf-page{padding:12mm!important}
+  .pdf-document>.pdf-section.pdf-page:after,
+  .pdf-document>.pdf-cover.pdf-page:after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-6mm;
+    height:1px;
+    background:#cfd4dc;
+  }
+}
+.pdf-person-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.6mm 2mm;align-items:stretch}
+.pdf-person-grid span{display:block;border:1px solid #d9dde3;background:#f7f8fa;padding:1.6mm 2mm;font-size:8.3pt;line-height:1.15;min-width:0;overflow-wrap:anywhere}
+.pdf-but-card.bloom-memoriser{border-left-color:#399BF2!important}
+.pdf-but-card.bloom-comprendre{border-left-color:#6BD3ED!important}
+.pdf-but-card.bloom-appliquer{border-left-color:#70DC56!important}
+.pdf-but-card.bloom-analyser{border-left-color:#FAE91F!important}
+.pdf-but-card.bloom-evaluer{border-left-color:#FF9F23!important}
+.pdf-but-card.bloom-creer{border-left-color:#FF5459!important}
+.pdf-rich-content .media-preview-btn,
+.pdf-rich-content .media-delete-btn,
+.pdf-rich-content .pdf-controls,
+.pdf-rich-content .no-print,
+.pdf-rich-content button,
+.pdf-rich-content label.btn{display:none!important}
+.pdf-note.pdf-note-section{background:#fde8ea!important;border-color:#f3b4ba!important;color:#b8141d!important}
+.pdf-note.pdf-note-section strong{color:#b8141d!important;text-transform:uppercase;letter-spacing:.25px}
+.pdf-linked,.pdf-chantier{margin:3mm!important;padding:2.5mm!important;border:1px solid #e5e7eb;font-size:9.2pt;width:calc(100% - 6mm);box-sizing:border-box;break-inside:avoid}
+.pdf-linked{background:#f7f8fa!important;color:#111827!important}
+.pdf-chantier-place{background:#fff!important;border-left:4px solid #2f343b!important;color:#111827!important}
+.pdf-chantier-prep{background:#e8f1fb!important;border-color:#bcd4ee!important;border-left:4px solid #005eb8!important;color:#005eb8!important}
+.pdf-chantier strong{display:block;text-transform:uppercase;letter-spacing:.25px;margin-bottom:1mm;color:inherit!important}
+@media print{
+  .pdf-document>.pdf-page{box-shadow:none!important;margin:0!important}
+  .pdf-document>.pdf-section.pdf-page{padding:0 0 5mm!important;min-height:0!important;width:auto!important}
+  .pdf-person-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .pdf-but-card,.pdf-note.pdf-note-section,.pdf-chantier{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+
+/* Production 2026-05-06 — Correctif aperçu PDF robuste / impression iframe */
+.pdf-preview-open{overflow:hidden!important}
+.pdf-preview-overlay{position:fixed;inset:0;z-index:20000;background:#eef0f3;display:flex;align-items:stretch;justify-content:center}
+.pdf-preview-shell{width:100%;height:100%;display:grid;grid-template-rows:auto 1fr;background:#eef0f3}
+.pdf-preview-toolbar{min-height:54px;background:#2f343b;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;box-shadow:0 2px 10px rgba(15,23,42,.22)}
+.pdf-preview-toolbar strong{display:block;font-size:14px;text-transform:uppercase;letter-spacing:.45px}
+.pdf-preview-toolbar span{display:block;font-size:12px;opacity:.82;margin-top:2px}
+.pdf-preview-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pdf-preview-frame{width:100%;height:100%;border:0;background:#eef0f3}.pdf-preview-actions .btn[disabled]{opacity:.55;cursor:wait}
+.pdf-preview-render{margin:0;background:#eef0f3!important}
+.pdf-page2-section{display:block;break-inside:avoid;page-break-inside:avoid}
+.pdf-page2-section>h2{margin-bottom:3mm!important}.pdf-page2-block{break-inside:avoid;page-break-inside:avoid;margin:0 0 4mm}.pdf-page2-block h3{margin:0 0 2mm;padding:1.8mm 2.5mm;background:#eef0f3;border-left:4px solid #2f343b;color:#111827;text-transform:uppercase;letter-spacing:.35px;font-size:10.2pt}.pdf-summary-grid-formateurs{grid-template-columns:1fr!important}.pdf-summary-grid-formateurs .pdf-info-box strong{font-size:9.2pt;line-height:1.25}.pdf-page2-section .pdf-but-card{margin-bottom:2mm;padding:2.2mm 2.5mm}.pdf-page2-section .pdf-but-card h3{background:transparent;border:0;margin:0;padding:0;text-transform:none;letter-spacing:0;font-size:9.4pt}.pdf-page2-section .pdf-but-card p{margin:.6mm 0 0}.pdf-page2-section .pdf-table th,.pdf-page2-section .pdf-table td{padding:1.5mm 1.8mm;font-size:8.3pt;line-height:1.18}.pdf-page2-plan{margin-bottom:0}.pdf-plan-section{break-inside:avoid;page-break-inside:avoid}.pdf-plan-section .pdf-table{break-inside:avoid;page-break-inside:avoid}
+@media screen{.pdf-preview-render .pdf-document{width:auto!important;min-height:0!important;margin:0!important;background:transparent!important;box-shadow:none!important;padding:12mm 0!important}.pdf-preview-render .pdf-document>.pdf-page,.pdf-preview-render .pdf-annexes-index,.pdf-preview-render .pdf-annex-page{width:210mm!important;min-height:297mm!important;margin:0 auto 12mm!important;background:#fff!important;box-shadow:0 10px 28px rgba(15,23,42,.18)!important;box-sizing:border-box;position:relative;overflow:visible}.pdf-preview-render .pdf-document>.pdf-section.pdf-page{padding:12mm!important}.pdf-preview-render .pdf-cover.pdf-page{padding:10mm 8mm 8mm 12mm!important}.pdf-preview-render .pdf-document>.pdf-section.pdf-page:after,.pdf-preview-render .pdf-document>.pdf-cover.pdf-page:after{content:"";position:absolute;left:0;right:0;bottom:-6mm;height:1px;background:#cfd4dc}}
+@media print{html,body{width:210mm;margin:0!important;padding:0!important;background:#fff!important}@page{size:A4;margin:0}.no-print,.pdf-preview-overlay{display:none!important}.pdf-body{background:#fff!important;padding:0!important;margin:0!important}.pdf-document{width:210mm!important;margin:0!important;padding:0!important;background:#fff!important;box-shadow:none!important}.pdf-document>.pdf-page,.pdf-annexes-index,.pdf-annex-page{width:210mm!important;min-height:297mm!important;margin:0!important;background:#fff!important;box-shadow:none!important;box-sizing:border-box;break-after:page;page-break-after:always;overflow:hidden}.pdf-document>.pdf-section.pdf-page{padding:12mm!important}.pdf-document>.pdf-section.pdf-page:after,.pdf-document>.pdf-cover.pdf-page:after{display:none!important}.pdf-document>.pdf-page:last-of-type{break-after:auto;page-break-after:auto}.pdf-cover.pdf-page{padding:10mm 8mm 8mm 12mm!important}.pdf-page2-section{break-inside:avoid!important;page-break-inside:avoid!important}.pdf-page2-block,.pdf-plan-section,.pdf-plan-section .pdf-table,.pdf-page2-plan .pdf-table{break-inside:avoid!important;page-break-inside:avoid!important}.pdf-table thead{display:table-header-group}.pdf-table tr{break-inside:avoid;page-break-inside:avoid}.pdf-footer{display:block!important;position:fixed;left:12mm;right:12mm;bottom:5mm}}
+
+/* Production 2026-05-06 — Fidélité couleurs aperçu écran ↔ impression */
+.pdf-preview-render,
+.pdf-preview-render *,
+.pdf-document,
+.pdf-document *,
+.pdf-document *::before,
+.pdf-document *::after,
+.pdf-annexes-index,
+.pdf-annexes-index *,
+.pdf-annex-page,
+.pdf-annex-page *{
+  -webkit-print-color-adjust:exact!important;
+  print-color-adjust:exact!important;
+  color-adjust:exact!important;
+}
+@media print{
+  html,
+  body,
+  .pdf-body,
+  .pdf-preview-render{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+    color-adjust:exact!important;
+  }
+  .pdf-document>.pdf-page,
+  .pdf-document>.pdf-section.pdf-page,
+  .pdf-document>.pdf-cover.pdf-page,
+  .pdf-annexes-index,
+  .pdf-annex-page{
+    background:#fff!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+    color-adjust:exact!important;
+  }
+  .pdf-document .pdf-cover.pdf-page{
+    background:linear-gradient(180deg,#ffffff 0%,#ffffff 64%,#f3f4f6 64%,#f3f4f6 100%)!important;
+  }
+  .pdf-document .pdf-cover.pdf-page:before{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    left:0!important;
+    top:0!important;
+    bottom:0!important;
+    width:7mm!important;
+    background:#63676c!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .pdf-document .pdf-cover.pdf-page:after{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    right:18mm!important;
+    bottom:15mm!important;
+    width:56mm!important;
+    height:2px!important;
+    background:#b8141d!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .pdf-cover-brand,
+  .pdf-cover-title{
+    border-color:#111827!important;
+  }
+  .pdf-cover-logo,
+  .pdf-cover-bloom,
+  .pdf-meta,
+  .pdf-info-box,
+  .pdf-but-card,
+  .pdf-fil-section,
+  .pdf-conclusion,
+  .pdf-note,
+  .pdf-tags span,
+  .pdf-linked,
+  .pdf-chantier,
+  .pdf-page2-block h3{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+    color-adjust:exact!important;
+  }
+  .pdf-section h2,
+  .pdf-page2-block h3{
+    background:#eef0f3!important;
+    border-left:4px solid #2f343b!important;
+    color:#111827!important;
+  }
+  .pdf-section.pdf-filrouge h2,
+  .pdf-fil-head,
+  .pdf-table th{
+    background:#2f343b!important;
+    color:#fff!important;
+    border-color:#2f343b!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .pdf-fil-head span{
+    background:#b8141d!important;
+    color:#fff!important;
+  }
+  .pdf-table td{
+    border-color:#d9dde3!important;
+    background:#fff!important;
+  }
+  .pdf-table tbody tr:nth-child(even) td{
+    background:#f7f8fa!important;
+  }
+  .pdf-meta,
+  .pdf-info-box,
+  .pdf-but-card,
+  .pdf-bloom-main,
+  .pdf-fil-section,
+  .pdf-conclusion{
+    background:#fff!important;
+    border-color:#d9dde3!important;
+  }
+  .pdf-note,
+  .pdf-linked,
+  .pdf-tags span,
+  .pdf-person-grid span{
+    background:#f7f8fa!important;
+    border-color:#e5e7eb!important;
+  }
+  .pdf-note.pdf-note-section{
+    background:#fde8ea!important;
+    border-color:#f3b4ba!important;
+    color:#b8141d!important;
+  }
+  .pdf-chantier-place{
+    background:#fff!important;
+    border-left:4px solid #2f343b!important;
+    color:#111827!important;
+  }
+  .pdf-chantier-prep{
+    background:#e8f1fb!important;
+    border-color:#bcd4ee!important;
+    border-left:4px solid #005eb8!important;
+    color:#005eb8!important;
+  }
+  .pdf-but-num{
+    background:#2f343b!important;
+    color:#fff!important;
+  }
+  .pdf-cover-bloom.bloom-memoriser,.pdf-but-card.bloom-memoriser{border-left-color:#399BF2!important}
+  .pdf-cover-bloom.bloom-comprendre,.pdf-but-card.bloom-comprendre{border-left-color:#6BD3ED!important}
+  .pdf-cover-bloom.bloom-appliquer,.pdf-but-card.bloom-appliquer{border-left-color:#70DC56!important}
+  .pdf-cover-bloom.bloom-analyser,.pdf-but-card.bloom-analyser{border-left-color:#FAE91F!important}
+  .pdf-cover-bloom.bloom-evaluer,.pdf-but-card.bloom-evaluer{border-left-color:#FF9F23!important}
+  .pdf-cover-bloom.bloom-creer,.pdf-but-card.bloom-creer{border-left-color:#FF5459!important}
+  .pdf-footer{
+    border-top:1px solid #b8141d!important;
+    color:#4b5563!important;
+    background:transparent!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+}
+
+/* Production 2026-05-07 — Conclusion rich text + aperçu image */
+.preview-modal > .preview-close{
+  position:absolute!important;
+  top:8px!important;
+  right:8px!important;
+  width:38px!important;
+  height:38px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:#fff!important;
+  color:#2f343b!important;
+  font-size:28px!important;
+  line-height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 3px 12px rgba(0,0,0,.35)!important;
+  z-index:20!important;
+}
+.conclusion-verify-rich,
+.general-remark-rich{
+  width:100%;
+  min-height:110px;
+  margin-top:8px;
+  margin-bottom:12px;
+  border:1px solid var(--gray-300);
+  border-radius:var(--radius-sm);
+  background:#fff;
+  padding:10px;
+  outline:none;
+}
+.conclusion-verify-rich:focus,
+.general-remark-rich:focus,
+.conclusion-rich:focus{
+  border-color:var(--sdis-red);
+  box-shadow:0 0 0 3px rgba(184,20,29,.12);
+}
+.verify-rich-block .rich-editor-shell{margin-top:8px}
+.pdf-general-remark{border-left:4px solid #2f343b;padding-left:4mm}
+
+/* Production 2026-05-07 — Login/profil offline + croix aperçu PDF importé */
+.login-register-grid{
+  margin:8px 0 10px;
+  padding:10px;
+  border:1px solid var(--gray-200);
+  border-radius:var(--radius-sm);
+  background:var(--gray-50);
+}
+.pdf-annex-modal-head .preview-close,
+.pdf-page-picker-head .preview-close{
+  position:static!important;
+  flex:0 0 auto!important;
+  width:38px!important;
+  height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.16)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  margin-left:10px!important;
+  font-size:28px!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  z-index:2!important;
+}
+.pdf-annex-modal-head .preview-close:hover,
+.pdf-page-picker-head .preview-close:hover{
+  background:rgba(255,255,255,.28)!important;
+}
+
+/* ======================================================================
+   Correctif PDF navigateur — respiration A4, pied de page et ordre final
+   Demande 07.05.2026 : page 1 conservée, corrections appliquées dès page 2
+   ====================================================================== */
+.pdf-preview-render .pdf-section:not(.pdf-page2-section),
+.pdf-preview-render .pdf-annexes-index{
+  margin-top:18pt;
+}
+.pdf-page2-section .pdf-page2-block + .pdf-page2-block{
+  margin-top:18pt;
+}
+.pdf-page2-section h2,
+.pdf-page2-section .pdf-page2-block > h3,
+.pdf-page2-section .pdf-page2-block h3:first-child{
+  font-size:13pt;
+  line-height:1.1;
+}
+.pdf-page2-generalites h3{display:none!important;}
+.pdf-summary-grid-formateurs{
+  display:block;
+}
+.pdf-summary-grid-formateurs .pdf-info-box{
+  min-height:0;
+}
+.pdf-person-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:2mm;
+}
+.pdf-person-grid-3{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.pdf-person-grid span{
+  display:block;
+  min-height:9mm;
+  padding:2.2mm 2.5mm;
+  border:1px solid #d9dde3;
+  background:#fff;
+  font-size:9.3pt;
+  line-height:1.2;
+  word-break:break-word;
+}
+.pdf-diffusion-grid .pdf-info-box strong{
+  font-weight:750;
+}
+.pdf-line-list{
+  display:grid;
+  gap:1.2mm;
+  font-weight:750;
+}
+.pdf-line-list div{
+  padding:0 0 1mm;
+  border-bottom:1px solid #eef0f3;
+}
+.pdf-line-list div:last-child{border-bottom:0;padding-bottom:0;}
+.pdf-annexes-table .pdf-annex-col-section{width:40%;}
+.pdf-annexes-table .pdf-annex-col-file{width:40%;}
+.pdf-annexes-table .pdf-annex-col-pages{width:10%;}
+.pdf-annexes-table .pdf-annex-col-size{width:10%;}
+.pdf-filrouge{
+  page-break-before:auto;
+  break-before:auto;
+}
+.pdf-fil-section{
+  position:relative;
+}
+.pdf-fil-report-head{
+  display:none;
+  background:#eef0f3;
+  border-bottom:1px solid #d9dde3;
+  color:#111827;
+  font-size:9.4pt;
+  font-weight:850;
+  padding:1.8mm 3mm;
+}
+@media print{
+  .pdf-section:not(.pdf-cover):not(.pdf-page2-section),
+  .pdf-annexes-index{
+    margin-top:18pt;
+  }
+  .pdf-page2-section .pdf-page2-block + .pdf-page2-block{
+    margin-top:18pt;
+  }
+  .pdf-filrouge{
+    page-break-before:auto!important;
+    break-before:auto!important;
+  }
+  .pdf-footer{
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr;
+    column-gap:4mm;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    border-top:1.2pt solid #AF2B1E!important;
+    padding-top:2mm;
+    color:#4b5563;
+    font-size:7pt;
+    text-transform:none!important;
+    background:#fff;
+  }
+  .pdf-footer span{
+    width:auto!important;
+    display:block!important;
+  }
+  .pdf-footer span:nth-child(2){text-align:center;}
+  .pdf-footer span:nth-child(3){text-align:right;}
+  .pdf-footer .pageNumber:before{content:counter(page);}
+  .pdf-footer .pageTotal:before{content:counter(pages);}
+  .pdf-fil-section{
+    break-inside:auto;
+    page-break-inside:auto;
+  }
+  .pdf-fil-head{
+    break-after:avoid;
+  }
+  .pdf-fil-report-head{
+    display:block;
+    break-after:avoid;
+  }
+  .pdf-annexes-index{
+    page-break-before:auto!important;
+    break-before:auto!important;
+  }
+  .pdf-annexes-table td,
+  .pdf-annexes-table th{
+    overflow-wrap:break-word;
+    word-break:normal;
+  }
+}
+
+/* Correctif production — autocomplete Formateur dans les séquences du Plan horaire
+   Objectif : rendre la liste PersonnelSDIS.csv lisible dans les lignes de tableau,
+   notamment pour les séquences manuelles, sans modifier la logique JS existante. */
+.plan-card,
+.plan-card .plan-scroll,
+.plan-card .plan-table,
+.plan-card .plan-table tbody,
+.plan-card .plan-table tr,
+.plan-card .plan-table td{
+  overflow:visible;
+}
+.plan-card .plan-scroll{
+  overflow-x:visible;
+  overflow-y:visible;
+}
+.plan-table{
+  min-width:1120px;
+}
+.plan-table th:nth-child(5),
+.plan-table td:nth-child(5){
+  width:270px;
+  min-width:270px;
+}
+.plan-table .ac-field.ac-inline{
+  min-width:260px;
+}
+.plan-table .ac-field.ac-inline .lookup-suggestions{
+  z-index:1200;
+  left:0;
+  right:auto;
+  min-width:340px;
+  width:max-content;
+  max-width:520px;
+}
+.plan-table .ac-field.ac-inline .addr-suggestion{
+  white-space:normal;
+  overflow:visible;
+}
+.plan-table .ac-field.ac-inline .addr-suggestion span,
+.plan-table .ac-field.ac-inline .addr-suggestion small{
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+  word-break:normal;
+}
+
+/* Correctif production 2026-05-07 — Plan horaire : autocomplete Formateur lisible au milieu du tableau
+   La liste PersonnelSDIS doit passer au-dessus des lignes suivantes, sans être tronquée par les cellules du tableau. */
+.plan-table,
+.plan-table tbody,
+.plan-table tr,
+.plan-table td{
+  overflow:visible;
+}
+.plan-table tr{
+  position:relative;
+  z-index:1;
+}
+.plan-table tr:focus-within{
+  z-index:5000;
+}
+.plan-table td:focus-within{
+  position:relative;
+  z-index:6000;
+}
+.plan-table .ac-field.ac-inline,
+.plan-table .ac-field.ac-inline .ac-box{
+  position:relative;
+  z-index:6100;
+}
+.plan-table .lookup-suggestions{
+  z-index:9999;
+  left:0;
+  right:auto;
+  width:max(100%, 360px);
+  min-width:360px;
+  max-width:min(520px, 70vw);
+  white-space:normal;
+}
+.plan-table .addr-suggestion{
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+}
+
+/* Correctif production 2026-05-07 — Plan horaire : la liste PersonnelSDIS est sortie du tableau
+   pendant la saisie pour éviter qu'elle soit masquée par les lignes suivantes. */
+.lookup-suggestions.plan-ac-floating{
+  position:fixed !important;
+  z-index:2147483000 !important;
+  right:auto !important;
+  max-height:300px !important;
+  overflow:auto !important;
+  background:#fff !important;
+  border:1px solid var(--gray-300) !important;
+  border-radius:var(--radius-sm) !important;
+  box-shadow:0 16px 38px rgba(20,30,50,.28) !important;
+}
+.lookup-suggestions.plan-ac-floating .addr-suggestion{
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  min-height:34px;
+}
+.lookup-suggestions.plan-ac-floating .addr-suggestion span,
+.lookup-suggestions.plan-ac-floating .addr-suggestion small{
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+
+/* Correctif stable 2026-05-07 — Buts Bloom + annexes PDF sans scroll interne */
+.pdf-but-card{
+  border-left-width:7mm!important;
+  border-left-style:solid!important;
+  position:relative!important;
+  overflow:visible!important;
+}
+.pdf-but-card.bloom-memoriser{border-left-color:#399BF2!important}
+.pdf-but-card.bloom-comprendre{border-left-color:#6BD3ED!important}
+.pdf-but-card.bloom-appliquer{border-left-color:#70DC56!important}
+.pdf-but-card.bloom-analyser{border-left-color:#FAE91F!important}
+.pdf-but-card.bloom-evaluer{border-left-color:#FF9F23!important}
+.pdf-but-card.bloom-creer{border-left-color:#FF5459!important}
+.pdf-page2-section .pdf-but-card h3,
+.pdf-but-card h3{
+  border-left:0!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  padding-left:0!important;
+}
+.pdf-page2-section .pdf-but-card h3:before,
+.pdf-page2-section .pdf-but-card h3:after,
+.pdf-but-card h3:before,
+.pdf-but-card h3:after{
+  content:none!important;
+  display:none!important;
+}
+.pdf-annex-page{
+  overflow:hidden!important;
+  page-break-inside:avoid!important;
+  break-inside:avoid!important;
+}
+.pdf-annex-image-wrap{
+  width:100%!important;
+  height:268mm!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:#fff!important;
+}
+.pdf-annex-image-wrap img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  border:0!important;
+  background:#fff!important;
+}
+.pdf-annex-page iframe{
+  overflow:hidden!important;
+  pointer-events:none!important;
+  scrollbar-width:none!important;
+}
+.pdf-annex-page iframe::-webkit-scrollbar{display:none!important}
+@media print{
+  .pdf-but-card{border-left-width:7mm!important;border-left-style:solid!important}
+  .pdf-but-card.bloom-memoriser{border-left-color:#399BF2!important}
+  .pdf-but-card.bloom-comprendre{border-left-color:#6BD3ED!important}
+  .pdf-but-card.bloom-appliquer{border-left-color:#70DC56!important}
+  .pdf-but-card.bloom-analyser{border-left-color:#FAE91F!important}
+  .pdf-but-card.bloom-evaluer{border-left-color:#FF9F23!important}
+  .pdf-but-card.bloom-creer{border-left-color:#FF5459!important}
+  .pdf-annex-image-wrap{height:268mm!important;overflow:hidden!important}
+  .pdf-annex-page iframe{overflow:hidden!important;pointer-events:none!important}
+}
+
+/* Phase 10 — icône explicite de suppression type SF Symbols trash.fill */
+.sf-trash-icon{display:inline-flex;align-items:center;justify-content:center;width:1.05em;height:1.05em;vertical-align:-0.15em;color:currentColor}
+.sf-trash-icon svg{width:1em;height:1em;display:block;fill:currentColor}
+.btn.icon-only .sf-trash-icon{margin:0}
+
+
+/* Version visible pour déploiement Netlify/GitHub */
+.app-version-badge{display:block;margin-top:3px;font-size:11px;line-height:1.2;color:rgba(255,255,255,.78);font-weight:600;letter-spacing:.02em}
+.top-version{font-size:11px;color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px 8px;white-space:nowrap}
+.home-hero-badge small{display:block;margin-top:4px;font-size:11px;font-weight:700;opacity:.85}
+@media(max-width:760px){.top-version{display:none}.app-version-badge{font-size:10px}}
+
+/* Correctif DL Creator Web v6.118 — menu en graisse normale et version rattachée au titre */
+.tab,
+.tab.active,
+.header-menu-btn,
+.header-menu-item,
+.header-menu-item.active{
+  font-weight:400!important;
+}
+.app-version-badge{
+  display:block;
+  margin-top:2px;
+  font-size:11px;
+  line-height:1.2;
+  color:rgba(255,255,255,.82);
+  font-weight:400!important;
+  letter-spacing:.01em;
+}
+.top-version{display:none!important;}
+
+/* Correctif DL Creator Web v6.122 — Phase 12.1 : Information leçon aligné sous SOUS-THÈME
+   La grille active de Généralités est en 12 colonnes : SOUS-THÈME utilise .g-theme = 4 / 8.
+   Le champ Information leçon reprend donc exactement cette colonne afin de ne jamais recouvrir
+   la pyramide de Bloom, qui reste indépendante à gauche. */
+.generalites-grid .g-lesson-info{
+  grid-column:4 / 8 !important;
+  width:100%;
+  max-width:none;
+  justify-self:stretch;
+  position:relative;
+  z-index:2;
+}
+.generalites-grid .g-lesson-info textarea{
+  width:100%;
+  max-width:none;
+  min-width:0;
+  min-height:74px;
+  height:auto;
+  box-sizing:border-box;
+  resize:none;
+  overflow:hidden;
+  line-height:1.35;
+  font-family:inherit;
+  font-size:inherit;
+  padding:8px 10px;
+  border:1px solid var(--gray-300);
+  border-radius:var(--radius-sm);
+  background:#fff;
+  color:var(--gray-900);
+}
+.generalites-grid .g-lesson-info textarea:focus{
+  outline:none;
+  border-color:var(--sdis-red);
+  box-shadow:0 0 0 2px rgba(184,20,29,.12);
+}
+@media(max-width:1100px){
+  .generalites-grid .g-lesson-info{grid-column:3 / 6 !important;}
+}
+@media(max-width:760px){
+  .generalites-grid .g-lesson-info{grid-column:1!important;width:100%;max-width:none;justify-self:stretch;}
+}
+
+/* DL Creator Web v6.124 — Réorganisation discrète des sections FIL ROUGE */
+.filrouge-title-row{
+  display:flex;
+  align-items:end;
+  gap:12px;
+}
+.filrouge-title-field{
+  flex:1 1 360px;
+  min-width:220px;
+}
+.filrouge-reorder{
+  flex:0 0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  align-items:flex-start;
+  min-width:154px;
+}
+.filrouge-reorder-label{
+  font-size:11px;
+  line-height:1.2;
+  font-weight:750;
+  color:var(--gray-600);
+  text-transform:none;
+  white-space:nowrap;
+}
+.filrouge-reorder-actions{
+  display:flex;
+  gap:6px;
+}
+.filrouge-reorder-btn{
+  width:34px;
+  height:34px;
+  padding:0;
+}
+.filrouge-reorder-svg{
+  width:20px;
+  height:20px;
+  display:block;
+}
+.filrouge-reorder-btn:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+  filter:grayscale(1);
+}
+@media(max-width:900px){
+  .filrouge-title-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .filrouge-title-field,
+  .filrouge-reorder{
+    width:100%;
+    min-width:0;
+  }
+  .filrouge-reorder{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+  }
+}
+
+/* v6.125 — Entête général FIL ROUGE */
+.filrouge-general-header{margin:0 0 12px 0;padding:12px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:var(--gray-50)}
+.field-label-with-icon{display:inline-flex;align-items:center;gap:6px;line-height:1.1}
+.field-label-icon{width:14px;height:14px;color:var(--sdis-red);flex:0 0 auto}
+.filrouge-general-header textarea{max-width:100%}
+
+/* Correctif v6.125 — stabilisation des marges lors du copier/coller dans Discussion / Conclusion */
+.conclusion-rich,
+.conclusion-verify-rich,
+.general-remark-rich{
+  box-sizing:border-box;
+  max-width:100%;
+  overflow-x:hidden;
+  overflow-wrap:anywhere;
+}
+.conclusion-rich > p,
+.conclusion-rich > div,
+.conclusion-verify-rich > p,
+.conclusion-verify-rich > div,
+.general-remark-rich > p,
+.general-remark-rich > div{
+  max-width:100%;
+  margin-left:0!important;
+  margin-right:0!important;
+  padding-left:0!important;
+  text-indent:0!important;
+}
+.conclusion-rich ul,
+.conclusion-rich ol,
+.conclusion-verify-rich ul,
+.conclusion-verify-rich ol,
+.general-remark-rich ul,
+.general-remark-rich ol{
+  max-width:100%;
+  margin-left:1.55em!important;
+  padding-left:1.35em!important;
+}
+
+/* v6.127 — PUBLIC CIBLE compact en liste déroulante */
+.generalites-grid .g-public-cible{
+  grid-column:1 / 4;
+  min-width:0;
+}
+.public-cible-card.compact{
+  border:1px solid var(--gray-200);
+  border-radius:10px;
+  background:#fff;
+  padding:8px;
+  display:grid;
+  gap:6px;
+  box-shadow:0 1px 2px rgba(17,24,39,.04);
+}
+.public-cible-select{
+  width:100%;
+  min-height:38px;
+  border:1px solid #d4d9e1;
+  border-radius:8px;
+  background:#fff;
+  color:var(--gray-900);
+  font-weight:700;
+  font-size:14px;
+  padding:8px 10px;
+}
+.public-cible-selected{
+  font-size:12px;
+  line-height:1.25;
+  color:var(--gray-700);
+  background:#fafbfc;
+  border:1px solid #eceff3;
+  border-radius:8px;
+  padding:5px 8px;
+}
+.public-cible-selected span{
+  font-weight:800;
+  color:#2f343b;
+}
+.public-cible-free-text{
+  width:100%;
+  min-height:34px;
+  resize:vertical;
+  font-size:13px;
+  padding:8px 10px;
+}
+@media(max-width:1100px){
+  .generalites-grid .g-public-cible{grid-column:1 / 7;}
+}
+@media(max-width:700px){
+  .public-cible-card.compact{padding:8px;}
+  .public-cible-select{min-height:40px;}
+}
+.pdf-public-list{margin:0 0 1.5mm 4mm;padding:0;font-size:9.2pt;}
+.pdf-public-list li{margin:.5mm 0;}
+.pdf-public-free{font-size:9.2pt;margin-top:1mm;}
+.pdf-public-free span{font-weight:800;color:#2f343b;}
+
+
+/* v6.128 — ajustements UX PUBLIC CIBLE + uniformisation police */
+.public-cible-select,
+.public-cible-select option,
+.public-cible-select optgroup{
+  font-weight:400!important;
+}
+.generalites-grid .g-public-cible{
+  align-self:end;
+}
+.public-cible-card.compact{
+  padding:6px 8px;
+  gap:4px;
+}
+.public-cible-selected{
+  font-weight:400;
+}
+.rich,
+.rich p,
+.rich li,
+textarea,
+.conclusion-rich,
+.conclusion-verify-rich,
+.general-remark-rich,
+textarea.auto-expand{
+  font-size:11px;
+}
+.filrouge-section-title,
+.section-title,
+input.section-title{
+  font-size:inherit!important;
+}
+
+/* v6.128 — correctif production final PUBLIC CIBLE + tailles réelles 11 */
+.generalites-grid .g-public-cible{
+  grid-column:4 / 8 !important;
+  width:100% !important;
+  max-width:none !important;
+  justify-self:stretch !important;
+  align-self:end !important;
+}
+.public-cible-card.compact{
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  padding:0 !important;
+  margin:0 !important;
+  display:block !important;
+  box-shadow:none !important;
+}
+.public-cible-select{
+  width:100% !important;
+  max-width:none !important;
+  height:var(--field-h) !important;
+  min-height:var(--field-h) !important;
+  padding:0 10px !important;
+  border:1px solid var(--gray-300) !important;
+  border-radius:var(--radius-sm) !important;
+  background:#fff !important;
+  color:var(--gray-900) !important;
+  font-family:Arial,Helvetica,sans-serif !important;
+  font-size:11pt !important;
+  font-weight:400 !important;
+  line-height:normal !important;
+}
+.public-cible-select option,
+.public-cible-select optgroup{
+  font-family:Arial,Helvetica,sans-serif !important;
+  font-size:11pt !important;
+  font-weight:400 !important;
+}
+.public-cible-selected,
+.public-cible-free-text{
+  display:none !important;
+}
+.form-grid input:not(.section-title-input),
+.form-grid select,
+.form-grid textarea,
+.form-grid .field,
+.plan-table input,
+.plan-table select,
+.material-table input,
+.material-table select,
+.material-table textarea,
+.distribution-grid input,
+.distribution-grid select,
+.distribution-grid textarea,
+.conclusion-card input,
+.conclusion-card select,
+.conclusion-card textarea,
+.objectif-item input,
+.objectif-item select,
+.objectif-item textarea,
+.rich,
+.rich p,
+.rich div,
+.rich li,
+.conclusion-rich,
+.conclusion-rich p,
+.conclusion-rich div,
+.conclusion-rich li,
+.conclusion-verify-rich,
+.conclusion-verify-rich p,
+.conclusion-verify-rich div,
+.conclusion-verify-rich li,
+.general-remark-rich,
+.general-remark-rich p,
+.general-remark-rich div,
+.general-remark-rich li,
+.filrouge-section textarea:not(.section-title-input),
+.filrouge-section .rich,
+.filrouge-section .rich p,
+.filrouge-section .rich div,
+.filrouge-section .rich li,
+textarea.auto-expand:not(.section-title-input){
+  font-size:11pt !important;
+  font-family:Arial,Helvetica,sans-serif !important;
+}
+.section-title-input,
+.filrouge-title-field input.section-title-input{
+  font-size:inherit;
+}
+@media(max-width:1100px){
+  .generalites-grid .g-public-cible{grid-column:3 / 6 !important;}
+}
+@media(max-width:760px){
+  .generalites-grid .g-public-cible{grid-column:1 !important;}
+}
+
+/* DL Creator Web v6.12 — Mots clés centralisés + conclusion */
+.generalites-grid .g-lesson-info{
+  grid-column:4 / 12 !important;
+}
+.generalites-grid .g-lesson-info textarea{
+  min-height:112px;
+}
+.keyword-field{position:relative;}
+.keyword-suggestions{
+  display:none;
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(100% - 18px);
+  z-index:320;
+  background:#fff;
+  border:1px solid var(--gray-200);
+  border-radius:10px;
+  box-shadow:0 12px 28px rgba(20,30,50,.18);
+  padding:6px;
+  max-height:220px;
+  overflow:auto;
+}
+.keyword-suggestions.open{display:grid;gap:4px;}
+.keyword-suggestion{
+  border:0;
+  background:#fff;
+  color:var(--gray-900);
+  text-align:left;
+  padding:8px 10px;
+  border-radius:7px;
+  font-weight:750;
+  cursor:pointer;
+}
+.keyword-suggestion:hover,.keyword-suggestion:focus{background:var(--sdis-red-soft);outline:none;}
+.keyword-library .toolbar{align-items:center;gap:8px;flex-wrap:wrap;}
+.keyword-add-input{min-width:260px;max-width:420px;}
+.keyword-index{display:grid;gap:12px;margin-top:12px;}
+.keyword-letter{border:1px solid var(--gray-200);border-radius:12px;background:#fff;padding:12px;}
+.keyword-letter h4{margin:0 0 8px;color:var(--sdis-red);font-size:15px;letter-spacing:.04em;}
+.keyword-chip-list{display:flex;flex-wrap:wrap;gap:8px;}
+.keyword-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gray-200);border-radius:999px;background:#f7f8fa;padding:6px 10px;font-weight:800;}
+.keyword-chip button{border:0;background:transparent;color:var(--sdis-red);font-size:18px;line-height:1;cursor:pointer;font-weight:900;}
+.conclusion-duration{min-width:96px;}
+.conclusion-duration input{width:56px;text-align:center;font-weight:850;}
+.conclusion-sequence td{background:#fff5f6!important;}
+@media(max-width:1100px){
+  .generalites-grid .g-lesson-info{grid-column:1 / 7 !important;}
+}
+@media(max-width:760px){
+  .generalites-grid .g-lesson-info{grid-column:1!important;}
+  .keyword-suggestions{position:static;margin-top:6px;}
+  .keyword-add-input{min-width:0;width:100%;}
+}
+
+
+/* DL Creator Web v7.00 — aération légère Matériel & véhicules + habilitations */
+.material-table input,
+.material-table select,
+.material-table .ac-input{
+  min-height:calc(var(--field-h) + 2px);
+  padding-top:7px;
+  padding-bottom:7px;
+}
+.material-table td{padding-top:7px;padding-bottom:7px;vertical-align:middle}
+.logistics-remarks-card textarea{min-height:calc(var(--field-h) + 2px)}
+.habilitations-table input,.habilitations-table select{min-height:var(--field-h);width:100%}
+.habilitations-table th:nth-child(4),.habilitations-table td:nth-child(4){width:92px;text-align:center}
+.habilitations-table th:nth-child(5),.habilitations-table td:nth-child(5){width:48px;text-align:center}
+.habilitations-table input[type="checkbox"]{width:auto;min-height:auto;transform:scale(1.05)}
+
+/* DL Creator Web v7.00 — version stricte + remise à zéro DL */
+.section-title-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.section-title-row h3{
+  margin:0;
+}
+.reset-dl-btn{
+  white-space:nowrap;
+  border-color:rgba(184,20,29,.28);
+}
+@media(max-width:760px){
+  .section-title-row{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .reset-dl-btn{
+    width:100%;
+  }
+}
+
+/* DL Creator Web v7.01 — droits institutionnels + mots clés professionnels */
+.reset-dl-btn{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.reset-dl-icon{display:inline-flex;align-items:center;justify-content:center;color:#b8141d;font-size:1.05em;line-height:1;font-weight:800}
+.keyword-tools{gap:8px;align-items:center;flex-wrap:wrap}
+.keyword-library .square-keyword-box{border:1px solid var(--border,#d8dde3);border-radius:0;padding:12px;background:#fff}
+.keyword-letter{border:1px solid rgba(0,0,0,.06);border-radius:0;margin:0 0 10px;padding:8px;background:rgba(248,249,251,.8)}
+.keyword-letter h4{margin:0 0 6px;font-size:.86rem;color:#b8141d;letter-spacing:.04em}
+.keyword-chip-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px 8px;align-items:start}
+.keyword-chip.selectable{display:flex;align-items:center;gap:5px;min-height:28px;border-radius:0}
+.keyword-chip.selectable input{width:auto;min-height:auto;margin:0}
+.keyword-chip.selectable span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.keyword-chip.selectable.selected{outline:2px solid rgba(184,20,29,.35);background:rgba(184,20,29,.07)}
+.habilitations-table th:nth-child(1){width:34%}
+.habilitations-table th:nth-child(2){width:20%}
+.habilitations-table th:nth-child(3){width:26%}
+.habilitations-table .lookup-suggestions.open{display:block;position:absolute;z-index:20;max-height:260px;overflow:auto;background:#fff;border:1px solid var(--border,#d8dde3);box-shadow:0 12px 26px rgba(0,0,0,.13)}
+.hab-person{position:relative}
+.rights-help{margin-top:12px;padding:10px;border-left:4px solid #b8141d;background:rgba(184,20,29,.06);font-size:.9rem}
+@media (max-width:760px){.keyword-chip-list{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}.habilitations-table{font-size:.86rem}}
+
+/* v7.02 — mots clés badges + lisibilité bibliothèque */
+.keyword-tag-editor{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-height:42px;width:100%;border:1px solid var(--border,#d8dde3);border-radius:0;background:#fff;padding:6px 8px}
+.keyword-tag-editor:focus-within{outline:2px solid rgba(184,20,29,.18);border-color:rgba(184,20,29,.55)}
+.keyword-tag-editor input[data-tags-input]{border:0;outline:0;min-width:150px;flex:1;padding:6px 4px;background:transparent;min-height:28px}
+.keyword-tag-badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.keyword-dl-chip{border-radius:0;background:#f7f8fa;border:1px solid var(--gray-200,#d8dde3);font-weight:800;letter-spacing:.01em;max-width:100%;white-space:normal;overflow:visible;text-overflow:clip;word-break:normal;overflow-wrap:anywhere}
+.keyword-dl-chip .keyword-remove{order:-1;color:var(--sdis-red,#b8141d);font-size:16px;line-height:1;padding:0 2px}
+.keyword-library .keyword-chip-list{grid-template-columns:repeat(auto-fit,minmax(170px,max-content));justify-content:start;align-items:start}
+.keyword-library .keyword-chip.selectable{width:auto;max-width:100%;white-space:normal;overflow:visible;text-overflow:clip;word-break:normal;overflow-wrap:anywhere;padding:6px 10px}
+.keyword-library .keyword-chip.selectable span{overflow:visible;text-overflow:clip;white-space:normal;word-break:normal;overflow-wrap:anywhere}
+.rights-summary{margin-top:6px;border:1px solid rgba(184,20,29,.16);background:rgba(184,20,29,.055);padding:6px 8px;font-size:.82rem;line-height:1.35;color:#26313d}
+.disabled-field{background:#f2f3f5!important;color:#6c7680!important;cursor:not-allowed}
+@media (max-width:760px){.keyword-library .keyword-chip-list{grid-template-columns:1fr}.keyword-tag-editor input[data-tags-input]{min-width:110px}}
+
+/* v7.03 — confirmations métier brouillon / droits */
+.institutional-confirm h3{margin:0 0 10px;color:var(--sdis-red);font-size:18px}.institutional-confirm p{margin:0 0 16px;line-height:1.45;color:var(--gray-800);white-space:normal}.institutional-confirm.warn{border-top:4px solid var(--sdis-red)}.institutional-confirm .modal-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}@media(max-width:560px){.institutional-confirm .modal-actions .btn{width:100%}}
+
+
+/* v7.04 — mécanisme de secours habilitations */
+.recovery-card{border-left:4px solid var(--sdis-red, #c00000)}
+.recovery-confirm label{display:block;margin-top:10px;font-weight:700;text-transform:uppercase;font-size:.78rem;letter-spacing:.03em}
+.recovery-confirm input{width:100%;margin-top:4px}
+
+/* v7.05 — Gestion des accès : hiérarchie, explications et droits structurels */
+.habilitations-card .toolbar{margin-top:12px}
+.function-rights-matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin:12px 0;padding:10px;border:1px solid var(--border,#d8dde3);background:#f8f9fb}
+.function-right-chip{display:flex;flex-direction:column;gap:2px;border-left:4px solid var(--sdis-red,#b8141d);background:#fff;padding:8px 10px;min-height:48px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.function-right-chip strong{font-size:.86rem;color:#26313d}.function-right-chip small{font-size:.78rem;color:#6c7680;font-weight:800;letter-spacing:.02em}
+.habilitation-row.rank-4 td{background:rgba(184,20,29,.045)}
+.habilitation-row.rank-3 td{background:rgba(255,248,230,.65)}
+.habilitations-table td{vertical-align:top}.habilitations-table .small-note{font-size:.78rem;margin-top:6px;padding:5px 7px}
+.rights-summary details,.rights-summary{border-radius:0}.rights-summary summary{cursor:pointer;color:#26313d}.rights-summary p{margin:6px 0 0;line-height:1.35}.rights-manual{font-size:.78rem;margin-top:6px;padding:6px 8px}
+.rights-details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:12px}
+.rights-detail{border:1px solid rgba(0,0,0,.08);background:#fff;padding:10px}.rights-detail summary{cursor:pointer;color:#26313d}.rights-detail p{margin:8px 0;line-height:1.4}.rights-detail ul{margin:6px 0 0 18px;padding:0}.rights-detail li{margin:3px 0}
+@media(max-width:760px){.function-rights-matrix,.rights-details-grid{grid-template-columns:1fr}.habilitations-table th:nth-child(1),.habilitations-table th:nth-child(2),.habilitations-table th:nth-child(3){width:auto}}
+
+/* v7.06 — Gestion des accès / Profil utilisateur / Mes DL / Outils */
+.profile-layout{display:grid;gap:14px}
+.profile-summary-card{display:flex;align-items:center;gap:16px;border-left:5px solid var(--sdis-red,#b8141d)}
+.profile-summary-card h2{margin:2px 0 4px;font-size:1.35rem;color:#1f2933}
+.profile-avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--sdis-red,#b8141d);color:#fff;font-weight:900;font-size:1.4rem;box-shadow:0 6px 14px rgba(0,0,0,.12)}
+.profile-form-card .form-grid{align-items:end}
+.profile-rights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:10px}
+.profile-rights-grid p{margin:0;padding:10px;border:1px solid var(--border,#d8dde3);background:#f8f9fb;min-height:62px}
+.access-actions{min-width:170px}.access-actions .btn{margin:0 0 6px;width:100%;justify-content:center}.access-actions .icon-only{width:auto;min-width:38px;float:right}
+.habilitations-table th:nth-child(1){width:30%}.habilitations-table th:nth-child(2){width:18%}.habilitations-table th:nth-child(3){width:34%}.habilitations-table th:nth-child(4){width:18%}
+.personal-dl-table th,.personal-dl-table td{vertical-align:top}.personal-dl-table .row-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.personal-dl-table .btn.small{padding:6px 9px}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}.tools-grid .home-card{text-align:left;width:100%}
+.header-menu-panel .header-menu-item[data-header-action="motscles"],.header-menu-panel .header-menu-item[data-header-action="import"]{margin-left:16px}
+@media(max-width:760px){.profile-summary-card{align-items:flex-start}.personal-dl-table{font-size:.86rem}.access-actions .btn{width:auto}.tools-grid{grid-template-columns:1fr}}
+
+
+/* DL Creator Web v7.07 — accueil compact, Mes DL visible, multi-horaires et confort matériel */
+.home-grid{gap:11px}
+.home-card{min-height:142px;padding:15px 16px;border-radius:14px}
+.home-card-icon{width:66px;height:66px;border-radius:14px;font-size:34px;flex:0 0 66px}
+.home-card-icon .sf-symbol{width:48px;height:48px}
+.home-card strong{font-size:14px}.home-card small{font-size:12.5px}
+.home-personal-dl{margin-top:12px}
+.home-card-personal{width:100%;min-height:84px;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px;border-left:5px solid var(--sdis-red)}
+.home-card-personal span:last-child{display:flex;flex-direction:column;gap:4px}
+.plan-tranches-card{border:1px solid var(--gray-200);background:var(--gray-50);border-left:4px solid var(--sdis-red);border-radius:var(--radius);padding:12px;margin:10px 0 12px}
+.plan-tranches-card>strong{display:block;color:var(--sdis-red);font-size:12px;letter-spacing:.05em;margin-bottom:8px}
+.plan-tranches-grid{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px;margin-bottom:6px}
+.plan-tranches-grid label{margin:0}.plan-tranches-grid input{background:#fff}
+.plan-table-multi th,.plan-table-multi td{vertical-align:middle}.plan-table-multi .plan-range-cell{font-weight:750;white-space:nowrap;text-align:center;color:var(--gray-800);background:#fffdfd}.plan-table-multi .plan-duration-input{max-width:82px}.plan-table-multi .plan-theme-input{min-width:170px}
+.material-section .material-table input,.material-section .material-table select,.material-section .autocomplete-wrap input{height:calc(var(--field-h) * 1.12);padding-top:2px;padding-bottom:2px}
+.material-section .material-table td{padding-top:9px;padding-bottom:9px}
+@media(max-width:1050px){.plan-tranches-grid{grid-template-columns:repeat(2,minmax(120px,1fr))}}
+@media(max-width:720px){.home-card{min-height:118px}.home-card-icon{width:58px;height:58px}.home-card-icon .sf-symbol{width:42px;height:42px}.home-card-personal{align-items:flex-start}.plan-tranches-grid{grid-template-columns:1fr}.plan-table-multi{min-width:980px}}
+
+/* v7.08 — accueil et plan horaire */
+.home-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+@media(max-width:1050px){.home-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:720px){.home-grid{grid-template-columns:1fr;}}
+.plan-tranche-proposal{display:grid;grid-template-columns:160px 160px auto 1fr;gap:10px;align-items:end;margin:0 0 10px}
+.plan-tranche-proposal label{margin:0;font-size:12px;font-weight:800;color:var(--gray-700);text-transform:uppercase;letter-spacing:.03em}
+.plan-tranche-proposal input{margin-top:4px;background:#fff}
+.plan-tranche-proposal .btn{height:38px;align-self:end}
+.plan-tranche-proposal .muted{align-self:center;padding-bottom:8px}
+.plan-tranches-grid{align-items:end}
+.plan-tranches-grid label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:800;color:var(--gray-700);text-transform:uppercase;letter-spacing:.03em}
+.plan-table-multi{min-width:1180px;table-layout:auto}
+.plan-table-multi .plan-theme-header{min-width:320px;width:34%}
+.plan-table-multi .plan-theme-cell{min-width:320px;width:34%}
+.plan-table-multi .plan-theme-input{min-width:300px;width:100%;white-space:normal;line-height:1.3;resize:vertical;min-height:42px}
+.plan-table-multi .plan-range-cell{line-height:1.25;white-space:normal;min-width:96px}
+.pdf-plan-table-compact-hours th:nth-child(1){width:42%}
+.pdf-plan-table-compact-hours th:nth-child(2){width:12mm}
+.pdf-plan-table-compact-hours th:nth-child(3){width:36%}
+.pdf-plan-table-compact-hours th:nth-child(4){width:16%}
+.pdf-plan-table-compact-hours th:nth-child(5){width:16%}
+.pdf-plan-section-cell{font-weight:700;word-break:normal;overflow-wrap:anywhere}
+.pdf-plan-hours-cell span{display:inline-block;margin:0 3mm 1mm 0;white-space:nowrap}
+.pdf-plan-hours-cell strong{font-size:7.2pt;margin-right:1mm;color:#2f343b}
+@media(max-width:900px){.plan-tranche-proposal{grid-template-columns:1fr 1fr}.plan-tranche-proposal .muted{grid-column:1/-1;padding-bottom:0}}
+
+/* DL Creator Web v7.09 — plan horaire multi-passages compact et dynamique */
+.plan-tranche-compact{display:flex;align-items:end;gap:10px;flex-wrap:wrap}
+.plan-tranche-compact .btn{height:38px;white-space:nowrap}
+.plan-passages-count{max-width:150px;margin:0!important;font-size:12px;font-weight:800;color:var(--gray-700);text-transform:uppercase;letter-spacing:.03em}
+.plan-passages-count input{max-width:82px;background:#fff}
+.plan-tranches-inline{display:flex;align-items:end;gap:8px;flex-wrap:wrap}
+.plan-tranches-inline label{display:flex;flex-direction:column;gap:3px;margin:0;font-size:11px;font-weight:900;color:var(--gray-700);text-transform:uppercase;letter-spacing:.04em}
+.plan-time-compact{width:88px!important;min-width:88px!important;max-width:88px!important;text-align:center;background:#fff;font-weight:800;font-variant-numeric:tabular-nums}
+.plan-table-multi.plan-hours-1{min-width:860px}
+.plan-table-multi.plan-hours-2{min-width:960px}
+.plan-table-multi.plan-hours-3{min-width:1060px}
+.plan-table-multi.plan-hours-4{min-width:1160px}
+.plan-table-multi .plan-duration-header,.plan-table-multi .plan-duration-input{min-width:92px;width:92px;max-width:110px}
+.plan-table-multi .plan-theme-input[readonly]{cursor:default;caret-color:transparent;background:#f9fafb;color:var(--gray-900);font-size:12px;line-height:1.22;resize:none}
+.plan-table-multi .plan-theme-input[readonly]:focus{outline:none;border-color:var(--gray-200);box-shadow:none}
+.plan-table-multi .plan-range-cell{font-variant-numeric:tabular-nums;font-size:12px;min-width:88px}
+.pdf-plan-table-dynamic.pdf-plan-hours-1 th:nth-child(1){width:46%}
+.pdf-plan-table-dynamic.pdf-plan-hours-2 th:nth-child(1){width:40%}
+.pdf-plan-table-dynamic.pdf-plan-hours-3 th:nth-child(1){width:34%}
+.pdf-plan-table-dynamic.pdf-plan-hours-4 th:nth-child(1){width:30%}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell{font-weight:800;text-align:center;white-space:normal;line-height:1.18;font-variant-numeric:tabular-nums}
+@media(max-width:720px){.plan-tranche-compact{align-items:stretch}.plan-tranche-compact .btn{width:100%}.plan-time-compact{width:82px!important;min-width:82px!important}.plan-table-multi.plan-hours-1,.plan-table-multi.plan-hours-2,.plan-table-multi.plan-hours-3,.plan-table-multi.plan-hours-4{min-width:980px}}
+
+/* DL Creator Web v7.09 correctif — sessions horaires compactes */
+.plan-passages-count{max-width:135px}
+.plan-passages-count input{max-width:70px;text-align:center;font-weight:800}
+.plan-table-multi .plan-duration-header,
+.plan-table-multi .plan-duration-input{min-width:64px!important;width:64px!important;max-width:72px!important}
+.plan-table-multi .plan-theme-cell{background:#eef0f2!important}
+.plan-table-multi .plan-theme-input[readonly]{background:#eef0f2!important;border-color:#d7dbe0;color:var(--gray-900);font-size:11.5px;line-height:1.18}
+.plan-table-multi .plan-hour-header{width:66px!important;min-width:66px!important;max-width:66px!important;text-align:center;padding-left:6px;padding-right:6px}
+.sf-clock-fill-icon{width:18px;height:18px;display:inline-block;vertical-align:middle;color:var(--sdis-red)}
+.plan-table-multi .plan-range-cell{width:66px!important;min-width:66px!important;max-width:66px!important;padding:6px 4px;text-align:center;line-height:1.12;white-space:normal;font-size:12px;font-weight:850;background:#fff}
+.plan-range-cell span{display:block;font-variant-numeric:tabular-nums}
+.plan-range-cell span+span{margin-top:2px}
+.plan-range-empty{color:var(--gray-400);font-weight:700}
+.plan-table-multi.plan-hours-1{min-width:790px}
+.plan-table-multi.plan-hours-2{min-width:850px}
+.plan-table-multi.plan-hours-3{min-width:915px}
+.plan-table-multi.plan-hours-4{min-width:980px}
+.pdf-plan-hour-header{text-align:center;width:9mm!important}
+.pdf-plan-hour-icon{width:11px;height:11px;color:#b00020}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell{width:9mm!important;min-width:9mm!important;max-width:10mm!important;padding-left:1mm;padding-right:1mm;text-align:center;line-height:1.05;white-space:normal}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell span{display:block;margin:0;font-variant-numeric:tabular-nums}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell span+span{margin-top:.5mm}
+.pdf-plan-table-dynamic.pdf-plan-hours-1 th:nth-child(1){width:48%}
+.pdf-plan-table-dynamic.pdf-plan-hours-2 th:nth-child(1){width:44%}
+.pdf-plan-table-dynamic.pdf-plan-hours-3 th:nth-child(1){width:40%}
+.pdf-plan-table-dynamic.pdf-plan-hours-4 th:nth-child(1){width:36%}
+@media(max-width:720px){.plan-table-multi.plan-hours-1,.plan-table-multi.plan-hours-2,.plan-table-multi.plan-hours-3,.plan-table-multi.plan-hours-4{min-width:920px}.plan-table-multi .plan-hour-header,.plan-table-multi .plan-range-cell{width:62px!important;min-width:62px!important;max-width:62px!important}}
+
+/* DL Creator Web v7.10 — tranches horaires lisibles, remarques autoextensibles et zone rose uniforme */
+.plan-tranches-card{
+  background:#fff1f3!important;
+  border-color:#f2c7cd!important;
+  border-left-color:var(--sdis-red)!important;
+}
+.plan-tranche-compact{
+  background:#fff1f3;
+}
+.plan-tranches-inline{
+  align-items:center;
+}
+.plan-tranche-time-label{
+  align-items:center;
+  justify-content:flex-end;
+}
+.plan-tranche-icon-label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:18px;
+  color:var(--sdis-red);
+}
+.plan-tranche-input-icon{
+  width:18px;
+  height:18px;
+  color:var(--sdis-red);
+}
+.plan-time-compact{
+  height:36px!important;
+  width:86px!important;
+  min-width:86px!important;
+  max-width:86px!important;
+}
+.plan-table-multi tbody tr,
+.plan-table-multi tbody td{
+  background:#fff1f3!important;
+}
+.plan-table-multi tbody tr.auto-sequence,
+.plan-table-multi tbody tr.auto-sequence td{
+  background:#fff1f3!important;
+}
+.plan-table-multi .plan-theme-input[readonly]{
+  min-height:var(--field-h)!important;
+  height:var(--field-h)!important;
+  line-height:1.12!important;
+  padding-top:8px!important;
+  padding-bottom:8px!important;
+  font-size:11.5px!important;
+  overflow:hidden;
+  background:#fff!important;
+}
+.plan-table-multi .plan-duration-input{
+  min-width:78px!important;
+  width:78px!important;
+  max-width:86px!important;
+  text-align:center;
+}
+.plan-remarks-input{
+  width:100%;
+  min-height:var(--field-h);
+  height:var(--field-h);
+  resize:none;
+  overflow:hidden;
+  line-height:1.25;
+  background:#fff;
+}
+.plan-table-multi .plan-range-cell{
+  background:#fff6f7!important;
+}
+.pdf-plan-hour-inline-icon,
+.pdf-plan-hour-icon{
+  color:var(--sdis-red,#b8141d);
+}
+.sr-only{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
+  border:0!important;
+}
+
+/* DL Creator Web v7.11 — correction calcul sessions, alignements et lisibilité du plan horaire */
+.plan-table-multi .plan-range-cell{
+  vertical-align:middle!important;
+  text-align:center!important;
+  background:#fff6f7!important;
+}
+.plan-table-multi .plan-range-cell span{
+  display:block;
+  width:100%;
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+.plan-table-multi .plan-theme-input[readonly]{
+  background:#f3f5f7!important;
+  border-color:#cfd6de!important;
+  color:var(--gray-900)!important;
+}
+.plan-table-multi .plan-theme-cell{
+  background:#fff1f3!important;
+}
+.plan-table-multi .plan-formateur-cell,
+.plan-table-multi .plan-remarks-cell{
+  min-width:300px;
+  width:300px;
+}
+.plan-table-multi .plan-formateur-cell .ac-field.ac-inline,
+.plan-table-multi .plan-formateur-cell .ac-box,
+.plan-table-multi .plan-remarks-input{
+  min-width:300px!important;
+  width:300px!important;
+  max-width:300px!important;
+}
+.plan-table-multi .plan-remarks-input{
+  background:#fff!important;
+}
+@media(max-width:720px){
+  .plan-table-multi .plan-formateur-cell,
+  .plan-table-multi .plan-remarks-cell,
+  .plan-table-multi .plan-formateur-cell .ac-field.ac-inline,
+  .plan-table-multi .plan-formateur-cell .ac-box,
+  .plan-table-multi .plan-remarks-input{
+    min-width:260px!important;
+    width:260px!important;
+    max-width:260px!important;
+  }
+}
+
+
+/* DL Creator Web v7.12 — stabilisation définitive Plan horaire */
+.plan-table-multi tbody tr{
+  height:calc(var(--field-h) + 18px);
+}
+.plan-table-multi th,
+.plan-table-multi td{
+  vertical-align:middle!important;
+}
+.plan-table-multi .plan-theme-cell,
+.plan-table-multi .plan-range-cell,
+.plan-table-multi .plan-formateur-cell,
+.plan-table-multi .plan-remarks-cell{
+  vertical-align:middle!important;
+}
+.plan-table-multi .plan-theme-input[readonly]{
+  font-weight:900!important;
+  min-height:var(--field-h)!important;
+  height:var(--field-h)!important;
+  max-height:var(--field-h)!important;
+  display:block;
+  resize:none!important;
+  overflow:hidden!important;
+}
+.plan-table-multi .plan-range-cell{
+  height:var(--field-h)!important;
+  padding-top:4px!important;
+  padding-bottom:4px!important;
+}
+.plan-table-multi .plan-range-cell span{
+  line-height:1.08!important;
+}
+.plan-table-multi .plan-formateur-cell input,
+.plan-table-multi .plan-remarks-input{
+  height:var(--field-h)!important;
+  min-height:var(--field-h)!important;
+  max-height:var(--field-h)!important;
+  box-sizing:border-box;
+}
+.plan-table-multi .plan-remarks-input{
+  resize:vertical!important;
+  overflow:auto!important;
+  line-height:1.2!important;
+  padding-top:8px!important;
+  padding-bottom:8px!important;
+}
+.plan-table-multi .plan-duration-input{
+  height:var(--field-h)!important;
+  min-height:var(--field-h)!important;
+}
+.pdf-plan-section-cell{
+  font-weight:900!important;
+}
+.pdf-plan-table-dynamic td,
+.pdf-plan-table-dynamic th{
+  vertical-align:middle!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell{
+  vertical-align:middle!important;
+}
+
+
+/* DL Creator Web v7.16 — REMARQUE Plan horaire compacte, taille 1 et autoextensible */
+.plan-table-multi .plan-remarks-input{
+  font-size:10px!important;
+  line-height:1.15!important;
+  min-height:var(--field-h)!important;
+  height:var(--field-h);
+  max-height:none!important;
+  resize:none!important;
+  overflow:hidden!important;
+  padding-top:8px!important;
+  padding-bottom:8px!important;
+}
+.plan-table-multi .plan-remarks-cell{
+  vertical-align:middle!important;
+}
+.pdf-plan-table-dynamic td:last-child{
+  font-size:8pt;
+  line-height:1.15;
+}
+
+
+/* DL Creator Web v7.16 — PDF institutionnel final */
+.pdf-eval-table td{font-size:11pt!important;line-height:1.22!important;}
+.pdf-eval-table th{font-size:8pt!important;}
+.pdf-formateurs-cible .pdf-public-list{margin:0;padding-left:4mm;}
+.pdf-formateurs-cible .pdf-public-list li{margin:.7mm 0;break-inside:avoid;page-break-inside:avoid;}
+.pdf-diffusion-tags-section{break-inside:avoid;page-break-inside:avoid;}
+.pdf-diffusion-tags-section h2,.pdf-diffusion-tags-section .pdf-subtitle{break-after:avoid;page-break-after:avoid;}
+.pdf-diffusion-block,.pdf-tags-block,.pdf-keep-together{break-inside:avoid;page-break-inside:avoid;}
+.pdf-tags-block{margin-top:4mm;}
+.pdf-plan-hour-header{background:#2f343b!important;color:#fff!important;text-align:center!important;vertical-align:middle!important;padding:0!important;}
+.pdf-plan-hour-header .sf-clock-fill-icon,.pdf-plan-hour-icon{display:block!important;margin:auto!important;width:13px!important;height:13px!important;color:#fff!important;}
+.pdf-plan-table-dynamic th,.pdf-plan-table-dynamic td{vertical-align:middle!important;}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell{vertical-align:middle!important;text-align:center!important;}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell span{display:block!important;text-align:center!important;}
+.pdf-plan-table-dynamic .pdf-plan-section-cell{font-weight:900!important;}
+.pdf-footer{box-sizing:border-box;}
+@media screen{
+  .pdf-preview-render .pdf-document>.pdf-section.pdf-page{padding:12mm 12mm 22mm!important;}
+  .pdf-preview-render .pdf-cover.pdf-page{padding:10mm 8mm 22mm 12mm!important;}
+  .pdf-preview-render .pdf-footer{display:grid!important;grid-template-columns:1fr 1fr 1fr;column-gap:4mm;position:absolute;left:12mm;right:12mm;bottom:7mm;border-top:1.2pt solid #AF2B1E!important;padding-top:2mm;color:#4b5563;background:#fff!important;font-size:7.2pt;}
+  .pdf-preview-render .pdf-footer span{display:block;width:auto!important;}
+  .pdf-preview-render .pdf-footer span:nth-child(2){text-align:center;}
+  .pdf-preview-render .pdf-footer span:nth-child(3){text-align:right;}
+}
+@media print{
+  .pdf-document>.pdf-section.pdf-page{padding:12mm 12mm 22mm!important;}
+  .pdf-cover.pdf-page{padding:10mm 8mm 22mm 12mm!important;}
+  .pdf-footer{display:grid!important;grid-template-columns:1fr 1fr 1fr;column-gap:4mm;position:fixed!important;left:12mm!important;right:12mm!important;bottom:6mm!important;border-top:1.2pt solid #AF2B1E!important;padding-top:2mm!important;color:#4b5563!important;background:#fff!important;font-size:7.2pt!important;line-height:1.2!important;text-transform:none!important;z-index:1000;}
+  .pdf-footer span{display:block!important;width:auto!important;}
+  .pdf-footer span:nth-child(2){text-align:center!important;}
+  .pdf-footer span:nth-child(3){text-align:right!important;}
+  .pdf-footer .pageNumber:before{content:counter(page);}
+  .pdf-footer .pageTotal:before{content:counter(pages);}
+  .pdf-diffusion-tags-section{break-inside:avoid!important;page-break-inside:avoid!important;}
+  .pdf-diffusion-tags-section h2,.pdf-diffusion-tags-section .pdf-subtitle{break-after:avoid!important;page-break-after:avoid!important;}
+  .pdf-diffusion-block,.pdf-tags-block{break-inside:avoid!important;page-break-inside:avoid!important;}
+  .pdf-plan-hour-header,.pdf-plan-hour-header *{print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important;}
+}
+
+/* Correctif export PDF v7.16 — aperçu écran strictement aligné sur impression */
+.pdf-screen-footer{box-sizing:border-box;}
+@media screen{
+  .pdf-preview-render .pdf-footer{display:none!important;}
+  .pdf-preview-render .pdf-document>.pdf-page,
+  .pdf-preview-render .pdf-document>.pdf-section.pdf-page,
+  .pdf-preview-render .pdf-document>.pdf-cover.pdf-page,
+  .pdf-preview-render .pdf-annexes-index,
+  .pdf-preview-render .pdf-annex-page{
+    width:210mm!important;
+    min-height:297mm!important;
+    margin:0 auto 12mm!important;
+    background:#fff!important;
+    box-shadow:0 10px 28px rgba(15,23,42,.18)!important;
+    box-sizing:border-box!important;
+    position:relative!important;
+    overflow:visible!important;
+  }
+  .pdf-preview-render .pdf-document>.pdf-section.pdf-page,
+  .pdf-preview-render .pdf-annexes-index{
+    padding:12mm 12mm 22mm!important;
+  }
+  .pdf-preview-render .pdf-cover.pdf-page{
+    padding:10mm 8mm 22mm 12mm!important;
+  }
+  .pdf-preview-render .pdf-screen-footer{
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr;
+    column-gap:4mm;
+    position:absolute!important;
+    left:12mm!important;
+    right:12mm!important;
+    bottom:6mm!important;
+    border-top:1.2pt solid #AF2B1E!important;
+    padding-top:2mm!important;
+    color:#4b5563!important;
+    background:#fff!important;
+    font-size:7.2pt!important;
+    line-height:1.2!important;
+    z-index:5!important;
+  }
+  .pdf-preview-render .pdf-screen-footer span{display:block!important;width:auto!important;}
+  .pdf-preview-render .pdf-screen-footer span:nth-child(2){text-align:center!important;}
+  .pdf-preview-render .pdf-screen-footer span:nth-child(3){text-align:right!important;}
+}
+@media print{
+  .pdf-screen-footer{display:none!important;}
+  html,body{width:210mm!important;margin:0!important;padding:0!important;background:#fff!important;}
+  @page{size:A4;margin:0;}
+  .pdf-body{background:#fff!important;margin:0!important;padding:0!important;}
+  .pdf-document{width:210mm!important;margin:0!important;padding:0!important;background:#fff!important;box-shadow:none!important;}
+  .pdf-document>.pdf-page,
+  .pdf-document>.pdf-section.pdf-page,
+  .pdf-document>.pdf-cover.pdf-page,
+  .pdf-annexes-index,
+  .pdf-annex-page{
+    width:210mm!important;
+    min-height:297mm!important;
+    margin:0!important;
+    background:#fff!important;
+    box-shadow:none!important;
+    box-sizing:border-box!important;
+    overflow:visible!important;
+    break-after:page!important;
+    page-break-after:always!important;
+  }
+  .pdf-document>.pdf-section.pdf-page,
+  .pdf-annexes-index{padding:12mm 12mm 22mm!important;}
+  .pdf-cover.pdf-page{padding:10mm 8mm 22mm 12mm!important;}
+  .pdf-document>.pdf-page:last-of-type{break-after:auto!important;page-break-after:auto!important;}
+  .pdf-footer{
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr;
+    column-gap:4mm;
+    position:fixed!important;
+    left:12mm!important;
+    right:12mm!important;
+    bottom:6mm!important;
+    border-top:1.2pt solid #AF2B1E!important;
+    padding-top:2mm!important;
+    color:#4b5563!important;
+    background:#fff!important;
+    font-size:7.2pt!important;
+    line-height:1.2!important;
+    text-transform:none!important;
+    z-index:1000!important;
+  }
+  .pdf-footer span{display:block!important;width:auto!important;}
+  .pdf-footer span:nth-child(2){text-align:center!important;}
+  .pdf-footer span:nth-child(3){text-align:right!important;}
+  .pdf-footer .pageNumber:before{content:counter(page)!important;}
+  .pdf-footer .pageTotal:before{content:counter(pages)!important;}
+}
+
+/* DL Creator Web v7.16 — correctif réel export PDF : plan horaire, fil rouge paginé, footer */
+.pdf-plan-table-dynamic{
+  table-layout:fixed!important;
+  width:100%!important;
+  max-width:100%!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-theme-col{width:auto!important;}
+.pdf-plan-table-dynamic .pdf-plan-duration-col{width:13mm!important;}
+.pdf-plan-table-dynamic .pdf-plan-hour-col{width:18mm!important;}
+.pdf-plan-table-dynamic .pdf-plan-formateur-col{width:26mm!important;}
+.pdf-plan-table-dynamic .pdf-plan-remarques-col{width:28mm!important;}
+.pdf-plan-table-dynamic th,
+.pdf-plan-table-dynamic td{
+  overflow:visible!important;
+  vertical-align:middle!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-hour-header{
+  width:18mm!important;
+  min-width:18mm!important;
+  max-width:18mm!important;
+  height:10mm!important;
+  padding:0!important;
+  text-align:center!important;
+  vertical-align:middle!important;
+  background:#2f343b!important;
+  color:#fff!important;
+  line-height:1!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-hour-header .sf-clock-fill-icon,
+.pdf-plan-table-dynamic .pdf-plan-hour-icon{
+  display:inline-block!important;
+  width:5mm!important;
+  height:5mm!important;
+  margin:0 auto!important;
+  color:#fff!important;
+  --sf-clock-hand:#2f343b;
+  vertical-align:middle!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell{
+  width:18mm!important;
+  min-width:18mm!important;
+  max-width:18mm!important;
+  padding:1.8mm 1mm!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  line-height:1.16!important;
+  font-size:8pt!important;
+  font-weight:850!important;
+  font-variant-numeric:tabular-nums!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell span{
+  display:block!important;
+  margin:0!important;
+  white-space:nowrap!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-hours-cell span+span{margin-top:.8mm!important;}
+.pdf-plan-table-dynamic .pdf-plan-section-cell{
+  font-weight:900!important;
+  word-break:normal!important;
+  overflow-wrap:anywhere!important;
+}
+.pdf-plan-table-dynamic .pdf-plan-remarques-cell{
+  font-size:8pt!important;
+  line-height:1.14!important;
+}
+
+.pdf-filrouge h2{break-after:avoid!important;page-break-after:avoid!important;}
+.pdf-fil-section{
+  border:0!important;
+  margin:0 0 4mm!important;
+  break-inside:auto!important;
+  page-break-inside:auto!important;
+  background:#fff!important;
+}
+.pdf-fil-table{
+  width:100%!important;
+  border-collapse:collapse!important;
+  table-layout:fixed!important;
+  break-inside:auto!important;
+  page-break-inside:auto!important;
+}
+.pdf-fil-table thead{display:table-header-group!important;}
+.pdf-fil-table tbody{display:table-row-group!important;}
+.pdf-fil-table tr,
+.pdf-fil-table td,
+.pdf-fil-table th{
+  break-inside:auto!important;
+  page-break-inside:auto!important;
+}
+.pdf-fil-table th,
+.pdf-fil-table td{
+  border:1px solid #d9dde3!important;
+  padding:0!important;
+  text-align:left!important;
+  vertical-align:top!important;
+}
+.pdf-fil-head{
+  display:grid!important;
+  grid-template-columns:22mm 1fr!important;
+  align-items:stretch!important;
+  background:#2f343b!important;
+  color:#fff!important;
+  break-after:avoid!important;
+  page-break-after:avoid!important;
+}
+.pdf-fil-head span{
+  display:grid!important;
+  place-items:center!important;
+  background:#b8141d!important;
+  color:#fff!important;
+  font-weight:900!important;
+  font-size:11.5pt!important;
+  min-height:10mm!important;
+}
+.pdf-fil-head h3{
+  display:flex!important;
+  align-items:center!important;
+  margin:0!important;
+  padding:2.3mm 3mm!important;
+  font-size:11.5pt!important;
+  line-height:1.15!important;
+  text-transform:uppercase!important;
+  color:#fff!important;
+  letter-spacing:.25px!important;
+}
+.pdf-fil-head h3 em{
+  margin-left:1.5mm!important;
+  font-style:normal!important;
+  font-weight:850!important;
+  opacity:.9!important;
+  text-transform:none!important;
+}
+.pdf-fil-report-head{display:none!important;}
+.pdf-fil-section-suite .pdf-rich-content{padding-top:3mm!important;}
+.pdf-rich-content{
+  padding:3mm!important;
+  overflow:visible!important;
+  word-break:normal!important;
+  overflow-wrap:anywhere!important;
+}
+.pdf-linked,.pdf-chantier,.pdf-prep,.pdf-note{
+  break-inside:avoid!important;
+  page-break-inside:avoid!important;
+}
+.pdf-tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:2mm!important;
+  align-items:flex-start!important;
+  break-inside:auto!important;
+}
+.pdf-tags span{
+  display:inline-flex!important;
+  align-items:center!important;
+  max-width:100%!important;
+  border:1px solid #cfd4dc!important;
+  border-left:3px solid #b8141d!important;
+  background:#f7f8fa!important;
+  border-radius:999px!important;
+  padding:1.4mm 3mm!important;
+  font-weight:850!important;
+  font-size:8.2pt!important;
+  line-height:1.15!important;
+  overflow-wrap:anywhere!important;
+  break-inside:avoid!important;
+}
+.pdf-section h2,
+.pdf-section h3,
+.pdf-subtitle{
+  break-after:avoid!important;
+  page-break-after:avoid!important;
+}
+.pdf-table thead{display:table-header-group!important;}
+.pdf-table tr{break-inside:avoid!important;page-break-inside:avoid!important;}
+@media print{
+  @page{size:A4;margin:0!important;}
+  .pdf-body{margin:0!important;padding:0!important;}
+  .pdf-document{width:210mm!important;margin:0!important;}
+  .pdf-document>.pdf-page,
+  .pdf-document>.pdf-section.pdf-page,
+  .pdf-document>.pdf-cover.pdf-page,
+  .pdf-annexes-index,
+  .pdf-annex-page{
+    min-height:297mm!important;
+    padding-bottom:24mm!important;
+  }
+  .pdf-plan-table-dynamic .pdf-plan-hour-header,
+  .pdf-plan-table-dynamic .pdf-plan-hour-header *,
+  .pdf-fil-head,
+  .pdf-fil-head *{
+    print-color-adjust:exact!important;
+    -webkit-print-color-adjust:exact!important;
+  }
+  .pdf-footer{
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr!important;
+    position:fixed!important;
+    left:12mm!important;
+    right:12mm!important;
+    bottom:6mm!important;
+    border-top:1.2pt solid #b8141d!important;
+    padding-top:2mm!important;
+    background:#fff!important;
+    color:#4b5563!important;
+    font-size:7.2pt!important;
+    z-index:9999!important;
+  }
+}
+@media screen{
+  .pdf-preview-render .pdf-screen-footer{
+    border-top:1.2pt solid #b8141d!important;
+  }
+}
+
+/* Correctif ciblé page blanche PDF v7.16 — page 3 vide avant FIL ROUGE
+   Cause réelle : la section page 2 (.pdf-page2-section) est un bloc .pdf-page
+   qui force break-after:page avec une hauteur A4 stricte. Si son contenu atteint
+   la limite imprimable du navigateur, le saut forcé crée une page physique vide
+   avant la section FIL ROUGE. On neutralise uniquement le saut forcé APRÈS la
+   page 2, sans toucher au PLAN HORAIRE ni au rendu des sections suivantes. */
+@media print{
+  .pdf-document > .pdf-section.pdf-page.pdf-page2-section{
+    min-height:auto!important;
+    height:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+  }
+  .pdf-document > .pdf-section.pdf-page.pdf-page2-section + .pdf-section.pdf-page.pdf-filrouge{
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+}
+
+/* DL Creator Web v7.16 — Plan horaire : formateur global de la leçon */
+.plan-tranche-compact-with-trainer{
+  align-items:flex-end!important;
+  gap:12px!important;
+}
+.plan-global-trainer-label{
+  display:flex!important;
+  align-items:flex-end;
+  gap:8px;
+  min-width:320px;
+  max-width:420px;
+  flex:1 1 340px;
+  margin:0!important;
+}
+.plan-global-trainer-icon{
+  width:34px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--sdis-red,#b8141d);
+  flex:0 0 34px;
+}
+.plan-global-trainer-sf{
+  width:25px;
+  height:25px;
+  color:var(--sdis-red,#b8141d);
+}
+.plan-global-trainer-field{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  min-width:0;
+  flex:1 1 auto;
+}
+.plan-global-trainer-title{
+  font-size:11px;
+  font-weight:900;
+  color:var(--gray-700);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.plan-global-trainer-field .ac-field.ac-inline,
+.plan-global-trainer-field .ac-box,
+.plan-global-trainer-field .ac-input{
+  width:100%!important;
+  min-width:220px!important;
+  max-width:none!important;
+}
+.plan-global-trainer-field .ac-input{
+  background:#fff!important;
+  height:38px!important;
+}
+.pdf-plan-global-trainer{
+  display:flex;
+  gap:2mm;
+  align-items:center;
+  margin:0 0 2mm;
+  padding:1.2mm 1.8mm;
+  border-left:3px solid #b8141d;
+  background:#fff1f3;
+  font-size:8.5pt;
+  line-height:1.15;
+}
+.pdf-plan-global-trainer strong{
+  text-transform:uppercase;
+  letter-spacing:.25px;
+  color:#7a1118;
+}
+.pdf-plan-global-trainer span{
+  font-weight:700;
+}
+@media(max-width:720px){
+  .plan-global-trainer-label{min-width:100%;max-width:none;}
+}
+
+/* Correctif ciblé page blanche interne FIL ROUGE v7.16
+   Cause : deux blocs FIL ROUGE successifs sont déjà des pages A4 complètes.
+   Le break-after global appliqué à chaque .pdf-page peut ajouter un saut
+   navigateur supplémentaire entre FIL ROUGE et FIL ROUGE (SUITE). On neutralise
+   uniquement ce saut forcé pour les pages FIL ROUGE ; la hauteur A4 conserve
+   la pagination et les sections suivantes restent inchangées. */
+@media print{
+  .pdf-document > .pdf-section.pdf-page.pdf-filrouge{
+    break-after:auto!important;
+    page-break-after:auto!important;
+  }
+  .pdf-document > .pdf-section.pdf-page.pdf-filrouge + .pdf-section.pdf-page.pdf-filrouge{
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+}
+
+/* DL Creator Web v7.17 — aperçu PDF responsive + export WYSIWYG depuis le DOM aperçu */
+.pdf-preview-frame{overflow:hidden!important;}
+@media screen{
+  .pdf-preview-render{overflow-x:hidden!important;}
+  .pdf-preview-render .pdf-document{
+    width:auto!important;
+    max-width:100%!important;
+    margin:0 auto!important;
+    overflow:visible!important;
+  }
+  .pdf-preview-render .pdf-document>.pdf-page,
+  .pdf-preview-render .pdf-document>.pdf-section.pdf-page,
+  .pdf-preview-render .pdf-document>.pdf-cover.pdf-page,
+  .pdf-preview-render .pdf-annexes-index,
+  .pdf-preview-render .pdf-annex-page{
+    transform-origin:top center!important;
+    max-width:none!important;
+  }
+}
+@media print{
+  .pdf-preview-render .pdf-document>.pdf-page,
+  .pdf-preview-render .pdf-document>.pdf-section.pdf-page,
+  .pdf-preview-render .pdf-document>.pdf-cover.pdf-page,
+  .pdf-preview-render .pdf-annexes-index,
+  .pdf-preview-render .pdf-annex-page{
+    transform:none!important;
+    margin:0!important;
+  }
+  .pdf-wysiwyg-export .pdf-document{
+    width:210mm!important;
+    margin:0!important;
+    padding:0!important;
+  }
+}
+
+/* DL Creator Web v8.01 — annexes PDF imprimables sans iframe
+   Correction strictement limitée au rendu print/aperçu des annexes PDF :
+   les PDF intégrés sont rendus en images PNG par page avant impression. */
+.pdf-annex-render-error{
+  width:100%!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:3mm!important;
+  border:1px dashed #b8141d!important;
+  background:#fff5f5!important;
+  color:#7a1118!important;
+  text-align:center!important;
+  font-size:10pt!important;
+  line-height:1.25!important;
+  padding:10mm!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.pdf-annex-render-error strong{font-size:11pt!important;text-transform:uppercase!important;letter-spacing:.2px!important;}
+.pdf-annex-render-error span{display:block!important;color:#4b5563!important;}
+.pdf-annex-page object,
+.pdf-annex-page embed,
+.pdf-annex-page iframe{
+  display:none!important;
+  width:0!important;
+  height:0!important;
+  overflow:hidden!important;
+  visibility:hidden!important;
+}
+.pdf-annex-page{
+  width:210mm!important;
+  height:297mm!important;
+  min-height:297mm!important;
+  max-height:297mm!important;
+  margin:0!important;
+  padding:8mm 8mm 18mm!important;
+  box-sizing:border-box!important;
+  background:#fff!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  break-before:page!important;
+  page-break-before:always!important;
+  break-after:page!important;
+  page-break-after:always!important;
+  break-inside:avoid!important;
+  page-break-inside:avoid!important;
+}
+.pdf-annex-page:last-child{
+  break-after:auto!important;
+  page-break-after:auto!important;
+}
+.pdf-annex-page-head{
+  flex:0 0 auto!important;
+  margin:0 0 4mm!important;
+  padding:0 0 2mm!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.pdf-annex-image-wrap{
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  flex:1 1 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  border:0!important;
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+}
+.pdf-annex-image-wrap img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  border:0!important;
+  margin:0!important;
+  padding:0!important;
+  background:#fff!important;
+  box-sizing:border-box!important;
+}
+@media screen{
+  .pdf-preview-render .pdf-annex-page{
+    height:297mm!important;
+    min-height:297mm!important;
+    max-height:297mm!important;
+    overflow:hidden!important;
+  }
+}
+@media print{
+  .pdf-document > .pdf-annexes-index{
+    break-before:page!important;
+    page-break-before:always!important;
+    break-after:page!important;
+    page-break-after:always!important;
+    overflow:hidden!important;
+  }
+  .pdf-document > .pdf-annex-page{
+    width:210mm!important;
+    height:297mm!important;
+    min-height:297mm!important;
+    max-height:297mm!important;
+    padding:8mm 8mm 18mm!important;
+    margin:0!important;
+    overflow:hidden!important;
+    break-before:page!important;
+    page-break-before:always!important;
+    break-after:page!important;
+    page-break-after:always!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  .pdf-document > .pdf-annex-page:last-child{
+    break-after:auto!important;
+    page-break-after:auto!important;
+  }
+  .pdf-annex-page object,
+  .pdf-annex-page embed,
+  .pdf-annex-page iframe{
+    display:none!important;
+  }
+  .pdf-annex-image-wrap{
+    height:auto!important;
+    min-height:0!important;
+    flex:1 1 auto!important;
+    overflow:hidden!important;
+  }
+}
+
+/* DL Creator Web v8.02 — correctifs strictement limités print PDF
+   - page blanche résiduelle après CONCLUSION
+   - index ANNEXES PDF directement après MOTS-CLÉS/TAGS
+   - PUBLIC CIBLE sans puce
+   - VERSION alignée à gauche
+   - zones d'identification page de garde légèrement grisées */
+.pdf-public-cible-text,
+.pdf-public-cible-text span{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  list-style:none!important;
+  text-align:left!important;
+}
+.pdf-public-cible-text::before,
+.pdf-public-cible-text span::before{
+  content:none!important;
+  display:none!important;
+}
+.pdf-cover-grid-v2 .pdf-meta-version,
+.pdf-cover-grid-v2 .pdf-meta-version span,
+.pdf-cover-grid-v2 .pdf-meta-version strong{
+  text-align:left!important;
+}
+.pdf-cover-grid-v2 .pdf-meta{
+  background:#f3f4f6!important;
+}
+.pdf-cover-grid-v2 .pdf-meta strong{
+  text-align:left!important;
+}
+.pdf-cover-grid-v2 .pdf-meta .pdf-public-list,
+.pdf-cover-grid-v2 .pdf-meta .pdf-public-list li,
+.pdf-page2-generalites .pdf-public-list,
+.pdf-page2-generalites .pdf-public-list li{
+  list-style:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+.pdf-cover-grid-v2 .pdf-meta .pdf-public-list li::marker,
+.pdf-page2-generalites .pdf-public-list li::marker{
+  content:""!important;
+}
+.pdf-annexes-index{
+  min-height:0!important;
+  height:auto!important;
+  padding:0!important;
+  margin-top:4mm!important;
+  margin-bottom:0!important;
+  page-break-before:auto!important;
+  break-before:auto!important;
+  page-break-after:auto!important;
+  break-after:auto!important;
+  page-break-inside:auto!important;
+  break-inside:auto!important;
+  overflow:visible!important;
+}
+.pdf-annexes-index h2{
+  margin-top:0!important;
+}
+@media screen{
+  .pdf-preview-render .pdf-annexes-index{
+    width:auto!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:4mm 0 0!important;
+    box-shadow:none!important;
+    background:#fff!important;
+    position:static!important;
+    overflow:visible!important;
+  }
+}
+@media print{
+  .pdf-document > .pdf-section.pdf-page:not(.pdf-cover):not(.pdf-page2-section):not(.pdf-filrouge):not(.pdf-annex-page){
+    min-height:auto!important;
+    height:auto!important;
+  }
+  .pdf-document > .pdf-section.pdf-page:not(.pdf-cover):not(.pdf-page2-section):not(.pdf-filrouge) + .pdf-section.pdf-page:not(.pdf-annex-page){
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+  .pdf-document > .pdf-section.pdf-page:has(.pdf-conclusion){
+    break-after:auto!important;
+    page-break-after:auto!important;
+    overflow:visible!important;
+  }
+  .pdf-document > .pdf-section.pdf-page:has(.pdf-conclusion) + .pdf-section.pdf-page{
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+  .pdf-document > .pdf-annexes-index{
+    width:auto!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:0!important;
+    margin-top:4mm!important;
+    break-before:auto!important;
+    page-break-before:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    overflow:visible!important;
+  }
+  .pdf-document > .pdf-annexes-index + .pdf-annex-page{
+    break-before:page!important;
+    page-break-before:always!important;
+  }
+  .pdf-cover-grid-v2 .pdf-meta{
+    background:#f3f4f6!important;
+    print-color-adjust:exact!important;
+    -webkit-print-color-adjust:exact!important;
+  }
+  .pdf-public-cible-text,
+  .pdf-public-cible-text span{
+    list-style:none!important;
+  }
+}
+@media print{
+  .pdf-document > .pdf-section.pdf-page.pdf-conclusion-section{
+    min-height:auto!important;
+    height:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    overflow:visible!important;
+  }
+  .pdf-document > .pdf-section.pdf-page.pdf-conclusion-section + .pdf-section.pdf-page.pdf-materiel-section{
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+}
+@media print{
+  .pdf-document > .pdf-section.pdf-page.pdf-diffusion-tags-section{
+    min-height:auto!important;
+    height:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    overflow:visible!important;
+  }
+  .pdf-document > .pdf-section.pdf-page.pdf-diffusion-tags-section + .pdf-annexes-index{
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+}
+
+/* DL Creator Web v8.02.1 — correction stricte aperçu/impression ANNEXES PDF
+   L’index des annexes est un bloc de contenu de la section Diffusion/Mots-clés,
+   pas une page A4 autonome. Les pages réelles d’annexes gardent leur saut forcé. */
+.pdf-diffusion-tags-section .pdf-annexes-index{
+  display:block!important;
+  width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  padding:0!important;
+  margin:5mm 0 0!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  position:static!important;
+  overflow:visible!important;
+  break-before:auto!important;
+  page-break-before:auto!important;
+  break-after:auto!important;
+  page-break-after:auto!important;
+  break-inside:auto!important;
+  page-break-inside:auto!important;
+}
+.pdf-diffusion-tags-section .pdf-annexes-index h2{
+  margin:0 0 2mm!important;
+}
+.pdf-diffusion-tags-section .pdf-annexes-index p{
+  margin:0 0 2mm!important;
+  font-size:8.6pt!important;
+}
+@media screen{
+  .pdf-preview-render .pdf-diffusion-tags-section .pdf-annexes-index{
+    width:100%!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:5mm 0 0!important;
+    padding:0!important;
+    box-shadow:none!important;
+    background:#fff!important;
+    position:static!important;
+    overflow:visible!important;
+  }
+}
+@media print{
+  .pdf-document > .pdf-section.pdf-page.pdf-diffusion-tags-section{
+    min-height:297mm!important;
+    height:auto!important;
+    break-after:page!important;
+    page-break-after:always!important;
+    overflow:hidden!important;
+  }
+  .pdf-document > .pdf-section.pdf-page.pdf-diffusion-tags-section .pdf-annexes-index{
+    width:100%!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    margin:5mm 0 0!important;
+    padding:0!important;
+    break-before:auto!important;
+    page-break-before:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    overflow:visible!important;
+  }
+  .pdf-document > .pdf-section.pdf-page.pdf-diffusion-tags-section + .pdf-annex-page{
+    break-before:page!important;
+    page-break-before:always!important;
+  }
+}
+
+/* DL Creator Web v8.03 — footer institutionnel unique + anti-titre orphelin */
+.pdf-print-page-footer{box-sizing:border-box;}
+.pdf-section-head-with-first-block{
+  break-inside:avoid!important;
+  page-break-inside:avoid!important;
+  break-after:auto!important;
+  page-break-after:auto!important;
+}
+.pdf-section-head-with-first-block h2,
+.pdf-section-head-with-first-block .pdf-subtitle,
+.pdf-section-head-with-first-block table{
+  break-inside:avoid!important;
+  page-break-inside:avoid!important;
+}
+.pdf-section-head-with-first-block h2{
+  break-after:avoid!important;
+  page-break-after:avoid!important;
+}
+@media screen{
+  .pdf-preview-render .pdf-screen-footer.pdf-print-page-footer{
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr!important;
+    column-gap:4mm!important;
+    position:absolute!important;
+    left:12mm!important;
+    right:12mm!important;
+    bottom:6mm!important;
+    border-top:1.2pt solid #b8141d!important;
+    padding-top:2mm!important;
+    color:#4b5563!important;
+    background:#fff!important;
+    font-size:7.2pt!important;
+    line-height:1.2!important;
+    text-transform:none!important;
+    z-index:20!important;
+  }
+  .pdf-preview-render .pdf-screen-footer.pdf-print-page-footer span{display:block!important;width:auto!important;min-width:0!important;overflow-wrap:anywhere!important;}
+  .pdf-preview-render .pdf-screen-footer.pdf-print-page-footer span:nth-child(2){text-align:center!important;}
+  .pdf-preview-render .pdf-screen-footer.pdf-print-page-footer span:nth-child(3){text-align:right!important;white-space:nowrap!important;}
+}
+@media print{
+  .pdf-footer{display:none!important;}
+  .pdf-screen-footer.pdf-print-page-footer{
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr!important;
+    column-gap:4mm!important;
+    position:absolute!important;
+    left:12mm!important;
+    right:12mm!important;
+    bottom:6mm!important;
+    border-top:1.2pt solid #b8141d!important;
+    padding-top:2mm!important;
+    color:#4b5563!important;
+    background:#fff!important;
+    font-size:7.2pt!important;
+    line-height:1.2!important;
+    text-transform:none!important;
+    z-index:9999!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .pdf-screen-footer.pdf-print-page-footer span{display:block!important;width:auto!important;min-width:0!important;overflow-wrap:anywhere!important;}
+  .pdf-screen-footer.pdf-print-page-footer span:nth-child(2){text-align:center!important;}
+  .pdf-screen-footer.pdf-print-page-footer span:nth-child(3){text-align:right!important;white-space:nowrap!important;}
+  .pdf-document>.pdf-page,
+  .pdf-document>.pdf-section.pdf-page,
+  .pdf-document>.pdf-cover.pdf-page,
+  .pdf-annexes-index,
+  .pdf-annex-page{
+    position:relative!important;
+    padding-bottom:24mm!important;
+  }
+  .pdf-materiel-section h2{break-after:avoid!important;page-break-after:avoid!important;}
+  .pdf-materiel-section .pdf-section-head-with-first-block{
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+}
+
+/* DL Creator Web v8.04 — aperçu A4 réel print-identique
+   Objectif strict : supprimer le rendu preview responsive/scale et afficher les
+   mêmes feuilles A4 DOM que celles imprimées par window.print(). */
+.pdf-preview-frame{
+  overflow:auto!important;
+  background:#e5e7eb!important;
+}
+@media screen{
+  .pdf-preview-render,
+  .pdf-preview-render body{
+    background:#e5e7eb!important;
+  }
+  .pdf-preview-render .pdf-document{
+    width:210mm!important;
+    min-width:210mm!important;
+    max-width:210mm!important;
+    margin:0 auto!important;
+    padding:12mm 0!important;
+    background:transparent!important;
+    overflow:visible!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-cover.pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-annex-page{
+    width:210mm!important;
+    height:297mm!important;
+    min-height:297mm!important;
+    max-height:297mm!important;
+    margin:0 auto 12mm!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    transform:none!important;
+    transform-origin:initial!important;
+    background:#fff!important;
+    position:relative!important;
+    box-shadow:0 10px 28px rgba(15,23,42,.18)!important;
+    break-after:page!important;
+    page-break-after:always!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page.pdf-diffusion-tags-section,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page.pdf-conclusion-section,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page.pdf-materiel-section{
+    padding:12mm 12mm 24mm!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-cover.pdf-page{
+    padding:10mm 8mm 24mm 12mm!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-annex-page{
+    padding:8mm 8mm 18mm!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  .pdf-preview-render .pdf-diffusion-tags-section .pdf-annexes-index{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    margin:5mm 0 0!important;
+    padding:0!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+    break-before:auto!important;
+    page-break-before:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-page:last-of-type,
+  .pdf-preview-render .pdf-document > .pdf-annex-page:last-child{
+    break-after:auto!important;
+    page-break-after:auto!important;
+  }
+  .pdf-preview-render .pdf-page-overflow.pdf-page-debug::before{
+    content:"DÉBORDEMENT A4 — page " attr(data-preview-page);
+    position:absolute;
+    top:2mm;
+    right:2mm;
+    z-index:99999;
+    padding:1mm 2mm;
+    border:1px solid #b8141d;
+    background:#fff5f5;
+    color:#b8141d;
+    font-size:7pt;
+    font-weight:900;
+  }
+  .pdf-preview-render.pdf-pagination-debug .pdf-document > .pdf-page::after,
+  .pdf-preview-render.pdf-pagination-debug .pdf-document > .pdf-annex-page::after{
+    content:"A4 210 × 297 mm — page " attr(data-preview-page);
+    position:absolute;
+    left:12mm;
+    bottom:15mm;
+    z-index:99998;
+    padding:1mm 2mm;
+    border:1px dashed rgba(184,20,29,.55);
+    color:#b8141d;
+    background:rgba(255,255,255,.9);
+    font-size:7pt;
+    font-weight:800;
+    pointer-events:none;
+  }
+}
+@media print{
+  .pdf-preview-render .pdf-document{
+    width:210mm!important;
+    min-width:210mm!important;
+    max-width:210mm!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+    overflow:visible!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-cover.pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-annex-page{
+    width:210mm!important;
+    height:297mm!important;
+    min-height:297mm!important;
+    max-height:297mm!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    transform:none!important;
+    background:#fff!important;
+    position:relative!important;
+    box-shadow:none!important;
+    break-after:page!important;
+    page-break-after:always!important;
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page.pdf-diffusion-tags-section,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page.pdf-conclusion-section,
+  .pdf-preview-render .pdf-document > .pdf-section.pdf-page.pdf-materiel-section{
+    padding:12mm 12mm 24mm!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-cover.pdf-page{
+    padding:10mm 8mm 24mm 12mm!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-annex-page{
+    padding:8mm 8mm 18mm!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  .pdf-preview-render .pdf-document > .pdf-page:last-of-type,
+  .pdf-preview-render .pdf-document > .pdf-annex-page:last-child{
+    break-after:auto!important;
+    page-break-after:auto!important;
+  }
+  .pdf-preview-render .pdf-diffusion-tags-section .pdf-annexes-index{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    margin:5mm 0 0!important;
+    padding:0!important;
+    overflow:visible!important;
+    break-before:auto!important;
+    page-break-before:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+  }
+  .pdf-preview-render.pdf-pagination-debug .pdf-document > .pdf-page::after,
+  .pdf-preview-render.pdf-pagination-debug .pdf-document > .pdf-annex-page::after,
+  .pdf-preview-render .pdf-page-overflow.pdf-page-debug::before{
+    display:none!important;
+    content:none!important;
+  }
+}
+
+/* v8.30 — bandeau mode production/pilote, sans impact print/PDF */
+.system-banner{
+  max-width:1180px;
+  margin:10px auto 0;
+  padding:8px 14px;
+  border:1px solid rgba(180,0,0,.18);
+  border-radius:10px;
+  background:rgba(180,0,0,.06);
+  color:#4a1a1a;
+  font-size:.92rem;
+}
+.system-banner strong{color:#b00000;}
+@media print{.system-banner{display:none!important;}}
+
+/* v8.81 — champ version DL : signalement local sans impact PDF */
+input.invalid,
+select.invalid,
+textarea.invalid{
+  outline:2px solid #b00020;
+  background:#fff5f5;
+}
+
+/* v9.02 — Gestion des accès / profil / Mes DL */
+.habilitation-identity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.35rem;margin:.45rem 0}.habilitation-identity-grid label{display:flex;flex-direction:column;gap:.2rem}.hab-person-input{min-width:220px}.btn.disabled,[disabled].btn{opacity:.55;cursor:not-allowed}.personal-dl-table .row-actions{display:flex;flex-wrap:wrap;gap:.35rem}.keyword-library .alert.info{margin:.6rem 0}.profile-form-card input[readonly],.profile-form-card select:disabled{background:rgba(127,127,127,.08);color:var(--text-muted,#68707a)}
+
+/* v9.10 — GitHub/Netlify readiness + garde-fous accès/stockage */
+.habilitations-card .access-last-send{margin-top:8px;color:#687386;line-height:1.25}
+.habilitations-card .toolbar .btn{white-space:nowrap}
+.plan-card .plan-scroll{overflow-x:visible!important;max-width:100%}
+.plan-table-multi{width:100%!important;min-width:0!important;table-layout:fixed!important}
+.plan-table-multi.plan-hours-1,.plan-table-multi.plan-hours-2,.plan-table-multi.plan-hours-3,.plan-table-multi.plan-hours-4{min-width:0!important}
+.plan-table-multi .plan-theme-header,.plan-table-multi .plan-theme-cell{width:24%!important;min-width:0!important}
+.plan-table-multi.plan-hours-4 .plan-theme-header,.plan-table-multi.plan-hours-4 .plan-theme-cell{width:22%!important}
+.plan-table-multi .plan-theme-input{min-width:0!important;width:100%!important}
+.plan-table-multi .plan-duration-header,.plan-table-multi .plan-duration-input{width:56px!important;min-width:0!important;max-width:60px!important}
+.plan-table-multi .plan-hour-header,.plan-table-multi .plan-range-cell{width:58px!important;min-width:0!important;max-width:58px!important;padding-left:3px!important;padding-right:3px!important;font-size:11px!important}
+.plan-table-multi .plan-formateur-cell{width:22%!important;min-width:0!important}
+.plan-table-multi .plan-formateur-cell .ac-field.ac-inline,.plan-table-multi .plan-formateur-cell .ac-box{min-width:0!important;width:100%!important}
+.plan-table-multi .plan-remarks-cell{width:18%!important;min-width:0!important}
+.plan-table-multi.plan-hours-4 .plan-remarks-cell{width:14%!important}
+.plan-table-multi .plan-remarks-input{width:100%!important;min-width:0!important;resize:vertical;overflow:hidden}
+.plan-table-multi th,.plan-table-multi td{padding:6px 5px!important;box-sizing:border-box;overflow-wrap:anywhere}
+.plan-table-multi td:last-child,.plan-table-multi th:last-child{width:52px!important;max-width:52px!important}
+.keyword-library #keywordSearchInput:focus{outline:2px solid rgba(184,20,29,.18);border-color:rgba(184,20,29,.55)}

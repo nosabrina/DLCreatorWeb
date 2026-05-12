@@ -1,0 +1,46 @@
+# Secrets / environment
+.env
+.env.*
+!.env.example
+server/.env
+server/.env.*
+!server/.env.example
+!server/.env.pilot.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Dependencies / build
+node_modules/
+dist/
+build/
+.netlify/
+
+# Logs / temporary
+logs/
+*.log
+temp/
+tmp/
+.cache/
+
+# Exports locaux / données navigateur
+audit-*.json
+audit-local*.json
+diagnostic-production*.json
+diagnostics*.json
+exports/
+export-*/
+indexeddb-dump*/
+indexeddb*.json
+localStorage*.json
+DL-exports*/
+*.local.json
+
+# Backups locaux
+*.bak
+*.backup
+*.zip.tmp

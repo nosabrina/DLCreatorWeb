@@ -1,0 +1,21 @@
+# Phase 10 — Checklist déploiement pilote SDIS
+
+- [ ] Serveur prêt.
+- [ ] Node 20 LTS OK.
+- [ ] `npm ci` OK.
+- [ ] `better-sqlite3` OK.
+- [ ] `.env` réel créé hors ZIP.
+- [ ] DB initialisée.
+- [ ] Admin créé.
+- [ ] `npm run smoke-test` OK.
+- [ ] HTTPS actif.
+- [ ] Backup OK.
+- [ ] Test restauration OK.
+- [ ] `backendEnabled=false` dans le ZIP.
+- [ ] Activation progressive testée.
+- [ ] Import DL test OK.
+- [ ] Comptes pilotes créés.
+- [ ] SMTP dry-run OK.
+- [ ] SMTP réel validé si activé.
+- [ ] Rollback documenté.
+- [ ] Validation SDIS pilote.

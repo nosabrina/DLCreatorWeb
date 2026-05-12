@@ -1,0 +1,2 @@
+const {json,parseJson,requireFields,safeHandler,audit}=require('./_shared');
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);requireFields(body,['template','to']);audit(event,'AUDIT','notifications-send-prepared',{template:body.template});return json(200,{enabled:false,provider:'disabled',sent:false,retryPrepared:true,journalPrepared:true,message:'Notification/e-mail préparé mais aucun provider actif en v9.10.'},event);},['POST']);

@@ -1,0 +1,8 @@
+Template invitation — DL Creator Web
+
+Bonjour,
+
+Ce modèle est préparé pour la phase serveur. Aucun envoi réel n'est actif en v8.30.
+
+Version: {{version}}
+Document: {{documentReference}}

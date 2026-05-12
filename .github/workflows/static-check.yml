@@ -1,0 +1,32 @@
+name: DL Creator Web static checks
+on:
+  pull_request:
+  push:
+    branches: [ main, dev, pilote, release/**, hotfix/** ]
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Critical files check
+        run: node scripts/check-critical-files.js
+      - name: JavaScript syntax check
+        run: node scripts/check-js-syntax.js
+      - name: Validate package JSON files
+        run: find . -name package.json -o -name '*.schema.json' | xargs -r -n1 node -e "JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'))"
+      - name: Verify Netlify configuration
+        run: test -f netlify.toml && grep -q "netlify/functions" netlify.toml && grep -q "Cache-Control" netlify.toml
+      - name: Verify locked PDF warning
+        run: grep -q "pdfEngineLocked" js/config/version.js
+
+      - name: Validate collaborative pilot structure
+        run: test -f js/services/users/user-service.js && test -f js/services/users/pilot-users-service.js && test -f js/services/workflow/workflow-service.js && test -f js/services/workflow/distributed-validation-service.js && test -f js/services/notifications/notification-service.js && test -f js/services/storage/collaboration-storage.js && test -f js/services/storage/conflict-sync-service.js
+      - name: Validate RBAC and workflow permissions
+        run: grep -q "workflow:validate:domain" js/services/rbac/rbac-service.js && grep -q "dl:ownership:transfer" js/services/rbac/rbac-service.js && grep -q "dl:conflict:resolve" js/services/rbac/rbac-service.js
+      - name: Validate Netlify pilot functions
+        run: test -f netlify/functions/users-list.js && test -f netlify/functions/workflow-transition.js && test -f netlify/functions/permissions-check.js && test -f netlify/functions/diagnostics-server.js && test -f netlify/functions/validation-distributed.js && test -f netlify/functions/workflow-validation.js && test -f netlify/functions/collaborative-lock.js
+      - name: Validate version v8.50
+        run: grep -q "v8.50" js/config/version.js && grep -q "v8.50" index.html

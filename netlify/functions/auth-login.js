@@ -1,0 +1,2 @@
+const {json,parseJson,requireFields,safeHandler,audit}=require('./_shared');
+exports.handler=safeHandler(async(event)=>{const body=parseJson(event);requireFields(body,['username']);audit(event,'AUDIT','auth-login-pilot',{username:String(body.username).slice(0,80)});return json(200,{authMode:'pilote',mock:true,accessToken:null,refreshToken:null,expiresIn:null,user:{username:body.username,role:'lecteur'},message:'Authentification serveur préparatoire mockée. Auth locale conservée côté client.'},event);},['POST']);
