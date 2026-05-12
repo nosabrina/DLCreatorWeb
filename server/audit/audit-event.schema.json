@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DL Creator Audit Event",
+  "type": "object",
+  "required": ["id", "action", "createdAt", "actor", "version"],
+  "properties": {
+    "id": { "type": "string" },
+    "action": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "actor": { "type": "string" },
+    "documentId": { "type": "string" },
+    "level": { "type": "string", "enum": ["info", "warn", "error"] },
+    "version": { "type": "string" },
+    "details": { "type": "object" }
+  }
+}
