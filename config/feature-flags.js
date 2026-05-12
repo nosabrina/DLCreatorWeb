@@ -27,6 +27,10 @@
     filRougeUiAddSectionBottomV912: true,
     filRougeIconsAlignmentV913: true,
     filRougeSectionImagesV1000: true,
-    filRougeImageGalleryPdfV1000: true
+    filRougeImageGalleryPdfV1000: true,
+    filRougeImagesDragDropDirectV1001: true,
+    filRougeImagesCrop43V1001: true,
+    filRougeImagesDeleteConfirmV1001: true,
+    filRougeImagesPdfSpacingFixedV1001: true
   });
 })(window);

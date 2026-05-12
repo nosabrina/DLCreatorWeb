@@ -4,7 +4,7 @@ window.DL_CREATOR_WEB_APP_JS_LOADED = true;
 if(window.DL_CREATOR_BOOT) window.DL_CREATOR_BOOT.appJsLoaded = true;
 
 const APP = {
-  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.00').trim().toLowerCase(),
+  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.01').trim().toLowerCase(),
   STORAGE_KEY: 'DL_CREATOR_WEB_LIBRARY_V1',
   PROFILE_KEY: 'DL_CREATOR_WEB_PROFILE_V1',
   SESSION_KEY: 'DL_CREATOR_WEB_SESSION_V1',
@@ -101,8 +101,8 @@ function installMissingFunctionGuard(){
   };
   Object.entries(guarded).forEach(([name,fn])=>{
     if(typeof window[name] !== 'function') window[name]=function(...args){
-      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v10.00 exécuté.`);
-      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v10.00',destructive:false},'WARN'); }catch{}
+      console.warn(`[DL creator] Fonction ${name} absente : garde-fou v10.01 exécuté.`);
+      try{ window.DLCreatorCore?.auditService?.write?.('missing-function-guard',{name,version:'v10.01',destructive:false},'WARN'); }catch{}
       return fn(...args);
     };
   });
@@ -3092,7 +3092,7 @@ function isAcceptedFilRougeImage(file){
   const name=String(file?.name||'').toLowerCase();
   return ['image/jpeg','image/jpg','image/png','image/webp'].includes(type) || /\.(jpe?g|png|webp)$/.test(name);
 }
-function resizeFilRougeImageFile(file,maxSide=1600,quality=.82){
+function resizeFilRougeImageFile(file,maxWidth=1600,quality=.84){
   return new Promise((resolve,reject)=>{
     if(!file || !isAcceptedFilRougeImage(file)) return reject(new Error('Format image non accepté. Utiliser JPG, JPEG, PNG ou WEBP.'));
     const reader=new FileReader();
@@ -3101,17 +3101,24 @@ function resizeFilRougeImageFile(file,maxSide=1600,quality=.82){
       const img=new Image();
       img.onerror=()=>reject(new Error('Image illisible ou corrompue.'));
       img.onload=()=>{
-        let w=img.naturalWidth||img.width||0, h=img.naturalHeight||img.height||0;
+        const w=img.naturalWidth||img.width||0, h=img.naturalHeight||img.height||0;
         if(!w || !h) return reject(new Error('Dimensions image indisponibles.'));
-        const scale=Math.min(1, maxSide/Math.max(w,h));
-        const cw=Math.max(1,Math.round(w*scale)), ch=Math.max(1,Math.round(h*scale));
+        const ratio=4/3;
+        let sx=0, sy=0, sw=w, sh=h;
+        if(w/h > ratio){ sw=Math.round(h*ratio); sx=Math.round((w-sw)/2); }
+        else if(w/h < ratio){ sh=Math.round(w/ratio); sy=Math.round((h-sh)/2); }
+        const cw=Math.min(maxWidth, sw);
+        const ch=Math.round(cw/ratio);
         try{
           const canvas=document.createElement('canvas'); canvas.width=cw; canvas.height=ch;
-          const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,cw,ch);
-          const mime=file.type==='image/png'?'image/png':'image/jpeg';
-          const dataUrl=canvas.toDataURL(mime,mime==='image/jpeg'?quality:undefined);
-          resolve({id:uid(),name:file.name||'Image Fil rouge',mimeType:mime,dataUrl,width:cw,height:ch,caption:'',createdAtUTC:nowIso()});
-        }catch(e){ resolve({id:uid(),name:file.name||'Image Fil rouge',mimeType:file.type||'image/jpeg',dataUrl:String(reader.result||''),width:w,height:h,caption:'',createdAtUTC:nowIso()}); }
+          const ctx=canvas.getContext('2d');
+          ctx.drawImage(img,sx,sy,sw,sh,0,0,cw,ch);
+          const mime='image/jpeg';
+          const dataUrl=canvas.toDataURL(mime,quality);
+          resolve({id:uid(),name:file.name||'Image Fil rouge',mimeType:mime,dataUrl,width:cw,height:ch,ratio:'4:3',cropApplied:(sx>0||sy>0||sw!==w||sh!==h),caption:'',createdAtUTC:nowIso()});
+        }catch(e){
+          reject(new Error('Recadrage 4:3 impossible pour cette image.'));
+        }
       };
       img.src=String(reader.result||'');
     };
@@ -3127,21 +3134,39 @@ async function addFilRougeImages(sectionIndex,files,source='file'){
   const accepted=list.filter(isAcceptedFilRougeImage);
   if(refused.length) actionStatus(`${refused.length} fichier(s) refusé(s) : format non image.`, 'warn');
   let added=0;
+  let cropped=0;
   for(const file of accepted){
-    try{ section.images.push(await resizeFilRougeImageFile(file)); added++; }
+    try{ const img=await resizeFilRougeImageFile(file); if(img.cropApplied) cropped++; section.images.push(img); added++; }
     catch(e){ actionStatus(e?.message||'Import image impossible.', 'warn'); }
   }
   if(added){
-    auditLocal(source==='drop'?'filrouge-image-drop-import':'filrouge-image-file-import',{sectionIndex,count:added,destructive:false},'AUDIT');
+    auditLocal(source==='drop'?'filrouge-image-drop-import':'filrouge-image-click-import',{sectionIndex,count:added,crop43:true,cropped,destructive:false},'AUDIT');
+    auditLocal('filrouge-image-crop-43-applied',{sectionIndex,count:added,cropped,destructive:false},'AUDIT');
     auditLocal('filrouge-image-add',{sectionIndex,count:added,destructive:false},'AUDIT');
     setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel(); actionStatus(`${added} image(s) ajoutée(s) au Fil rouge.`, 'ok');
   }
 }
-function removeFilRougeImage(sectionIndex,imageIndex){
+function confirmFilRougeImageDelete(){
+  return new Promise(resolve=>{
+    const overlay=document.createElement('div');
+    overlay.className='filrouge-delete-confirm-overlay';
+    overlay.innerHTML=`<div class="filrouge-delete-confirm" role="dialog" aria-modal="true" aria-labelledby="frImgDeleteTitle"><h3 id="frImgDeleteTitle">Suppression de la photo</h3><p>Confirmer la suppression de cette photo liée à la section ?</p><div class="row-actions"><button class="btn small" type="button" data-cancel>Annuler</button><button class="btn small red" type="button" data-delete>Supprimer</button></div></div>`;
+    const close=value=>{ overlay.remove(); resolve(value); };
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) close(false); });
+    overlay.querySelector('[data-cancel]')?.addEventListener('click',()=>close(false));
+    overlay.querySelector('[data-delete]')?.addEventListener('click',()=>close(true));
+    overlay.addEventListener('keydown',e=>{ if(e.key==='Escape') close(false); });
+    document.body.appendChild(overlay);
+    overlay.querySelector('[data-cancel]')?.focus();
+  });
+}
+async function removeFilRougeImage(sectionIndex,imageIndex){
   const section=APP.state.current?.filRouge?.[sectionIndex]; if(!section) return;
   normalizeFilRougeSection(section);
+  const ok=await confirmFilRougeImageDelete();
+  if(!ok) return;
   const removed=section.images.splice(imageIndex,1)[0];
-  auditLocal('filrouge-image-delete',{sectionIndex,imageName:removed?.name||'',destructive:true},'AUDIT');
+  auditLocal('filrouge-image-delete-confirmed',{sectionIndex,imageName:removed?.name||'',destructive:true},'AUDIT');
   setDirty(); saveCurrent(false,{forceIncompleteDraft:true}); renderPanel();
 }
 function updateFilRougeImageCaption(sectionIndex,imageIndex,value){
@@ -3156,14 +3181,17 @@ function renderFilRougeImages(sectionIndex,section){
   normalizeFilRougeSection(section);
   const has=(section.images||[]).length>0;
   const inputId=`filrougeImageInput-${sectionIndex}`;
-  const gallery=has?`<div class="filrouge-image-dropzone" data-fr-image-drop="${sectionIndex}"><strong>Déposer des images ici</strong><span> ou sélectionner depuis l’ordinateur</span></div><div class="filrouge-image-gallery">${section.images.map((img,j)=>`<figure class="filrouge-image-card"><div class="filrouge-image-thumb"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}"></div><button class="btn small icon-only filrouge-image-delete" type="button" title="Supprimer l’image" aria-label="Supprimer l’image" onclick="removeFilRougeImage(${sectionIndex},${j})">${sfTrashIcon()}</button><figcaption><input type="text" value="${esc(img.caption||'')}" placeholder="Légende de l’image" onchange="updateFilRougeImageCaption(${sectionIndex},${j},this.value)" onblur="updateFilRougeImageCaption(${sectionIndex},${j},this.value)"></figcaption></figure>`).join('')}</div>`:'';
-  return `<div class="filrouge-section-images ${has?'has-images':''}"><label>IMAGES LIÉES À CETTE SECTION</label><div class="toolbar filrouge-image-toolbar"><button class="btn filrouge-add-photo-btn" type="button" onclick="document.getElementById('${inputId}').click()">${sfPhotoBadgePlusIcon()}<strong>Ajouter photo</strong></button><input id="${inputId}" type="file" hidden accept="image/jpeg,image/jpg,image/png,image/webp" multiple onchange="addFilRougeImages(${sectionIndex},this.files,'file');this.value=''">${has?'<span class="muted">Galerie locale sauvegardée avec la DL.</span>':''}</div>${gallery}</div>`;
+  const dropzone=`<div class="filrouge-image-dropzone" role="button" tabindex="0" aria-label="Déposer ou sélectionner des images" data-fr-image-drop="${sectionIndex}" data-fr-image-input="${inputId}">${sfPhotoBadgePlusIcon()}<span>Déposer des images ici ou sélectionner depuis l’ordinateur</span></div>`;
+  const gallery=has?`<div class="filrouge-image-gallery">${section.images.map((img,j)=>`<figure class="filrouge-image-card"><div class="filrouge-image-thumb"><img src="${esc(img.dataUrl)}" alt="${esc(img.caption||img.name||'Image Fil rouge')}"></div><button class="btn small icon-only filrouge-image-delete" type="button" title="Supprimer l’image" aria-label="Supprimer l’image" onclick="removeFilRougeImage(${sectionIndex},${j})">${sfTrashIcon()}</button><figcaption><input type="text" value="${esc(img.caption||'')}" placeholder="Légende de l’image" onchange="updateFilRougeImageCaption(${sectionIndex},${j},this.value)" onblur="updateFilRougeImageCaption(${sectionIndex},${j},this.value)"></figcaption></figure>`).join('')}</div>`:'';
+  return `<div class="filrouge-section-images ${has?'has-images':''}"><label>IMAGES LIÉES À CETTE SECTION</label><input id="${inputId}" type="file" hidden accept="image/jpeg,image/jpg,image/png,image/webp" multiple onchange="addFilRougeImages(${sectionIndex},this.files,'click');this.value=''">${dropzone}${has?'<div class="filrouge-image-help muted">Galerie locale sauvegardée avec la DL.</div>':''}${gallery}</div>`;
 }
 function bindFilRougeImageDropzones(){
   $$('[data-fr-image-drop]').forEach(zone=>{
     const idx=Number(zone.getAttribute('data-fr-image-drop'));
     zone.ondragover=e=>{e.preventDefault();zone.classList.add('drag')};
     zone.ondragleave=()=>zone.classList.remove('drag');
+    zone.onclick=()=>document.getElementById(zone.getAttribute('data-fr-image-input')||`filrougeImageInput-${idx}`)?.click();
+    zone.onkeydown=e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); zone.click(); } };
     zone.ondrop=e=>{e.preventDefault();zone.classList.remove('drag');addFilRougeImages(idx,e.dataTransfer?.files,'drop');};
   });
 }
@@ -4219,17 +4247,17 @@ window.saveHabilitationsExplicit=function(){
     if(!managers.length){
       const recovery=currentUserRecoveryRow('ADMIN STRUCTURE APPLICATION');
       list.unshift(recovery);
-      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v10.00',destructive:false},'WARN'); }catch{}
+      try{ window.DLCreatorCore?.auditService?.write?.('habilitation-admin-recovery-auto',{reason:'aucun gestionnaire restant',version:'v10.01',destructive:false},'WARN'); }catch{}
     }
     saveHabilitations(list);
     APP.state.habilitations=loadHabilitations();
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v10.00',destructive:false},'AUDIT'); }catch{}
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-explicit',{count:APP.state.habilitations.length,version:'v10.01',destructive:false},'AUDIT'); }catch{}
     actionStatus('Habilitations enregistrées. Droits conservés localement.', 'ok');
     renderHabilitations();
     return true;
   }catch(e){
-    console.error('[DL creator][v10.00] Enregistrement habilitations impossible', e);
-    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v10.00',destructive:false},'ERROR'); }catch{}
+    console.error('[DL creator][v10.01] Enregistrement habilitations impossible', e);
+    try{ window.DLCreatorCore?.auditService?.write?.('habilitations-save-error',{message:e?.message||String(e),version:'v10.01',destructive:false},'ERROR'); }catch{}
     actionStatus('Erreur lors de l’enregistrement des habilitations. Gestion des accès reste accessible.', 'error');
     return false;
   }
@@ -4429,7 +4457,7 @@ window.editPersonalDL=id=>{
 };
 function renderOutils(){
   if(!(canManageKeywords() || hasAccessAtLeast('ADMIN STRUCTURE APPLICATION'))) return accessDeniedPanel();
-  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.00 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.01 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
 }
 
 function renderDiagnosticProduction(){
@@ -4477,9 +4505,9 @@ function renderDiagnosticProduction(){
     ['Éléments préparés mais désactivés', 'Backend, stockage distant, auth serveur, e-mails transactionnels, sync distante'],
     ['PDF', vi.flags?.pdfEngineLocked ? 'Verrouillé : aucune modification moteur PDF' : 'À contrôler'],
     ['Garde-fous boot', 'Contrôle DEFAULT_DL_VERSION avant initialisation + tryPersistDraft présent + références critiques vérifiées'],
-    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.00' : 'Pilote limité']
+    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.01' : 'Pilote limité']
   ];
-  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.00. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.01. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
 }
 
 window.runFunctionsDiagnosticFromUI=async()=>{

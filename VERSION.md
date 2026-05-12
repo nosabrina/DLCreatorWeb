@@ -1,9 +1,14 @@
-# DLCreatorWeb v10.00
+# DLCreatorWeb v10.01
 
-- Version : v10.00
-- Build increment : 200
-- Build : 2026.05.12-v10.00-filrouge-section-images-gallery-pdf
+- Version : v10.01
+- Build increment : 201
+- Build : 2026.05.12-v10.01-filrouge-images-dragdrop-confirm-4-3-pdf
 - Date : 2026-05-12
-- Évolution majeure : images par section dans le Fil rouge avec galerie locale, légendes, import/export JSON et rendu PDF limité à 5 cm de largeur.
+- Type : correctif mineur ciblé Fil rouge images
 
-Convention de livraison ZIP obligatoire à partir de cette version : `DLCreatorWeb vXX.XX.zip`.
+## Flags v10.01
+
+- `filRougeImagesDragDropDirectV1001: true`
+- `filRougeImagesCrop43V1001: true`
+- `filRougeImagesDeleteConfirmV1001: true`
+- `filRougeImagesPdfSpacingFixedV1001: true`

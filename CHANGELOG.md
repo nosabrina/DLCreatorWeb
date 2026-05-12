@@ -1,3 +1,18 @@
+# Changelog
+
+## v10.01 — 2026-05-12
+
+Correctif mineur ciblé sur la galerie images du Fil rouge, sans modification RBAC, backend, Netlify Functions, e-mails, workflows de validation ni autres blocs PDF.
+
+- Zone Drag&Drop affichée directement dans `IMAGES LIÉES À CETTE SECTION`.
+- Zone Drag&Drop cliquable avec sélection multiple JPG/JPEG/PNG/WEBP et fallback input fichier.
+- Suppression du bouton `Ajouter photo`.
+- Confirmation obligatoire avant suppression d’une photo liée à une section.
+- Import des images recadré/redimensionné en 4:3 sans déformation, compatible portrait et paysage.
+- Export PDF des images Fil rouge fixé à 5 cm de largeur, sans bordure, avec centrage et espacement homogènes.
+- Légendes PDF maintenues en 8 pt sans espace réservé si vide.
+- Audit local complété pour import par clic, import Drag&Drop, recadrage 4:3, modification de légende et suppression confirmée.
+
 # CHANGELOG
 
 ## v10.00 — 2026-05-12

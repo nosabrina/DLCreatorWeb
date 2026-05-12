@@ -4,10 +4,10 @@
   const runtime = window.DL_CREATOR_RUNTIME_CONFIG || {};
   const runtimeFlags = window.DL_CREATOR_FEATURE_FLAGS || {};
   const versionInfo = Object.freeze({
-    version: runtime.version || 'v10.00',
-    numericVersion: runtime.numericVersion || '10.00',
-    build: runtime.build || '2026.05.12-v10.00-filrouge-section-images-gallery-pdf',
-    buildIncrement: runtime.buildIncrement || 200,
+    version: runtime.version || 'v10.01',
+    numericVersion: runtime.numericVersion || '10.01',
+    build: runtime.build || '2026.05.12-v10.01-filrouge-images-dragdrop-confirm-4-3-pdf',
+    buildIncrement: runtime.buildIncrement || 201,
     buildDate: runtime.buildDate || '2026-05-12',
     buildDateUTC: new Date(runtime.buildDateUTC || '2026-05-12T07:30:00Z').toISOString(),
     environment: runtime.environment || 'local',
@@ -124,7 +124,11 @@
       filRougeUiAddSectionBottomV912: true,
     filRougeIconsAlignmentV913: true,
       filRougeSectionImagesV1000: true,
-      filRougeImageGalleryPdfV1000: true
+      filRougeImageGalleryPdfV1000: true,
+      filRougeImagesDragDropDirectV1001: true,
+      filRougeImagesCrop43V1001: true,
+      filRougeImagesDeleteConfirmV1001: true,
+      filRougeImagesPdfSpacingFixedV1001: true
     })
   });
   root.versionInfo = versionInfo;
