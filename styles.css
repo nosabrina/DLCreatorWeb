@@ -4151,3 +4151,20 @@ textarea.invalid{
     -webkit-print-color-adjust:exact!important;
   }
 }
+
+
+/* DL Creator Web v10.03 — correctif strict Export PDF : PUBLIC CIBLE noir / bold / 11 pt */
+.pdf-public-cible-v1003,
+.pdf-public-cible-v1003 span,
+.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-v1003,
+.pdf-cover-grid-v2 .pdf-meta strong .pdf-public-cible-v1003 span,
+.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-v1003,
+.pdf-page2-generalites .pdf-info-box strong .pdf-public-cible-v1003 span{
+  color:#000!important;
+  font-weight:800!important;
+  font-size:11pt!important;
+  line-height:1.18!important;
+  text-transform:none!important;
+  letter-spacing:normal!important;
+  text-align:left!important;
+}

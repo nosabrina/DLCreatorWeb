@@ -34,6 +34,7 @@
     filRougeImagesPdfSpacingFixedV1001: true,
     filRougeImagesPdfTitleAlignV1002: true,
     publicCiblePdfBoldCaseV1002: true,
+    publicCiblePdfBoldBlack11V1003: true,
     filRougeImageCaptionGreyLeftV1002: true,
     filRougeImageCaptionSentenceCaseV1002: true
   });

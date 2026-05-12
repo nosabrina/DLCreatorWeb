@@ -1,3 +1,13 @@
+## v10.03 — 2026-05-12
+
+### Correctif simple Export PDF
+
+- Correction stricte du rendu du contenu PUBLIC CIBLE sur la première page PDF.
+- Correction stricte du rendu du contenu PUBLIC CIBLE dans GÉNÉRALITÉS.
+- Style imposé : noir, bold, taille 11 pt.
+- Casse utilisateur respectée.
+- Aucun changement volontaire sur RBAC, bibliothèque DL, Fil rouge, JSON, audit, backend, e-mails ou autres blocs PDF.
+
 ## v10.02 — 2026-05-12
 
 ### Correctif mineur ciblé

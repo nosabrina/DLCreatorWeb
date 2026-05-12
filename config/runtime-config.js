@@ -1,17 +1,17 @@
 (function(window){
   'use strict';
   /**
-   * DL Creator Web v10.02 — configuration runtime publique.
+   * DL Creator Web v10.03 — configuration runtime publique.
    * Ce fichier ne contient aucun secret. Les valeurs sensibles doivent rester
    * exclusivement dans les variables d'environnement Netlify / serveur.
    */
   const existing = window.DL_CREATOR_RUNTIME_CONFIG || {};
   const runtimeConfig = Object.freeze({
     appName: 'DL Creator Web',
-    version: 'v10.02',
-    numericVersion: '10.02',
-    build: '2026.05.12-v10.02-filrouge-pdf-public-cible-legendes',
-    buildIncrement: 202,
+    version: 'v10.03',
+    numericVersion: '10.03',
+    build: '2026.05.12-v10.03-pdf-public-cible-bold-black-11pt',
+    buildIncrement: 203,
     buildDate: '2026-05-12',
     buildDateUTC: '2026-05-12T07:30:00.000Z',
     environment: existing.environment || 'local',

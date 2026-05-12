@@ -4,10 +4,10 @@
   const runtime = window.DL_CREATOR_RUNTIME_CONFIG || {};
   const runtimeFlags = window.DL_CREATOR_FEATURE_FLAGS || {};
   const versionInfo = Object.freeze({
-    version: runtime.version || 'v10.02',
-    numericVersion: runtime.numericVersion || '10.02',
-    build: runtime.build || '2026.05.12-v10.02-filrouge-pdf-public-cible-legendes',
-    buildIncrement: runtime.buildIncrement || 202,
+    version: runtime.version || 'v10.03',
+    numericVersion: runtime.numericVersion || '10.03',
+    build: runtime.build || '2026.05.12-v10.03-pdf-public-cible-bold-black-11pt',
+    buildIncrement: runtime.buildIncrement || 203,
     buildDate: runtime.buildDate || '2026-05-12',
     buildDateUTC: new Date(runtime.buildDateUTC || '2026-05-12T07:30:00Z').toISOString(),
     environment: runtime.environment || 'local',
@@ -131,6 +131,7 @@
       filRougeImagesPdfSpacingFixedV1001: true,
     filRougeImagesPdfTitleAlignV1002: true,
     publicCiblePdfBoldCaseV1002: true,
+    publicCiblePdfBoldBlack11V1003: true,
     filRougeImageCaptionGreyLeftV1002: true,
     filRougeImageCaptionSentenceCaseV1002: true
     })

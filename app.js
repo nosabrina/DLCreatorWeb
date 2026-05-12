@@ -4,7 +4,7 @@ window.DL_CREATOR_WEB_APP_JS_LOADED = true;
 if(window.DL_CREATOR_BOOT) window.DL_CREATOR_BOOT.appJsLoaded = true;
 
 const APP = {
-  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.02').trim().toLowerCase(),
+  VERSION: String(window.DLCreatorCore?.getVersionInfo?.().version || window.DLCreatorCore?.config?.appVersion || 'v10.03').trim().toLowerCase(),
   STORAGE_KEY: 'DL_CREATOR_WEB_LIBRARY_V1',
   PROFILE_KEY: 'DL_CREATOR_WEB_PROFILE_V1',
   SESSION_KEY: 'DL_CREATOR_WEB_SESSION_V1',
@@ -4467,7 +4467,7 @@ window.editPersonalDL=id=>{
 };
 function renderOutils(){
   if(!(canManageKeywords() || hasAccessAtLeast('ADMIN STRUCTURE APPLICATION'))) return accessDeniedPanel();
-  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.02 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Outils</h3><div class="alert info">Menu production v10.03 : les outils métier restent isolés sous Outils, après Gestion des accès, sans modifier les handlers ni les données existantes.</div><div class="tools-grid"><button class="home-card" type="button" onclick="navigateModule('motscles')"><span class="home-card-icon">${moduleIcon('motscles')}</span><strong>Mots clés</strong><small>Bibliothèque centralisée, correction et propagation dans les DL.</small></button><button class="home-card" type="button" onclick="navigateModule('import')"><span class="home-card-icon">${moduleIcon('import')}</span><strong>Import Word</strong><small>Importer une descente de leçon depuis un fichier Word.</small></button></div></div>`;
 }
 
 function renderDiagnosticProduction(){
@@ -4515,9 +4515,9 @@ function renderDiagnosticProduction(){
     ['Éléments préparés mais désactivés', 'Backend, stockage distant, auth serveur, e-mails transactionnels, sync distante'],
     ['PDF', vi.flags?.pdfEngineLocked ? 'Verrouillé : aucune modification moteur PDF' : 'À contrôler'],
     ['Garde-fous boot', 'Contrôle DEFAULT_DL_VERSION avant initialisation + tryPersistDraft présent + références critiques vérifiées'],
-    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.02' : 'Pilote limité']
+    ['Indicateur pilote', (vi.flags?.offlineFirst && vi.flags?.pdfEngineLocked && audit && window.DLCreatorCore?.workflowService) ? 'Prêt pilote contrôlé v10.03' : 'Pilote limité']
   ];
-  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.02. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
+  $('#panel').innerHTML=`<div class="card"><h3>Diagnostic production v4</h3><div class="alert info">État de stabilisation institutionnelle v10.03. Ce diagnostic sépare erreurs bloquantes, warnings, informations et éléments préparés mais désactivés, sans modifier les données ni le moteur PDF.</div><table class="data"><tbody>${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div><div class="card"><h3>Confidentialité / stockage local</h3><div class="alert warn">Mode pilote offline-first — les DL, comptes pilotes, profils, habilitations, workflows, mots clés, migrations et journaux locaux restent stockés dans le navigateur de ce poste. Le futur mode serveur devra être activé uniquement après validation institutionnelle.</div><ul class="muted"><li>Bibliothèque, validations hiérarchiques, ownership, conflits, migrations et refus de permissions sont audités localement.</li><li>La synchronisation distante reste volontairement désactivée afin de préserver le comportement offline-first.</li></ul><div class="row-actions"><button class="btn" onclick="exportProductionDiagnostic()" type="button">Exporter diagnostic</button><button class="btn" onclick="exportLocalAuditTrail()" type="button">Exporter audit local</button><button class="btn" onclick="runFunctionsDiagnosticFromUI()" type="button">Diagnostic Functions</button><button class="btn" onclick="window.DLCreatorCore?.auditService?.purge?.(); renderDiagnosticProduction();" type="button">Purger audit local</button></div></div>`;
 }
 
 window.runFunctionsDiagnosticFromUI=async()=>{
@@ -5092,7 +5092,7 @@ function publicCiblePdfHtml(dl){
   const values=[...selected];
   if(libre) values.push(libre);
   if(!values.length) return '—';
-  return `<div class="pdf-public-cible pdf-public-cible-text pdf-public-cible-bold">${values.map(v=>`<span>${esc(v)}</span>`).join('<br>')}</div>`;
+  return `<div class="pdf-public-cible pdf-public-cible-text pdf-public-cible-bold pdf-public-cible-v1003">${values.map(v=>`<span>${esc(v)}</span>`).join('<br>')}</div>`;
 }
 function formateursPdfHtml(dl){
   const people=sortPeopleByGradeHighToLow(dl.responsables?.formateurs);
